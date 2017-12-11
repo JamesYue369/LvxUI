@@ -1,6 +1,6 @@
 {
   "name": "lvx-ui",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "A Component Library for Vue.js.",
   "main": "lib/element-ui.common.js",
   "files": [
@@ -32,9 +32,7 @@
     "url": "git@github.com/JamesYue369/LvxUI.git"
   },
   "homepage": "",
-  "keywords": [
-   
-  ],
+  "keywords": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JamesYue369/LvxUI/issues"
