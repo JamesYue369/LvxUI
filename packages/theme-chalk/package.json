@@ -1,5 +1,5 @@
 {
-  "name": "element-theme-chalk",
+  "name": "lvx-theme-chalk",
   "version": "2.0.7",
   "description": "Element component chalk theme.",
   "main": "lib/index.css",
@@ -16,8 +16,6 @@
     "url": "git+https://github.com/JamesYue369/theme-chalk.git"
   },
   "keywords": [
-    "element",
-    "theme"
   ],
   "author": "",
   "license": "MIT",
