@@ -245,13 +245,13 @@
           <!-- logo -->
           <slot>
             <img
-              src="../assets/images/element-logo.svg"
+              src="../assets/images/logo1.png"
               alt="element-logo"
-              class="nav-logo">
-            <img
+              class="nav-logo" style="height:80px;">
+            <!-- <img
               src="../assets/images/element-logo-small.svg"
               alt="element-logo"
-              class="nav-logo-small">
+              class="nav-logo-small"> -->
           </slot>
 
         </router-link></h1>
@@ -271,6 +271,12 @@
             <router-link
               active-class="active"
               :to="`/${ lang }/component`">{{ langConfig.components }}
+            </router-link>
+          </li>
+           <li class="nav-item">
+            <router-link
+              active-class="active"
+              :to="`/${ lang }/demo`">{{ langConfig.demo }}
             </router-link>
           </li>
           <li class="nav-item">

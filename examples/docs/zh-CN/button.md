@@ -59,6 +59,16 @@
 ```
 :::
 
+### 自定义颜色
+可以自定义背景颜色、字体颜色
+:::demo 使用`fill`、`text-color`属性来定义 Button 的颜色样式。
+```html
+<div>
+  <el-button fill="#38c546" text-color="#fff">自定义颜色</el-button>
+</div>
+```
+:::
+
 ### 禁用状态
 
 按钮不可用状态。

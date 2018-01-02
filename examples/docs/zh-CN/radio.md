@@ -194,6 +194,30 @@
 ```
 :::
 
+### 自定义颜色
+
+::: demo 设置radioGroup上的'fill'、'text-color' 属性可以定义激活状态填充的背景色和文字的颜色。
+```html
+<template>
+  <el-radio-group v-model="radio2" fill="#38c546"  text-color="#38c546">
+    <el-radio :label="3">备选项</el-radio>
+    <el-radio :label="6">备选项</el-radio>
+    <el-radio :label="9">备选项</el-radio>
+  </el-radio-group>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        radio2: 3
+      };
+    }
+  }
+</script>
+```
+:::
+
 ### Radio Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |

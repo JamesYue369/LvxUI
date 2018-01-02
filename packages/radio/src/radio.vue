@@ -20,7 +20,7 @@
         'is-checked': model === label
       }"
     >
-      <span class="el-radio__inner"></span>
+      <span class="el-radio__inner" @blur="blurHandle" @mouseover="mouseoverHandle" @mouseleave="mouseleaveHandle"  :style="[model === label ? activeStyle : null, {borderColor: borderColor},model === label ? null : {borderColor: ''}]"></span>
       <input
         class="el-radio__original"
         :value="label"
@@ -34,7 +34,7 @@
         tabindex="-1"
       >
     </span>
-    <span class="el-radio__label">
+    <span class="el-radio__label" :style="model === label ? textActiveStyle : null" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>
@@ -67,8 +67,14 @@
 
     data() {
       return {
-        focus: false
+        focus: false,
+        innerBorderColor: null,
+        borderColor: null
       };
+    },
+    mounted() {
+      let radio_inner = this.$el.querySelector('.el-radio__inner');
+      this.innerBorderColor = getComputedStyle(radio_inner, null).borderColor;
     },
     computed: {
       isGroup() {
@@ -77,7 +83,7 @@
           if (parent.$options.componentName !== 'ElRadioGroup') {
             parent = parent.$parent;
           } else {
-            this._radioGroup = parent;
+            // this._radioGroup = parent;
             return true;
           }
         }
@@ -95,6 +101,17 @@
           }
         }
       },
+      _radioGroup() {
+        let parent = this.$parent;
+        while (parent) {
+          if (parent.$options.componentName !== 'ElRadioGroup') {
+            parent = parent.$parent;
+          } else {
+            return parent;
+          }
+        }
+        return false;
+      },
       _elFormItemSize() {
         return (this.elFormItem || {}).elFormItemSize;
       },
@@ -111,6 +128,18 @@
       },
       tabIndex() {
         return !this.isDisabled ? (this.isGroup ? (this.model === this.label ? 0 : -1) : 0) : -1;
+      },
+      activeStyle() {
+        return {
+          backgroundColor: this._radioGroup.fill || '',
+          borderColor: this._radioGroup.fill || '',
+          boxShadow: this._radioGroup.fill ? `-1px 0 0 0 ${this._radioGroup.fill}` : ''
+        };
+      },
+      textActiveStyle() {
+        return {
+          color: this._radioGroup.textColor || ''
+        };
       }
     },
 
@@ -120,6 +149,15 @@
           this.$emit('change', this.model);
           this.isGroup && this.dispatch('ElRadioGroup', 'handleChange', this.model);
         });
+      },
+      mouseoverHandle() {
+        this.borderColor = this._radioGroup.fill || '';
+      },
+      mouseleaveHandle() {
+        this.model === this.label ? this.borderColor = this._radioGroup.fill : this.borderColor = this.innerBorderColor;
+      },
+      blurHandle() {
+        this.borderColor = '';
       }
     }
   };

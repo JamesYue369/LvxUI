@@ -2,6 +2,8 @@
   <button
     class="el-button"
     @click="handleClick"
+    @mouseover="mouseoverHandle"
+    @mouseleave="mouseleaveHandle"
     :disabled="disabled"
     :autofocus="autofocus"
     :type="nativeType"
@@ -15,6 +17,11 @@
         'is-round': round
       }
     ]"
+    :style="{
+      'backgroundColor': fillColor,
+      'borderColor': borderColor,
+      'color': textColor
+    }"
   >
     <i class="el-icon-loading" v-if="loading" @click="handleInnerClick"></i>
     <i :class="icon" v-if="icon && !loading" @click="handleInnerClick"></i>
@@ -22,6 +29,8 @@
   </button>
 </template>
 <script>
+  import Color from 'color';
+  import convert from 'color-convert';
   export default {
     name: 'ElButton',
 
@@ -30,11 +39,24 @@
         default: ''
       }
     },
-
+    data() {
+      return {
+        fillColor: this.fill,
+        borderColor: this.fillColor
+      };
+    },
     props: {
       type: {
         type: String,
         default: 'default'
+      },
+      fill: {
+        type: String,
+        default: ''
+      },
+      textColor: {
+        type: String,
+        default: ''
       },
       size: String,
       icon: {
@@ -68,6 +90,18 @@
       handleInnerClick(evt) {
         if (this.disabled) {
           evt.stopPropagation();
+        }
+      },
+      mouseoverHandle() {
+        if (this.fillColor) {
+          this.fillColor = `#${convert.rgb.hex(Color(this.fill).lighten(0.04).rgbArray())}`;
+          this.borderColor = this.fillColor;
+        }
+      },
+      mouseleaveHandle() {
+        if (this.fillColor) {
+          this.fillColor = this.fill;
+          this.borderColor = this.fill;
         }
       }
     }
