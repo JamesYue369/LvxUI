@@ -6,14 +6,13 @@
     padding-top: 20px;
 
     h1 {
-      font-size: <%= titleSize >px;
-      margin: 0;
+      font-size: 34px;
       line-height: 48px;
       color: #555;
     }
 
     p {
-      font-size: <%= paraSize >px;
+      font-size: 18px;
       line-height: 28px;
       color: #888;
       margin: 10px 0 5px;
@@ -237,87 +236,19 @@
   <div>
     <div class="banner">
       <div class="banner-desc">
-        <h1><%= 1 ></h1>
-        <p><%= 2 ></p>
+        <h1>UI框架</h1>
+        <p>LvxUI</p>
       </div>
     </div>
-    <div class="jumbotron">
-      <div>
-        <img class="jumbotron-plant-2" src="~examples/assets/images/plant-2.png" alt="">
-        <img class="jumbotron-web" src="~examples/assets/images/web.png" alt="">
-        <img class="jumbotron-plant-1" src="~examples/assets/images/plant-1.png" alt="">
-        <img class="jumbotron-figure-1" src="~examples/assets/images/figure-1.png" alt="">
-        <img class="jumbotron-figure-2" src="~examples/assets/images/figure-2.png" alt="">
-      </div>
-      <div data-hover-layer="0">
-        <img class="jumbotron-cloud-1" src="~examples/assets/images/cloud-1.png" alt="">
-        <img class="jumbotron-cloud-2" src="~examples/assets/images/cloud-2.png" alt="">
-      </div>
-      <div data-hover-layer="1">
-        <img class="jumbotron-compo-1" src="~examples/assets/images/compo-1.png" alt="">
-        <img class="jumbotron-compo-2" src="~examples/assets/images/compo-2.png" alt="">
-        <img class="jumbotron-compo-3" src="~examples/assets/images/compo-3.png" alt="">
-      </div>
-    </div>
-    <div class="cards">
-      <ul class="container">
-        <li>
-          <div class="card">
-            <img src="~examples/assets/images/guide.png" alt="">
-            <h3><%= 3 ></h3>
-            <p><%= 4 ></p>
-            <router-link
-              active-class="active"
-              to="/<%= lang >/guide/design"
-              exact><%= 5 >
-            </router-link>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <img src="~examples/assets/images/component.png" alt="">
-            <h3><%= 6 ></h3>
-            <p><%= 7 ></p>
-            <router-link
-              active-class="active"
-              to="/<%= lang >/component/layout"
-              exact><%= 5 >
-            </router-link>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <img src="~examples/assets/images/resource.png" alt="">
-            <h3><%= 8 ></h3>
-            <p><%= 9 ></p>
-            <router-link
-              active-class="active"
-              to="/<%= lang >/resource"
-              exact><%= 5 >
-            </router-link>
-          </div>
-        </li>
-      </ul>
-    </div>
+    
+   <div>
+     
+   </div>
   </div>
 </template>
 <script>
-  import { Hover } from 'perspective.js';
-
   export default {
     mounted() {
-      new Hover('.jumbotron', { // eslint-disable-line
-        max: 3,
-        scale: 1,
-        perspective: 700,
-        layers: [{
-          multiple: 0.01,
-          reverseTranslate: true
-        }, {
-          multiple: 0.02,
-          reverseTranslate: true
-        }]
-      });
     }
   };
 </script>

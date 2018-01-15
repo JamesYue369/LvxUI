@@ -168,7 +168,7 @@
     </el-scrollbar>
     <div class="page-component__content">
       <router-view class="content"></router-view>
-      <footer-nav></footer-nav>
+      <!-- <footer-nav></footer-nav> -->
     </div>
     <transition name="back-top-fade">
       <div

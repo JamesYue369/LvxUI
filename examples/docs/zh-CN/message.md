@@ -290,6 +290,7 @@ import { Message } from 'element-ui';
 | iconClass | 自定义图标的类名，会覆盖 `type` | string | — | — |
 | dangerouslyUseHTMLString | 是否将 message 属性作为 HTML 片段处理 | boolean | — | false |
 | customClass | 自定义类名 | string | — | — |
+| customStyle | 自定义内联样式，优先级高 | string | — | — |
 | duration | 显示时间, 毫秒。设为 0 则不会自动关闭 | number | — | 3000 |
 | showClose | 是否显示关闭按钮 | boolean | — | false |
 | center | 文字是否居中 | boolean | — | false |

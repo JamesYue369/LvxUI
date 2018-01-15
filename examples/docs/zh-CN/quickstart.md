@@ -2,44 +2,28 @@
 
 本节将介绍如何在项目中使用 Element。
 
-### 使用 Starter Kit
 
-我们提供了通用的[项目模板](https://github.com/ElementUI/element-starter)，你可以直接使用。对于 Laravel 用户，我们也准备了相应的[模板](https://github.com/ElementUI/element-in-laravel-starter)，同样可以直接下载使用。
+### 引入 Lvx
 
-如果不希望使用我们提供的模板，请继续阅读。
-
-### 使用 vue-cli
-
-我们还可以使用 [vue-cli](https://github.com/vuejs/vue-cli) 初始化项目，命令如下：
-
-```shell
-> npm i -g vue-cli
-> mkdir my-project && cd my-project
-> vue init webpack
-> npm i && npm i element-ui
-```
-
-### 引入 Element
-
-你可以引入整个 Element，或是根据需要仅引入部分组件。我们先介绍如何引入完整的 Element。
+你可以引入整个 Lvx，或是根据需要仅引入部分组件。我们先介绍如何引入完整的 Lvx。
 
 #### 完整引入
 
 在 main.js 中写入以下内容：
 ```javascript
 import Vue from 'vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import LvxUI from 'lvx-ui'
+import 'lvx-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 
-Vue.use(ElementUI)
+Vue.use(LvxUI)
 
 new Vue({
   el: '#app',
   render: h => h(App)
 })
 ```
-以上代码便完成了 Element 的引入。需要注意的是，样式文件需要单独引入。
+以上代码便完成了 Lvx 的引入。需要注意的是，样式文件需要单独引入。
 
 #### 按需引入
 
@@ -59,7 +43,7 @@ npm install babel-plugin-component -D
   ],
   "plugins": [["component", [
     {
-      "libraryName": "element-ui",
+      "libraryName": "lvx-ui",
       "styleLibraryName": "theme-chalk"
     }
   ]]]
@@ -70,7 +54,7 @@ npm install babel-plugin-component -D
 
 ```javascript
 import Vue from 'vue'
-import { Button, Select } from 'element-ui'
+import { Button, Select } from 'lvx-ui'
 import App from './App.vue'
 
 Vue.component(Button.name, Button)
@@ -158,7 +142,7 @@ import {
   MessageBox,
   Message,
   Notification
-} from 'element-ui'
+} from 'lvx-ui'
 
 Vue.use(Pagination)
 Vue.use(Dialog)
@@ -235,19 +219,19 @@ Vue.prototype.$message = Message
 ```
 
 ### 全局配置
-在引入 Element 时，可以传入一个全局配置对象。该对象目前仅支持 `size` 字段，用于改变组件的默认尺寸。按照引入 Element 的方式，具体操作如下：
+在引入 Lvx 时，可以传入一个全局配置对象。该对象目前仅支持 `size` 字段，用于改变组件的默认尺寸。按照引入 Lvx 的方式，具体操作如下：
 
-完整引入 Element：
+完整引入 Lvx：
 ```JS
 import Vue from 'vue'
-import Element from 'element-ui'
-Vue.use(Element, { size: 'small' })
+import Lvx from 'lvx-ui'
+Vue.use(Lvx, { size: 'small' })
 ```
 
-按需引入 Element：
+按需引入 Lvx
 ```JS
 import Vue from 'vue'
-import { Button } from 'element-ui'
+import { Button } from 'lvx-ui'
 
 Vue.prototype.$ELEMENT = { size: 'small' }
 Vue.use(Button)
@@ -256,7 +240,7 @@ Vue.use(Button)
 
 ### 开始使用
 
-至此，一个基于 Vue 和 Element 的开发环境已经搭建完毕，现在就可以编写代码了。启动开发模式：
+至此，一个基于 Vue 和 Lvx 的开发环境已经搭建完毕，现在就可以编写代码了。启动开发模式：
 
 ```bash
 # 执行如下命令后访问 localhost:8086

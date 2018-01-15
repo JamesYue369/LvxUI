@@ -111,7 +111,7 @@ const generateMiscRoutes = function(lang) {
   };
 
   let demoRoute = {
-    path: `/${ lang }/demo`, // 资源
+    path: `/${ lang }/demo`, // 示例
     meta: { lang },
     name: 'demo' + lang,
     component: load(lang, 'demo')

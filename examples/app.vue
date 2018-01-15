@@ -233,7 +233,7 @@
 
     mounted() {
       this.localize();
-      this.suggestJump();
+      // this.suggestJump();
       setTimeout(() => {
         const notified = localStorage.getItem('ES_NOTIFIED');
         if (!notified && this.lang !== 'zh-CN') {

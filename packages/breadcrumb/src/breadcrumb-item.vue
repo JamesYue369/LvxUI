@@ -1,6 +1,6 @@
 <template>
   <span class="el-breadcrumb__item">
-    <span class="el-breadcrumb__inner" ref="link" role="link">
+    <span class="el-breadcrumb__inner" ref="link" role="link" :style="[itemStyle, lastItemStyle]">
       <slot></slot>
     </span>
     <i v-if="separatorClass" class="el-breadcrumb__separator" :class="separatorClass"></i>
@@ -17,7 +17,9 @@
     data() {
       return {
         separator: '',
-        separatorClass: ''
+        separatorClass: '',
+        itemStyle: null,
+        lastItemStyle: null
       };
     },
 
@@ -26,6 +28,8 @@
     mounted() {
       this.separator = this.elBreadcrumb.separator;
       this.separatorClass = this.elBreadcrumb.separatorClass;
+      this.itemStyle = this.elBreadcrumb.itemStyle;
+      // this.lastItemStyle = this.elBreadcrumb.lastItemStyle;
       let self = this;
       if (this.to) {
         let link = this.$refs.link;

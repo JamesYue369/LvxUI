@@ -21,7 +21,7 @@
       }"
        aria-checked="mixed"
     >
-      <span class="el-checkbox__inner"></span>
+      <span class="el-checkbox__inner" ></span>
       <input
         v-if="trueLabel || falseLabel"
         class="el-checkbox__original"
@@ -46,7 +46,7 @@
         @focus="focus = true"
         @blur="focus = false">
     </span>
-    <span class="el-checkbox__label" v-if="$slots.default || label">
+    <span class="el-checkbox__label" v-if="$slots.default || label" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>

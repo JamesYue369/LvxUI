@@ -17,6 +17,26 @@
     }
   };
 </script>
+<style type="text/css">
+  .radio{
+    color: #333;
+  }
+  .radio .el-radio__inner:hover{
+    border-color: #6297ff;
+  }
+  .radio .is-checked .el-radio__inner{
+    background: none;
+    border-color: #4081ff;
+  }
+  .radio .is-checked .el-radio__inner .afterVNode{
+    width: 6px;
+    height: 6px;
+    background-color: #4081ff;
+  }
+  .radio .el-radio__input.is-checked + .el-radio__label {
+    color: #333;
+  }
+</style>
 
 ## Radio 单选框
 
@@ -194,15 +214,15 @@
 ```
 :::
 
-### 自定义颜色
+### 自定义类名
 
-::: demo 设置radioGroup上的'fill'、'text-color' 属性可以定义激活状态填充的背景色和文字的颜色。
+::: demo 设置class可以自定义按钮的各种样式去覆盖初始样式
 ```html
 <template>
-  <el-radio-group v-model="radio2" fill="#38c546"  text-color="#38c546">
-    <el-radio :label="3">备选项</el-radio>
-    <el-radio :label="6">备选项</el-radio>
-    <el-radio :label="9">备选项</el-radio>
+  <el-radio-group v-model="radio2" >
+    <el-radio disabled :label="3" class="radio">备选项</el-radio>
+    <el-radio  :label="6" class="radio">备选项</el-radio>
+    <el-radio  :label="9" class="radio">备选项</el-radio>
   </el-radio-group>
 </template>
 
@@ -215,6 +235,26 @@
     }
   }
 </script>
+<style type="text/css">
+  .radio{
+    color: #333;
+  }
+  .radio .el-radio__inner:hover{
+    border-color: #6297ff;
+  }
+  .radio .is-checked .el-radio__inner{
+    background: none;
+    border-color: #4081ff;
+  }
+  .radio .is-checked .el-radio__inner .afterVNode{
+    width: 6px;
+    height: 6px;
+    background-color: #4081ff;
+  }
+  .radio .el-radio__input.is-checked + .el-radio__label {
+    color: #333;
+  }
+</style>
 ```
 :::
 
@@ -237,8 +277,7 @@
 |---------- |-------- |---------- |-------------  |-------- |
 | size     | 单选框组尺寸，仅对按钮形式的 Radio 或带有边框的 Radio 有效   | string  | medium / small / mini |    —     |
 | disabled  | 是否禁用    | boolean   | — | false   |
-| text-color  | 按钮形式的 Radio 激活时的文本颜色    | string   | — | #ffffff   |
-| fill  | 按钮形式的 Radio 激活时的填充色和边框色    | string   | — | #409EFF   |
+
 
 ### Radio-group Events
 | 事件名称 | 说明 | 回调参数 |

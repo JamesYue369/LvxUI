@@ -17,6 +17,101 @@
         margin-left: 10px;
       }
     }
+    .btn:disabled{
+      background-color: #f7f7f7;
+      color:#959595;
+      border: solid 1px #f7f7f7;
+    }
+    .btn:disabled:hover{
+      background-color: #f7f7f7;
+      color:#959595;
+      border: solid 1px #f7f7f7;
+    }
+    .btn1{
+      background-color: #fff;
+      color: #333;
+      border-color: #d9d9d9;
+      padding: 9px 20px;
+    }
+    .btn1:hover{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn1:active{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn1:focus{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn2{
+      background-color: #4081ff;
+      color: #fff;
+      border-color: #4081ff;
+      padding: 9px 20px;
+    }
+    .btn2:hover{
+      border-color: #6297ff;
+      color: #fff;
+      background-color: #6297ff;
+    }
+    .btn2:active{
+      border-color: #6297ff;
+      color: #fff;
+      background-color: #6297ff;
+    }
+    .btn2:focus{
+      border-color: #6297ff;
+      color: #fff;
+      background-color: #6297ff;
+    }
+    .btn3{
+      background-color: #fff;
+      color: #4081ff;
+      border-color: #4081ff;
+      padding: 9px 20px;
+    }
+    .btn3:hover{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn3:active{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn3:focus{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn4{
+      background-color: #fff;
+      color: #4081ff;
+      border-color: #4081ff;
+      border-style: dashed;
+      padding: 9px 20px;
+    }
+    .btn4:hover{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn4:active{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
+    .btn4:focus{
+      border-color: #6297ff;
+      color: #6297ff;
+      background-color: #fff;
+    }
   }
 </style>
 
@@ -59,13 +154,113 @@
 ```
 :::
 
-### 自定义颜色
-可以自定义背景颜色、字体颜色
-:::demo 使用`fill`、`text-color`属性来定义 Button 的颜色样式。
+### 自定义类名
+可以添加class来自定义背景颜色、字体颜色、边框等属性
+:::demo 
 ```html
 <div>
-  <el-button fill="#38c546" text-color="#fff">自定义颜色</el-button>
+  <el-button class="btn1" >自定义颜色</el-button>
+  <el-button class="btn2">自定义颜色</el-button>
+  <el-button  class="btn3">自定义样式</el-button>
+  <el-button  class="btn4">自定义边框</el-button>
+  <el-button class="btn1 btn" disabled>自定义颜色</el-button>
 </div>
+<style type="text/css">
+  .btn:disabled{
+    background-color: #f7f7f7;
+    color:#959595;
+    border:none;
+  }
+  .btn:disabled:hover{
+    background-color: #f7f7f7;
+    color:#959595;
+  }
+  .btn1{
+    background-color: #fff;
+    color: #333;
+    border-color: #d9d9d9;
+    padding: 9px 20px;
+  }
+  .btn1:hover{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn1:active{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn1:focus{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn2{
+    background-color: #4081ff;
+    color: #fff;
+    border-color: #4081ff;
+    padding: 9px 20px;
+  }
+  .btn2:hover{
+    border-color: #6297ff;
+    color: #fff;
+    background-color: #6297ff;
+  }
+  .btn2:active{
+    border-color: #6297ff;
+    color: #fff;
+    background-color: #6297ff;
+  }
+  .btn2:focus{
+    border-color: #6297ff;
+    color: #fff;
+    background-color: #6297ff;
+  }
+  .btn3{
+    background-color: #fff;
+    color: #4081ff;
+    border-color: #4081ff;
+    padding: 9px 20px;
+  }
+  .btn3:hover{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn3:active{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn3:focus{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn4{
+    background-color: #fff;
+    color: #4081ff;
+    border-color: #4081ff;
+    border-style: dashed;
+    padding: 9px 20px;
+  }
+  .btn4:hover{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn4:active{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+  .btn4:focus{
+    border-color: #6297ff;
+    color: #6297ff;
+    background-color: #fff;
+  }
+</style>
 ```
 :::
 
@@ -186,3 +381,4 @@ Button 组件提供除了默认值以外的三种尺寸，可以在不同场景�
 | icon  | 图标类名 | string   |  —  |  —  |
 | autofocus  | 是否默认聚焦 | boolean   |  —  |  false  |
 | native-type | 原生 type 属性 | string | button / submit / reset | button |
+| button-style | 自定义按钮样式,内联样式优先级高 | object| — | null | 

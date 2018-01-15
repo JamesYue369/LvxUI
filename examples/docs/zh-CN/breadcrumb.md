@@ -1,3 +1,18 @@
+<script>
+  module.exports = {
+    data() {
+      return {
+       	itemStyle: {
+       		color: '#b4b4b4',
+          fontWeight: 'normal'
+        },
+        lastItemStyle: {
+        	color: '#4a4a4a'
+        }
+      };
+    }
+  };
+</script>
 ## Breadcrumb 面包屑
 显示当前页面的路径，快速返回之前的任意页面。
 
@@ -31,11 +46,44 @@
 ```
 :::
 
+### 自定义样式
+
+::: demo 通过设置'item-style'、'last-item-style' 定义导航的样式和当前导航的样式
+
+```html
+<template>
+  <el-breadcrumb separator="/" :item-style="itemStyle" :last-item-style="lastItemStyle">
+    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+    <el-breadcrumb-item class="item-active">活动详情</el-breadcrumb-item>
+  </el-breadcrumb>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        itemStyle: {
+       		color: '#b4b4b4',
+          fontWeight: 'normal'
+        },
+        lastItemStyle: {
+        	color: '#4a4a4a'
+        }
+      };
+    }
+  }
+</script>
+```
+:::
+
 ### Breadcrumb Attributes
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
 | separator | 分隔符 | string | — | 斜杠'/' |
 | separator-class | 图标分隔符 class | string | — | - |
+| item-style | 导航项样式 | object | — | - |
+| last-item-style | 当前导航项样式 | object | — | - |
 
 ### Breadcrumb Item Attributes
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |

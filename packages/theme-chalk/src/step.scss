@@ -98,13 +98,13 @@
   @include e(line) {
     position: absolute;
     border-color: inherit;
-    background-color: $--color-text-placeholder;
+    // background-color: $--color-text-placeholder;
   }
 
   @include e(line-inner) {
     display: block;
     border-width: 1px;
-    border-style: solid;
+    // border-style: solid;
     border-color: inherit;
     transition: .15s ease-out;
     box-sizing: border-box;
@@ -175,10 +175,16 @@
     display: inline-block;
 
     @include e(line) {
-      height: 2px;
+      height: 0px;
       top: 11px;
       left: 0;
       right: 0;
+      border-top-width: 2px;
+      border-bottom-width: 0;
+      border-left-width: 0;
+      border-right-width: 0;
+      // border-color: #b4bccc;
+      // border-style: solid;
     }
   }
 
@@ -201,10 +207,14 @@
     }
 
     @include e(line) {
-      width: 2px;
+      width: 0px;
       top: 0;
       bottom: 0;
       left: 11px;
+      border-top-width: 0;
+      border-bottom-width: 0;
+      border-left-width: 2px;
+      border-right-width: 0;
     }
 
     @include e(icon) {

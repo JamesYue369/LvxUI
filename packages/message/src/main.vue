@@ -10,6 +10,7 @@
       @mouseenter="clearTimer"
       @mouseleave="startTimer"
       role="alert"
+      :style="customStyle"
     >
       <i :class="iconClass" v-if="iconClass"></i>
       <i :class="typeClass" v-else></i>
@@ -44,7 +45,8 @@
         closed: false,
         timer: null,
         dangerouslyUseHTMLString: false,
-        center: false
+        center: false,
+        customStyle: null
       };
     },
 

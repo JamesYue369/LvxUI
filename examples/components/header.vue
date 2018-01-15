@@ -261,12 +261,12 @@
           <li class="nav-item nav-algolia-search" v-show="isComponentPage">
             <algolia-search></algolia-search>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link
               active-class="active"
               :to="`/${ lang }/guide`">{{ langConfig.guide }}
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link
               active-class="active"
@@ -279,13 +279,13 @@
               :to="`/${ lang }/demo`">{{ langConfig.demo }}
             </router-link>
           </li>
-          <li class="nav-item">
+         <!--  <li class="nav-item">
             <router-link
               active-class="active"
               :to="`/${ lang }/resource`"
               exact>{{ langConfig.resource }}
             </router-link>
-          </li>
+          </li> -->
 
           <!-- gap -->
           <li class="nav-item" v-show="isComponentPage">
@@ -293,7 +293,7 @@
           </li>
 
           <!-- 版本选择器 -->
-          <li class="nav-item" v-show="isComponentPage">
+          <!-- <li class="nav-item" v-show="isComponentPage">
             <el-dropdown
                 trigger="click"
                 class="nav-dropdown"
@@ -314,10 +314,10 @@
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-          </li>
+          </li> -->
 
           <!-- lang -->
-          <li class="nav-item lang-item">
+          <!-- <li class="nav-item lang-item">
             <span
               class="nav-lang"
               :class="{ 'active': lang === 'zh-CN' }"
@@ -331,7 +331,7 @@
               @click="switchLang('en-US')">
               En
             </span>
-          </li>
+          </li> -->
           
           <!--theme picker-->
           <li class="nav-item nav-theme-switch" v-show="isComponentPage">

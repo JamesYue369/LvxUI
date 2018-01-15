@@ -31,6 +31,7 @@
         @blur="handleBlur"
         @change="handleChange"
         :aria-label="label"
+        :style="[inputStyle, (disabled ? disabledStyle : null)]"
       >
       <!-- 前置内容 -->
       <span class="el-input__prefix" v-if="$slots.prefix || prefixIcon" :style="prefixOffset">
@@ -75,7 +76,7 @@
       @input="handleInput"
       ref="textarea"
       v-bind="$props"
-      :style="textareaStyle"
+      :style="[textareaStyle, inputStyle, (disabled ? disabledStyle : null)]"
       @focus="handleFocus"
       @blur="handleBlur"
       @change="handleChange"
@@ -159,6 +160,14 @@
       clearable: {
         type: Boolean,
         default: false
+      },
+      inputStyle: {
+        type: Object,
+        default: null
+      },
+      disabledStyle: {
+        type: Object,
+        default: null
       }
     },
 

@@ -34,11 +34,14 @@
   @include e(header) {
     padding: $--dialog-padding-primary;
     padding-bottom: 10px;
+    position: relative;
   }
 
   @include e(headerbtn) {
     position: absolute;
-    top: $--dialog-padding-primary;
+    // top: $--dialog-padding-primary;
+    top: 50%;
+    transform: translateY(-50%);
     right: $--dialog-padding-primary;
     padding: 0;
     background: transparent;

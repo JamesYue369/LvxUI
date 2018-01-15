@@ -20,7 +20,9 @@
         'is-checked': model === label
       }"
     >
-      <span class="el-radio__inner" @blur="blurHandle" @mouseover="mouseoverHandle" @mouseleave="mouseleaveHandle"  :style="[model === label ? activeStyle : null, {borderColor: borderColor},model === label ? null : {borderColor: ''}]"></span>
+      <span class="el-radio__inner"  >
+        <i class="afterVNode" ></i>
+      </span>
       <input
         class="el-radio__original"
         :value="label"
@@ -34,7 +36,7 @@
         tabindex="-1"
       >
     </span>
-    <span class="el-radio__label" :style="model === label ? textActiveStyle : null" >
+    <span class="el-radio__label" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>
@@ -128,18 +130,6 @@
       },
       tabIndex() {
         return !this.isDisabled ? (this.isGroup ? (this.model === this.label ? 0 : -1) : 0) : -1;
-      },
-      activeStyle() {
-        return {
-          backgroundColor: this._radioGroup.fill || '',
-          borderColor: this._radioGroup.fill || '',
-          boxShadow: this._radioGroup.fill ? `-1px 0 0 0 ${this._radioGroup.fill}` : ''
-        };
-      },
-      textActiveStyle() {
-        return {
-          color: this._radioGroup.textColor || ''
-        };
       }
     },
 

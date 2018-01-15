@@ -15,13 +15,14 @@
         'is-loading': loading,
         'is-plain': plain,
         'is-round': round
-      }
+      },
+      buttonClass
     ]"
-    :style="{
+    :style="[{
       'backgroundColor': fillColor,
       'borderColor': borderColor,
       'color': textColor
-    }"
+    }, buttonStyle]"
   >
     <i class="el-icon-loading" v-if="loading" @click="handleInnerClick"></i>
     <i :class="icon" v-if="icon && !loading" @click="handleInnerClick"></i>
@@ -71,7 +72,15 @@
       disabled: Boolean,
       plain: Boolean,
       autofocus: Boolean,
-      round: Boolean
+      round: Boolean,
+      buttonStyle: {
+        type: Object,
+        default: null
+      },
+      buttonClass: {
+        type: String,
+        default: ''
+      }
     },
 
     computed: {

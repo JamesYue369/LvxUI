@@ -14,9 +14,9 @@
       :class="`is-${currentStatus}`">
       <div
         class="el-step__line"
-        :style="isLast ? '' : { marginRight: $parent.stepOffset + 'px' }"
+        :style="[(isLast ? '' : { marginRight: $parent.stepOffset + 'px' }), borderStyle]"
       >
-        <i class="el-step__line-inner" :style="lineStyle"></i>
+        <i class="el-step__line-inner" :style="[lineStyle, {borderStyle: $parent.lineType}]"></i>
       </div>
 
       <div class="el-step__icon" :class="`is-${icon ? 'icon' : 'text'}`">
@@ -68,6 +68,7 @@ export default {
     return {
       index: -1,
       lineStyle: {},
+      borderStyle: {borderStyle: `${this.$parent.lineType}`, borderColor: '#b4bccc'},
       internalStatus: ''
     };
   },
@@ -152,7 +153,6 @@ export default {
     calcProgress(status) {
       let step = 100;
       const style = {};
-
       style.transitionDelay = 150 * this.index + 'ms';
       if (status === this.$parent.processStatus) {
         step = this.currentStatus !== 'error' ? 0 : 0;
@@ -167,6 +167,13 @@ export default {
         : style.width = step + '%';
 
       this.lineStyle = style;
+      if (status === 'success' || status === 'finish' || this.isSimple) {
+        this.borderStyle.borderStyle = 'none';
+        this.borderStyle.borderColor = 'inherit';
+      } else {
+        this.borderStyle.borderStyle = this.$parent.lineType;
+        this.borderStyle.borderColor = '#b4bccc';
+      }
     }
   },
 

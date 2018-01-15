@@ -33,6 +33,10 @@ export default {
     processStatus: {
       type: String,
       default: 'process'
+    },
+    lineType: {
+      type: String,
+      default: 'solid'
     }
   },
 

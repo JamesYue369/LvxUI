@@ -25,7 +25,7 @@
       @focus="focus = true"
       @blur="focus = false"
     >
-    <span class="el-radio-button__inner" :style="value === label ? activeStyle : null">
+    <span class="el-radio-button__inner" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>
@@ -74,14 +74,6 @@
           }
         }
         return false;
-      },
-      activeStyle() {
-        return {
-          backgroundColor: this._radioGroup.fill || '',
-          borderColor: this._radioGroup.fill || '',
-          boxShadow: this._radioGroup.fill ? `-1px 0 0 0 ${this._radioGroup.fill}` : '',
-          color: this._radioGroup.textColor || ''
-        };
       },
       _elFormItemSize() {
         return (this.elFormItem || {}).elFormItemSize;

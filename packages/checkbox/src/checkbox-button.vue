@@ -37,7 +37,7 @@
 
     <span class="el-checkbox-button__inner" 
       v-if="$slots.default || label"
-      :style="isChecked ? activeStyle : null">
+      >
       <slot>{{label}}</slot>
     </span>
 
@@ -45,7 +45,6 @@
 </template>
 <script>
   import Emitter from 'element-ui/src/mixins/emitter';
-
   export default {
     name: 'ElCheckboxButton',
 
@@ -127,16 +126,6 @@
 
       store() {
         return this._checkboxGroup ? this._checkboxGroup.value : this.value;
-      },
-
-      activeStyle() {
-        return {
-          backgroundColor: this._checkboxGroup.fill || '',
-          borderColor: this._checkboxGroup.fill || '',
-          color: this._checkboxGroup.textColor || '',
-          'box-shadow': '-1px 0 0 0 ' + this._checkboxGroup.fill
-
-        };
       },
 
       _elFormItemSize() {

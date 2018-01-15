@@ -40,9 +40,67 @@ export default {
 
     prevText: String,
 
+    preClass: {
+      type: String,
+      default: ''
+    },
+
+    preStyle: {
+      type: Object,
+      default: null
+    },
+
     nextText: String,
 
-    background: Boolean
+    nextClass: {
+      type: String,
+      default: ''
+    },
+
+    nextStyle: {
+      type: Object,
+      default: null
+    },
+
+    background: Boolean,
+
+    morePages: {
+      type: Number,
+      default: 6,
+      validator: function(value) {
+        return value >= 5;
+      }
+    },
+
+    moreClass: {
+      type: String,
+      default: ''
+    },
+
+    moreStyle: {
+      type: Object,
+      default: null
+    },
+
+    pagerClass: {
+      type: String,
+      default: ''
+    },
+
+    pagerStyle: {
+      type: Object,
+      default: null
+    },
+
+    activeClass: {
+      type: String,
+      default: ''
+    },
+
+    activeStyle: {
+      type: Object,
+      default: null
+    }
   },
 
   data() {
@@ -62,7 +120,17 @@ export default {
     const TEMPLATE_MAP = {
       prev: <prev></prev>,
       jumper: <jumper></jumper>,
-      pager: <pager currentPage={ this.internalCurrentPage } pageCount={ this.internalPageCount } on-change={ this.handleCurrentChange }></pager>,
+      pager: <pager
+        currentPage={ this.internalCurrentPage }
+        pageCount={ this.internalPageCount }
+        more-pages={this.morePages}
+        more-class={this.moreClass}
+        more-style={this.moreStyle}
+        pager-class={this.pagerClass}
+        pager-style={this.pagerStyle}
+        active-class={this.activeClass}
+        active-style={this.activeStyle}
+        on-change={ this.handleCurrentChange }></pager>,
       next: <next></next>,
       sizes: <sizes pageSizes={ this.pageSizes }></sizes>,
       slot: <my-slot></my-slot>,
@@ -107,7 +175,8 @@ export default {
         return (
           <button
             type="button"
-            class={['btn-prev', { disabled: this.$parent.internalCurrentPage <= 1 }]}
+            class={['btn-prev', { disabled: this.$parent.internalCurrentPage <= 1 }, this.$parent.preClass]}
+            style={this.$parent.preStyle}
             on-click={ this.$parent.prev }>
             {
               this.$parent.prevText
@@ -126,8 +195,10 @@ export default {
             type="button"
             class={[
               'btn-next',
-              { disabled: this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0 }
+              { disabled: this.$parent.internalCurrentPage === this.$parent.internalPageCount || this.$parent.internalPageCount === 0 },
+              this.$parent.nextClass
             ]}
+            style={[this.$parent.nextStyle]}
             on-click={ this.$parent.next }>
             {
               this.$parent.nextText

@@ -256,3 +256,5 @@ console.log(loadingInstance1 === loadingInstance2); // true
 | spinner | 自定义加载图标类名 | string | — | — |
 | background | 遮罩背景色 | string | — | — |
 | customClass | Loading 的自定义类名 | string | — | — |
+| spinnerClass | Loading 图标区的自定义类名 | string | — | — |
+| spinnerHtml | Loading 图标区的内容 | VNode | — | — |

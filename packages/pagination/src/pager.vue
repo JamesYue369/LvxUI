@@ -1,30 +1,36 @@
 <template>
   <ul @click="onPagerClick" class="el-pager">
     <li
-      :class="{ active: currentPage === 1 }"
+      :class="[{ active: currentPage === 1 }, pagerClass, (currentPage === 1 ? activeClass : '')]"
       v-if="pageCount > 0"
+      :style="[pagerStyle, currentPage === 1 ? activeStyle : null]"
       class="number">1</li>
     <li
       class="el-icon more btn-quickprev"
-      :class="[quickprevIconClass]"
+      :class="[quickprevIconClass, moreClass]"
+      :style="[moreStyle]"
       v-if="showPrevMore"
       @mouseenter="quickprevIconClass = 'el-icon-d-arrow-left'"
       @mouseleave="quickprevIconClass = 'el-icon-more'">
     </li>
     <li
       v-for="pager in pagers"
-      :class="{ active: currentPage === pager }"
-      class="number">{{ pager }}</li>
+      :class="[{ active: currentPage === pager }, pagerClass, currentPage === pager ? activeClass : '']"
+      class="number"
+      :style="[pagerStyle, currentPage === pager ? activeStyle : null]"
+      >{{ pager }}</li>
     <li
       class="el-icon more btn-quicknext"
-      :class="[quicknextIconClass]"
+      :class="[quicknextIconClass, moreClass]"
+      :style="[moreStyle]"
       v-if="showNextMore"
       @mouseenter="quicknextIconClass = 'el-icon-d-arrow-right'"
       @mouseleave="quicknextIconClass = 'el-icon-more'">
     </li>
     <li
-      :class="{ active: currentPage === pageCount }"
+      :class="[{ active: currentPage === pageCount }, pagerClass, currentPage === pageCount ? activeClass : '']"
       class="number"
+      :style="[pagerStyle, currentPage === pageCount ? activeStyle : null] "
       v-if="pageCount > 1">{{ pageCount }}</li>
   </ul>
 </template>
@@ -36,7 +42,45 @@
     props: {
       currentPage: Number,
 
-      pageCount: Number
+      pageCount: Number,
+
+      morePages: {
+        type: Number,
+        default: 6,
+        validator: function(value) {
+          return value >= 5;
+        }
+      },
+
+      moreClass: {
+        type: String,
+        default: ''
+      },
+
+      moreStyle: {
+        type: Object,
+        default: null
+      },
+
+      pagerClass: {
+        type: String,
+        default: ''
+      },
+
+      pagerStyle: {
+        type: Object,
+        default: null
+      },
+
+      activeClass: {
+        type: String,
+        default: ''
+      },
+
+      activeStyle: {
+        type: Object,
+        default: null
+      }
     },
 
     watch: {
@@ -62,9 +106,9 @@
 
         if (target.className.indexOf('more') !== -1) {
           if (target.className.indexOf('quickprev') !== -1) {
-            newPage = currentPage - 5;
+            newPage = currentPage - (this.morePages - 1);
           } else if (target.className.indexOf('quicknext') !== -1) {
-            newPage = currentPage + 5;
+            newPage = currentPage + (this.morePages - 1);
           }
         }
 
@@ -87,7 +131,7 @@
 
     computed: {
       pagers() {
-        const pagerCount = 7;
+        const pagerCount = (this.morePages + 1);
 
         const currentPage = Number(this.currentPage);
         const pageCount = Number(this.pageCount);
@@ -96,11 +140,11 @@
         let showNextMore = false;
 
         if (pageCount > pagerCount) {
-          if (currentPage > pagerCount - 3) {
+          if (currentPage > pagerCount - (this.morePages - 3)) {
             showPrevMore = true;
           }
 
-          if (currentPage < pageCount - 3) {
+          if (currentPage < pageCount - (this.morePages - 3)) {
             showNextMore = true;
           }
         }

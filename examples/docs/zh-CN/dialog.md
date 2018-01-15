@@ -288,6 +288,7 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 | append-to-body     | Dialog 自身是否插入至 body 元素上。嵌套的 Dialog 必须指定该属性并赋值为 true   | boolean   | — | false |
 | lock-scroll | 是否在 Dialog 出现时将 body 滚动锁定 | boolean | — | true |
 | custom-class      | Dialog 的自定义类名 | string    | — | — |
+| title-class      | Dialog 标题的自定义类名 | string    | — | — |
 | close-on-click-modal | 是否可以通过点击 modal 关闭 Dialog | boolean    | — | true |
 | close-on-press-escape | 是否可以通过按下 ESC 关闭 Dialog | boolean    | — | true |
 | show-close | 是否显示关闭按钮 | boolean    | — | true |
@@ -299,7 +300,9 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 |------|--------|
 | — | Dialog 的内容 |
 | title | Dialog 标题区的内容 |
+| close | Dialog 关闭按钮的内容 |
 | footer | Dialog 按钮操作区的内容 |
+
 
 ### Events
 | 事件名称      | 说明    | 回调参数      |

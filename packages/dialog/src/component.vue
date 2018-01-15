@@ -6,7 +6,7 @@
         :class="[{ 'is-fullscreen': fullscreen, 'el-dialog--center': center }, customClass]"
         ref="dialog"
         :style="style">
-        <div class="el-dialog__header">
+        <div class="el-dialog__header" :style="titleStyle" :class="titleClass">
           <slot name="title">
             <span class="el-dialog__title">{{ title }}</span>
           </slot>
@@ -16,7 +16,9 @@
             aria-label="Close"
             v-if="showClose"
             @click="handleClose">
-            <i class="el-dialog__close el-icon el-icon-close"></i>
+            <slot name="close">
+            </slot>
+            <i class="el-dialog__close el-icon el-icon-close" v-if="!$slots.close"></i>
           </button>
         </div>
         <div class="el-dialog__body" v-if="rendered"><slot></slot></div>
@@ -96,6 +98,14 @@
       center: {
         type: Boolean,
         default: false
+      },
+      titleStyle: {
+        type: Object,
+        default: null
+      },
+      titleClass: {
+        type: String,
+        default: ''
       }
     },
 

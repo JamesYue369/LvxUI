@@ -23,7 +23,8 @@
         checkboxGroup3: ['上海'],
         checkboxGroup4: ['上海'],
         checkboxGroup5: [],
-        checkboxGroup6: []
+        checkboxGroup6: [],
+        checkList: ['选中且禁用','复选框 A'],
       };
     },
     methods: {
@@ -42,6 +43,28 @@
     }
   };
 </script>
+<style type="text/css">
+  .checkbox{
+    color: #333;
+  }
+  .checkbox .el-checkbox__inner:hover{
+    border-color: #6297ff;
+  }
+  .checkbox .el-checkbox__input.is-checked .el-checkbox__inner{
+    background-color: #4081ff;
+    border-color: #4081ff;
+  }
+  .checkbox .el-checkbox__input.is-checked + .el-checkbox__label{
+    color: #333;
+  }
+  .checkbox .el-checkbox__input.is-disabled .el-checkbox__inner{
+    border-color: #d9d9d9;
+  }
+  .checkbox .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+    background-color: #f7f7f7;
+    border-color: #d9d9d9;
+  }
+</style>
 ## Checkbox 多选框
 一组备选项中进行多选
 
@@ -281,6 +304,53 @@
 ```
 :::
 
+### 自定义类名
+
+::: demo 设置class可以自定义复选框的样式覆盖原有样式
+
+``` html
+<template>
+  <el-checkbox-group v-model="checkList" >
+    <el-checkbox label="复选框 A" class="checkbox"></el-checkbox>
+    <el-checkbox label="复选框 B" class="checkbox"></el-checkbox>
+    <el-checkbox label="复选框 C" class="checkbox"></el-checkbox>
+    <el-checkbox label="禁用" class="checkbox" disabled></el-checkbox>
+    <el-checkbox label="选中且禁用" class="checkbox" disabled></el-checkbox>
+  </el-checkbox-group>
+</template>
+<script type="text/javascript">
+  export default {
+    data () {
+      return {
+        checkList: ['选中且禁用','复选框 A']
+      };
+    }
+  }
+</script>
+<style type="text/css">
+  .checkbox{
+    color: #333;
+  }
+  .checkbox .el-checkbox__inner:hover{
+    border-color: #6297ff;
+  }
+  .checkbox .el-checkbox__input.is-checked .el-checkbox__inner{
+    background-color: #4081ff;
+    border-color: #4081ff;
+  }
+  .checkbox .el-checkbox__input.is-checked + .el-checkbox__label{
+    color: #333;
+  }
+  .checkbox .el-checkbox__input.is-disabled .el-checkbox__inner{
+    border-color: #d9d9d9;
+  }
+  .checkbox .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+    background-color: #f7f7f7;
+    border-color: #d9d9d9;
+  }
+</style>
+```
+:::
 ### Checkbox Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |

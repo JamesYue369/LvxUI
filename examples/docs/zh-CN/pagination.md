@@ -221,6 +221,14 @@
 | popper-class | 每页显示个数选择器的下拉框类名 | string | — | — |
 | prev-text | 替代图标显示的上一页文字 | string | — | — |
 | next-text | 替代图标显示的下一页文字 | string | — | — |
+| more-pages | 设置显示更多按钮的页数 | number | — | 6 |
+| more-style | 设置更多按钮的内联样式，优先级高 | object | — | null |
+| pre-style | 设置上一页的内联样式,优先级高 | object | — | null |
+| next-style | 设置下一页的内联样式，优先级高 | object | — | null |
+| pager-class | 自定义页码按钮的类名 | string | — | 空 |
+| pager-style | 设置页码按钮的内联样式，优先级高 | object | — | null |
+| active-style | 设置当前页按钮的内联样式，优先级高 | object | — | null |
+| active-class | 自定义当前页按钮的类名 | string | — | 空 |
 
 ### Events
 | 事件名称 | 说明 | 回调参数 |
