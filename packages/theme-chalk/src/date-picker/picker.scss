@@ -7,26 +7,26 @@
   display: inline-block;
   text-align: left;
 
-  &.el-input,
-  &.el-input__inner {
+  &.#{$prefix-css}-input,
+  &.#{$prefix-css}-input__inner {
     width: 220px;
   }
 
   @include m((daterange, timerange)) {
-    &.el-input,
-    &.el-input__inner {
+    &.#{$prefix-css}-input,
+    &.#{$prefix-css}-input__inner {
       width: 350px;
     }
   }
 
   @include m(datetimerange) {
-    &.el-input,
-    &.el-input__inner {
+    &.#{$prefix-css}-input,
+    &.#{$prefix-css}-input__inner {
       width: 400px;
     }
   }
 
-  .el-range__icon {
+  .#{$prefix-css}-range__icon {
     font-size: 14px;
     margin-left: -5px;
     color: $--color-text-placeholder;
@@ -34,7 +34,7 @@
     line-height: 32px;
   }
 
-  .el-range-input {
+  .#{$prefix-css}-range-input {
     appearance: none;
     border: none;
     outline: none;
@@ -52,7 +52,7 @@
     }
   }
 
-  .el-range-separator {
+  .#{$prefix-css}-range-separator {
     display: inline-block;
     height: 100%;
     padding: 0 5px;
@@ -64,7 +64,7 @@
     color: $--color-text-primary;
   }
 
-  .el-range__close-icon {
+  .#{$prefix-css}-range__close-icon {
     font-size: 14px;
     color: $--color-text-placeholder;
     width: 25px;
@@ -75,7 +75,7 @@
 }
 
 @include b(range-editor) {
-  &.el-input__inner {
+  &.#{$prefix-css}-input__inner {
     padding: 3px 10px;
   }
 
@@ -88,61 +88,61 @@
   }
 
   @include m(medium) {
-    &.el-input__inner {
+    &.#{$prefix-css}-input__inner {
       height: $--input-medium-height;
     }
 
-    .el-range-separator {
+    .#{$prefix-css}-range-separator {
       line-height: 28px;
       font-size: $--input-medium-font-size;
     }
 
-    .el-range-input {
+    .#{$prefix-css}-range-input {
       font-size: $--input-medium-font-size;
     }
 
-    .el-range__icon,
-    .el-range__close-icon {
+    .#{$prefix-css}-range__icon,
+    .#{$prefix-css}-range__close-icon {
       line-height: 28px;
     }
   }
 
   @include m(small) {
-    &.el-input__inner {
+    &.#{$prefix-css}-input__inner {
       height: $--input-small-height;
     }
 
-    .el-range-separator {
+    .#{$prefix-css}-range-separator {
       line-height: 24px;
       font-size: $--input-small-font-size;
     }
 
-    .el-range-input {
+    .#{$prefix-css}-range-input {
       font-size: $--input-small-font-size;
     }
 
-    .el-range__icon,
-    .el-range__close-icon {
+    .#{$prefix-css}-range__icon,
+    .#{$prefix-css}-range__close-icon {
       line-height: 24px;
     }
   }
 
   @include m(mini) {
-    &.el-input__inner {
+    &.#{$prefix-css}-input__inner {
       height: $--input-mini-height;
     }
 
-    .el-range-separator {
+    .#{$prefix-css}-range-separator {
       line-height: 20px;
       font-size: $--input-mini-font-size;
     }
 
-    .el-range-input {
+    .#{$prefix-css}-range-input {
       font-size: $--input-mini-font-size;
     }
 
-    .el-range__icon,
-    .el-range__close-icon {
+    .#{$prefix-css}-range__icon,
+    .#{$prefix-css}-range__close-icon {
       line-height: 20px;
     }
   }
@@ -166,7 +166,7 @@
       }
     }
 
-    .el-range-separator {
+    .#{$prefix-css}-range-separator {
       color: $--input-disabled-color;
     }
   }

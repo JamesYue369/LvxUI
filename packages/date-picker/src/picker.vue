@@ -1,7 +1,6 @@
 <template>
-  <el-input
-    class="el-date-editor"
-    :class="'el-date-editor--' + type"
+  <lvx-input
+    :class="[`${$clsPrefix}-date-editor`, `${$clsPrefix}-date-editor--` + type]"
     :readonly="!editable || readonly"
     :disabled="disabled"
     :size="pickerSize"
@@ -22,17 +21,18 @@
     :prefix-icon="triggerClass"
     ref="reference">
     <i slot="suffix"
-      class="el-input__icon"
+      :class="[`${$clsPrefix}-input__icon`, { [`${$clsPrefix}-icon-circle-close`]: showClose }]"
       @click="handleClickIcon"
-      :class="{ 'el-icon-circle-close': showClose }"
       v-if="haveTrigger">
     </i>
-  </el-input>
+  </lvx-input>
   <div
-    class="el-date-editor el-range-editor el-input__inner"
     :class="[
-      'el-date-editor--' + type,
-      pickerSize ? `el-range-editor--${ pickerSize }` : '',
+      `${$clsPrefix}-date-editor`,
+      `${$clsPrefix}-range-editor`,
+      `${$clsPrefix}-input__inner`,
+      `${$clsPrefix}-date-editor--` + type,
+      pickerSize ? `${$clsPrefix}-range-editor--${ pickerSize }` : '',
       disabled ? 'is-disabled' : '',
       pickerVisible ? 'is-active' : ''
     ]"
@@ -43,7 +43,7 @@
     ref="reference"
     v-clickoutside="handleClose"
     v-else>
-    <i :class="['el-input__icon', 'el-range__icon', triggerClass]"></i>
+    <i :class="[`${$clsPrefix}-input__icon`, `${$clsPrefix}-range__icon`, triggerClass]"></i>
     <input
       :placeholder="startPlaceholder"
       :value="displayValue && displayValue[0]"
@@ -54,8 +54,8 @@
       @input="handleStartInput"
       @change="handleStartChange"
       @focus="handleFocus"
-      class="el-range-input">
-    <span class="el-range-separator">{{ rangeSeparator }}</span>
+      :class="[`${$clsPrefix}-range-input`]">
+    <span :class="[`${$clsPrefix}-range-separator`]">{{ rangeSeparator }}</span>
     <input
       :placeholder="endPlaceholder"
       :value="displayValue && displayValue[1]"
@@ -66,25 +66,25 @@
       @input="handleEndInput"
       @change="handleEndChange"
       @focus="handleFocus"
-      class="el-range-input">
+      :class="[`${$clsPrefix}-range-input`]">
     <i
       @click="handleClickIcon"
       v-if="haveTrigger"
-      :class="{ 'el-icon-circle-close': showClose }"
-      class="el-input__icon el-range__close-icon">
+      :class="[{ [`${$clsPrefix}-icon-circle-close`]: showClose }, `${$clsPrefix}-input__icon`, `${$clsPrefix}-range__close-icon`]"
+      >
     </i>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import Clickoutside from 'element-ui/src/utils/clickoutside';
+import Clickoutside from '~/src/utils/clickoutside';
 import { formatDate, parseDate, isDateObject, getWeekNumber } from './util';
-import Popper from 'element-ui/src/utils/vue-popper';
-import Emitter from 'element-ui/src/mixins/emitter';
-import Focus from 'element-ui/src/mixins/focus';
-import ElInput from 'element-ui/packages/input';
-import merge from 'element-ui/src/utils/merge';
+import Popper from '~/src/utils/vue-popper';
+import Emitter from '~/src/mixins/emitter';
+import Focus from '~/src/mixins/focus';
+import Input from '~/packages/input';
+import merge from '~/src/utils/merge';
 
 const NewPopper = {
   props: {
@@ -297,7 +297,7 @@ export default {
   mixins: [Emitter, NewPopper, Focus('reference')],
 
   inject: {
-    elFormItem: {
+    lvxFormItem: {
       default: ''
     }
   },
@@ -341,7 +341,9 @@ export default {
     unlinkPanels: Boolean
   },
 
-  components: { ElInput },
+  components: {
+    'LvxInput': Input
+  },
 
   directives: { Clickoutside },
 
@@ -370,7 +372,7 @@ export default {
         if (this.userInput && parsedValue && this.isValidValue(parsedValue)) {
           this.userInput = null;
         }
-        this.dispatch('ElFormItem', 'el.form.blur');
+        this.dispatch('FormItem', 'event.form.blur');
         this.blur();
       }
     },
@@ -424,7 +426,7 @@ export default {
     },
 
     triggerClass() {
-      return this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date';
+      return this.type.indexOf('time') !== -1 ? `${this.$clsPrefix}-icon-time` : `${this.$clsPrefix}-icon-date`;
     },
 
     selectionMode() {
@@ -468,7 +470,7 @@ export default {
     },
 
     _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemSize;
+      return (this.lvxFormItem || {}).elFormItemSize;
     },
 
     pickerSize() {
@@ -778,7 +780,7 @@ export default {
 
     emitChange(val) {
       this.$emit('change', val);
-      this.dispatch('ElFormItem', 'el.form.change', val);
+      this.dispatch('FormItem', 'event.form.change', val);
       this.valueOnOpen = val;
     },
 

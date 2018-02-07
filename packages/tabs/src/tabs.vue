@@ -2,7 +2,7 @@
   import TabNav from './tab-nav';
 
   export default {
-    name: 'ElTabs',
+    name: 'Tabs',
 
     components: {
       TabNav
@@ -72,7 +72,8 @@
       },
       addPanes(item) {
         const index = this.$slots.default.filter(item => {
-          return item.elm.nodeType === 1 && /\bel-tab-pane\b/.test(item.elm.className);
+          let parttern = new RegExp(`\\b${this.$clsPrefix}-tab-pane\\b`);
+          return item.elm.nodeType === 1 && parttern.test(item.elm.className);
         }).indexOf(item.$vnode);
         this.panes.splice(index, 0, item);
       },
@@ -100,12 +101,12 @@
       const newButton = editable || addable
         ? (
             <span
-              class="el-tabs__new-tab"
+              class={`${this.$clsPrefix}-tabs__new-tab`}
               on-click={ handleTabAdd }
               tabindex="0"
               on-keydown={ (ev) => { if (ev.keyCode === 13) { handleTabAdd(); }} }
             >
-                <i class="el-icon-plus"></i>
+                <i class={`${this.$clsPrefix}-icon-plus`}></i>
             </span>
           )
         : null;
@@ -122,23 +123,23 @@
         ref: 'nav'
       };
       const header = (
-        <div class="el-tabs__header">
+        <div class={`${this.$clsPrefix}-tabs__header`}>
           {newButton}
           <tab-nav { ...navData }></tab-nav>
         </div>
       );
       const panels = (
-        <div class="el-tabs__content">
+        <div class={`${this.$clsPrefix}-tabs__content`}>
           {this.$slots.default}
         </div>
       );
 
       return (
         <div class={{
-          'el-tabs': true,
-          'el-tabs--card': type === 'card',
-          [`el-tabs--${tabPosition}`]: true,
-          'el-tabs--border-card': type === 'border-card'
+          [`${this.$clsPrefix}-tabs`]: true,
+          [`${this.$clsPrefix}-tabs--card`]: type === 'card',
+          [`${this.$clsPrefix}-tabs--${tabPosition}`]: true,
+          [`${this.$clsPrefix}-tabs--border-card`]: type === 'border-card'
         }}>
           { tabPosition !== 'bottom' ? [header, panels] : [panels, header] }
         </div>

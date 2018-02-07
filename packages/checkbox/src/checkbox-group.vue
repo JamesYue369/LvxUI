@@ -1,15 +1,15 @@
 <script>
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElCheckboxGroup',
+    name: 'CheckboxGroup',
 
-    componentName: 'ElCheckboxGroup',
+    componentName: 'CheckboxGroup',
 
     mixins: [Emitter],
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -24,7 +24,7 @@
 
     computed: {
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       checkboxGroupSize() {
         return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
@@ -33,14 +33,14 @@
 
     watch: {
       value(value) {
-        this.dispatch('ElFormItem', 'el.form.change', [value]);
+        this.dispatch('FormItem', 'event.form.change', [value]);
       }
     }
   };
 </script>
 
 <template>
-  <div class="el-checkbox-group" role="group" aria-label="checkbox-group">
+  <div :class="[`${$clsPrefix}-checkbox-group`]" role="group" aria-label="checkbox-group">
     <slot></slot>
   </div>
 </template>

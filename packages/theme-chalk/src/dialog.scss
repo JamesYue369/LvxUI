@@ -50,12 +50,12 @@
     cursor: pointer;
     font-size: $--message-close-size;
 
-    .el-dialog__close {
+    .#{$prefix-css}-dialog__close {
       color: $--color-info;
     }
 
     &:focus, &:hover {
-      .el-dialog__close {
+      .#{$prefix-css}-dialog__close {
         color: $--color-primary;
       }
     }

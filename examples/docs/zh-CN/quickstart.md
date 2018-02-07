@@ -70,7 +70,7 @@ new Vue({
 })
 ```
 
-完整组件列表和引入方式（完整组件列表以 [components.json](https://github.com/ElemeFE/element/blob/master/components.json) 为准）
+完整组件列表和引入方式（完整组件列表以 components.json 为准）
 
 ```javascript
 import Vue from 'vue'

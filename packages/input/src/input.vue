@@ -1,14 +1,14 @@
 <template>
   <div :class="[
-    type === 'textarea' ? 'el-textarea' : 'el-input',
-    inputSize ? 'el-input--' + inputSize : '',
+    type === 'textarea' ? `${$clsPrefix}-textarea` : `${$clsPrefix}-input`,
+    inputSize ? `${$clsPrefix}-input--` + inputSize : '',
     {
       'is-disabled': disabled,
-      'el-input-group': $slots.prepend || $slots.append,
-      'el-input-group--append': $slots.append,
-      'el-input-group--prepend': $slots.prepend,
-      'el-input--prefix': $slots.prefix || prefixIcon,
-      'el-input--suffix': $slots.suffix || suffixIcon
+      [inputGroupClass]: $slots.prepend || $slots.append,
+      [inputGroupAppend]: $slots.append,
+      [inputGroupPrepend]: $slots.prepend,
+      [`${$clsPrefix}-input--prefix`]: $slots.prefix || prefixIcon,
+      [`${$clsPrefix}-input--suffix`]: $slots.suffix || suffixIcon
     }
     ]"
     @mouseenter="hovering = true"
@@ -16,12 +16,12 @@
   >
     <template v-if="type !== 'textarea'">
       <!-- 前置元素 -->
-      <div class="el-input-group__prepend" v-if="$slots.prepend"  tabindex="0">
+      <div :class="[`${$clsPrefix}-input-group__prepend`]" v-if="$slots.prepend"  tabindex="0">
         <slot name="prepend"></slot>
       </div>
       <input
         v-if="type !== 'textarea'"
-        class="el-input__inner"
+        :class="[`${$clsPrefix}-input__inner`]"
         v-bind="$props"
         :autocomplete="autoComplete"
         :value="currentValue"
@@ -34,44 +34,44 @@
         :style="[inputStyle, (disabled ? disabledStyle : null)]"
       >
       <!-- 前置内容 -->
-      <span class="el-input__prefix" v-if="$slots.prefix || prefixIcon" :style="prefixOffset">
+      <span :class="[`${$clsPrefix}-input__prefix`]" v-if="$slots.prefix || prefixIcon" :style="prefixOffset">
         <slot name="prefix"></slot>
-        <i class="el-input__icon"
+        <i 
            v-if="prefixIcon"
-           :class="prefixIcon">
+           :class="[`${$clsPrefix}-input__icon`, prefixIcon]">
         </i>
       </span>
       <!-- 后置内容 -->
       <span
-        class="el-input__suffix"
+        :class="[`${$clsPrefix}-input__suffix`]"
         v-if="$slots.suffix || suffixIcon || showClear || validateState && needStatusIcon"
         :style="suffixOffset">
-        <span class="el-input__suffix-inner">
+        <span :class="[`${$clsPrefix}-input__suffix-inner`]">
           <template v-if="!showClear">
             <slot name="suffix"></slot>
-            <i class="el-input__icon"
+            <i 
               v-if="suffixIcon"
-              :class="suffixIcon">
+              :class="[`${$clsPrefix}-input__icon`, suffixIcon]">
             </i>
           </template>
           <i v-else
-            class="el-input__icon el-icon-circle-close el-input__clear"
+            :class="[`${$clsPrefix}-input__icon`, `${$clsPrefix}-icon-circle-close`, `${$clsPrefix}-input__clear`]"
             @click="clear"
           ></i>
         </span>
-        <i class="el-input__icon"
+        <i 
           v-if="validateState"
-          :class="['el-input__validateIcon', validateIcon]">
+          :class="[`${$clsPrefix}-input__icon`, `e${$clsPrefix}-input__validateIcon`, validateIcon]">
         </i>
       </span>
       <!-- 后置元素 -->
-      <div class="el-input-group__append" v-if="$slots.append">
+      <div :class="[`${$clsPrefix}-input-group__append`]" v-if="$slots.append">
         <slot name="append"></slot>
       </div>
     </template>
     <textarea
       v-else
-      class="el-textarea__inner"
+      :class="[`${$clsPrefix}-textarea__inner`]"
       :value="currentValue"
       @input="handleInput"
       ref="textarea"
@@ -86,23 +86,23 @@
   </div>
 </template>
 <script>
-  import emitter from 'element-ui/src/mixins/emitter';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import emitter from '~/src/mixins/emitter';
+  import Migrating from '~/src/mixins/migrating';
   import calcTextareaHeight from './calcTextareaHeight';
-  import merge from 'element-ui/src/utils/merge';
+  import merge from '~/src/utils/merge';
 
   export default {
-    name: 'ElInput',
+    name: 'Input',
 
-    componentName: 'ElInput',
+    componentName: 'Input',
 
     mixins: [emitter, Migrating],
 
     inject: {
-      elForm: {
+      lvxForm: {
         default: ''
       },
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -114,7 +114,10 @@
         prefixOffset: null,
         suffixOffset: null,
         hovering: false,
-        focused: false
+        focused: false,
+        inputGroupClass: `${this.$clsPrefix}-input-group`,
+        inputGroupAppend: `${this.$clsPrefix}-input-group--append`,
+        inputGroupPrepend: `${this.$clsPrefix}-input-group--prepend`
       };
     },
 
@@ -173,19 +176,19 @@
 
     computed: {
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       validateState() {
-        return this.elFormItem ? this.elFormItem.validateState : '';
+        return this.lvxFormItem ? this.lvxFormItem.validateState : '';
       },
       needStatusIcon() {
-        return this.elForm ? this.elForm.statusIcon : false;
+        return this.lvxForm ? this.lvxForm.statusIcon : false;
       },
       validateIcon() {
         return {
-          validating: 'el-icon-loading',
-          success: 'el-icon-circle-check',
-          error: 'el-icon-circle-close'
+          validating: `${this.$clsPrefix}-icon-loading`,
+          success: `${this.$clsPrefix}-icon-circle-check`,
+          error: `${this.$clsPrefix}-icon-circle-close`
         }[this.validateState];
       },
       textareaStyle() {
@@ -227,7 +230,7 @@
         this.focused = false;
         this.$emit('blur', event);
         if (this.validateEvent) {
-          this.dispatch('ElFormItem', 'el.form.blur', [this.currentValue]);
+          this.dispatch('FormItem', 'event.form.blur', [this.currentValue]);
         }
       },
       inputSelect() {
@@ -267,7 +270,7 @@
         });
         this.currentValue = value;
         if (this.validateEvent) {
-          this.dispatch('ElFormItem', 'el.form.change', [value]);
+          this.dispatch('FormItem', 'event.form.change', [value]);
         }
       },
       calcIconOffset(place) {
@@ -279,7 +282,7 @@
         const pendant = pendantMap[place];
 
         if (this.$slots[pendant]) {
-          return { transform: `translateX(${place === 'suf' ? '-' : ''}${this.$el.querySelector(`.el-input-group__${pendant}`).offsetWidth}px)` };
+          return { transform: `translateX(${place === 'suf' ? '-' : ''}${this.$el.querySelector(`.${this.$clsPrefix}-input-group__${pendant}`).offsetWidth}px)` };
         }
       },
       clear() {

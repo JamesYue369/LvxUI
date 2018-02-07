@@ -1,8 +1,8 @@
-import ElCheckboxGroup from '../checkbox/src/checkbox-group.vue';
+import CheckboxGroup from '../checkbox/src/checkbox-group.vue';
 
 /* istanbul ignore next */
-ElCheckboxGroup.install = function(Vue) {
-  Vue.component(ElCheckboxGroup.name, ElCheckboxGroup);
+CheckboxGroup.install = function(Vue) {
+  Vue.component(Vue.prototype.$prefix + CheckboxGroup.name, CheckboxGroup);
 };
 
-export default ElCheckboxGroup;
+export default CheckboxGroup;

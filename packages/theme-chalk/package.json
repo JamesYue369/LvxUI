@@ -1,7 +1,7 @@
 {
   "name": "lvx-theme-chalk",
   "version": "2.0.10",
-  "description": "Element component chalk theme.",
+  "description": "LvxUI component theme.",
   "main": "lib/index.css",
   "style": "lib/index.css",
   "files": [

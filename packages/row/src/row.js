@@ -1,7 +1,7 @@
 export default {
-  name: 'ElRow',
+  name: 'Row',
 
-  componentName: 'ElRow',
+  componentName: 'Row',
 
   props: {
     tag: {
@@ -19,7 +19,11 @@ export default {
       default: 'top'
     }
   },
-
+  data() {
+    return {
+      rowFlexClass: `${this.$clsPrefix}-row--flex`
+    };
+  },
   computed: {
     style() {
       var ret = {};
@@ -36,10 +40,10 @@ export default {
   render(h) {
     return h(this.tag, {
       class: [
-        'el-row',
+        `${this.$clsPrefix}-row`,
         this.justify !== 'start' ? `is-justify-${this.justify}` : '',
         this.align !== 'top' ? `is-align-${this.align}` : '',
-        { 'el-row--flex': this.type === 'flex' }
+        { [this.rowFlexClass]: this.type === 'flex' }
       ],
       style: this.style
     }, this.$slots.default);

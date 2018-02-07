@@ -6,8 +6,7 @@
   "files": [
     "lib",
     "src",
-    "packages",
-    "types"
+    "packages"
   ],
   "typings": "types/index.d.ts",
   "scripts": {
@@ -16,12 +15,11 @@
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
-    "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage && lerna clean --yes",
+    "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
     "dev": "npm run bootstrap && npm run build:file && cooking watch -c build/cooking.demo.js -p & node build/bin/template.js",
-    "dev:play": "npm run build:file && cross-env PLAY_ENV=true cooking watch -c build/cooking.demo.js -p",
-    "deploy:build": "npm run build:file && cooking build -c build/cooking.demo.js -p && echo https://jamesyue369.github.io/LvxUI/>>examples/lvx-ui/CNAME",
+    "dev:demo": "npm run build:file && cross-env DEMO_ENV=true cooking watch -c build/cooking.demo.js -p",
+    "deploy:build": "npm run build:file && cooking build -c build/cooking.demo.js -p",
     "dist": "npm run clean && npm run build:file && npm run lint && cooking build -c build/cooking.conf.js,build/cooking.common.js,build/cooking.component.js -p && npm run build:utils && npm run build:umd && npm run build:theme",
-    "dist:all": "node build/bin/build-all.js && npm run build:theme",
     "i18n": "node build/bin/i18n.js",
     "lint": "eslint src/**/* test/**/* packages/**/*.{js,vue} build/**/* --quiet",
     "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh",

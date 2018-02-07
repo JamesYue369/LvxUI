@@ -69,8 +69,9 @@ import Header from '../packages/header/index.js';
 import Aside from '../packages/aside/index.js';
 import Main from '../packages/main/index.js';
 import Footer from '../packages/footer/index.js';
-import locale from 'element-ui/src/locale';
-import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
+import locale from '~/src/locale';
+import CollapseTransition from '~/src/transitions/collapse-transition';
+import config from './config';
 
 const components = [
   Pagination,
@@ -147,8 +148,10 @@ const install = function(Vue, opts = {}) {
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
 
+  Vue.prototype.$prefix = config.prefix;
+  Vue.prototype.$clsPrefix = config.clsPrefix;
   components.map(component => {
-    Vue.component(component.name, component);
+    Vue.component(config.prefix + component.name, component);
   });
 
   Vue.use(Loading.directive);

@@ -1,6 +1,6 @@
 <script>
   import TabBar from './tab-bar';
-  import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
+  import { addResizeListener, removeResizeListener } from '~/src/utils/resize-event';
 
   function noop() {}
   const firstUpperCase = str => {
@@ -176,8 +176,8 @@
       } = this;
       const scrollBtn = scrollable
       ? [
-        <span class={['el-tabs__nav-prev', scrollable.prev ? '' : 'is-disabled']} on-click={scrollPrev}><i class="el-icon-arrow-left"></i></span>,
-        <span class={['el-tabs__nav-next', scrollable.next ? '' : 'is-disabled']} on-click={scrollNext}><i class="el-icon-arrow-right"></i></span>
+        <span class={[`${this.$clsPrefix}-tabs__nav-prev`, scrollable.prev ? '' : 'is-disabled']} on-click={scrollPrev}><i class={`${this.$clsPrefix}-icon-arrow-left`}></i></span>,
+        <span class={[`${this.$clsPrefix}-tabs__nav-next`, scrollable.next ? '' : 'is-disabled']} on-click={scrollNext}><i class={`${this.$clsPrefix}-icon-arrow-right`}></i></span>
       ] : null;
 
       const tabs = this._l(panes, (pane, index) => {
@@ -187,7 +187,7 @@
         pane.index = `${index}`;
 
         const btnClose = closable
-          ? <span class="el-icon-close" on-click={(ev) => { onTabRemove(pane, ev); }}></span>
+          ? <span class={`${this.$clsPrefix}-icon-close`} on-click={(ev) => { onTabRemove(pane, ev); }}></span>
           : null;
 
         const tabLabelContent = pane.$slots.label || pane.label;
@@ -195,7 +195,7 @@
         return (
           <div
             class={{
-              'el-tabs__item': true,
+              [`${this.$clsPrefix}-tabs__item`]: true,
               'is-active': pane.active,
               'is-disabled': pane.disabled,
               'is-closable': closable,
@@ -219,10 +219,10 @@
         );
       });
       return (
-        <div class={['el-tabs__nav-wrap', scrollable ? 'is-scrollable' : '']}>
+        <div class={[`${this.$clsPrefix}-tabs__nav-wrap`, scrollable ? 'is-scrollable' : '']}>
           {scrollBtn}
-          <div class={['el-tabs__nav-scroll']} ref="navScroll">
-            <div class="el-tabs__nav" ref="nav" style={navStyle} role="tablist" on-keydown={ changeTab }>
+          <div class={[`${this.$clsPrefix}-tabs__nav-scroll`]} ref="navScroll">
+            <div class={`${this.$clsPrefix}-tabs__nav`} ref="nav" style={navStyle} role="tablist" on-keydown={ changeTab }>
               {!type ? <tab-bar tabs={panes}></tab-bar> : null}
               {tabs}
             </div>

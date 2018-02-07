@@ -4,12 +4,13 @@ var postcss = require('postcss');
 var fs = require('fs');
 var path = require('path');
 var fontFile = fs.readFileSync(path.resolve(__dirname, '../../packages/theme-chalk/src/icon.scss'), 'utf8');
+var prefixConfig = require('../prefix.config.js');
 var nodes = postcss.parse(fontFile).nodes;
 var classList = [];
 
 nodes.forEach((node) => {
   var selector = node.selector || '';
-  var reg = new RegExp(/\.el-icon-([^:]+):before/);
+  var reg = new RegExp(`\\.${prefixConfig.clsPrefix}-icon-([^:]+):before`);
   var arr = selector.match(reg);
 
   if (arr && arr[1]) {

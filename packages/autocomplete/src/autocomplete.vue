@@ -1,13 +1,13 @@
 <template>
   <div
-    class="el-autocomplete"
+    :class="[`${$clsPrefix}-autocomplete`]"
     v-clickoutside="close"
     aria-haspopup="listbox"
     role="combobox"
     :aria-expanded="suggestionVisible"
     :aria-owns="id"
   >
-    <el-input
+    <lvx-input
       ref="input"
       v-bind="$props"
       @compositionstart.native="handleComposition"
@@ -34,8 +34,8 @@
       <template slot="suffix" v-if="$slots.suffix">
         <slot name="suffix"></slot>
       </template>
-    </el-input>
-    <el-autocomplete-suggestions
+    </lvx-input>
+    <lvx-autocomplete-suggestions
       visible-arrow
       :class="[popperClass ? popperClass : '']"
       ref="suggestions"
@@ -54,29 +54,29 @@
           {{ item[valueKey] }}
         </slot>
       </li>
-    </el-autocomplete-suggestions>
+    </lvx-autocomplete-suggestions>
   </div>
 </template>
 <script>
   import debounce from 'throttle-debounce/debounce';
-  import ElInput from 'element-ui/packages/input';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import ElAutocompleteSuggestions from './autocomplete-suggestions.vue';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import Migrating from 'element-ui/src/mixins/migrating';
-  import { generateId } from 'element-ui/src/utils/util';
-  import Focus from 'element-ui/src/mixins/focus';
+  import Input from '~/packages/input';
+  import Clickoutside from '~/src/utils/clickoutside';
+  import AutocompleteSuggestions from './autocomplete-suggestions.vue';
+  import Emitter from '~/src/mixins/emitter';
+  import Migrating from '~/src/mixins/migrating';
+  import { generateId } from '~/src/utils/util';
+  import Focus from '~/src/mixins/focus';
 
   export default {
-    name: 'ElAutocomplete',
+    name: 'Autocomplete',
 
     mixins: [Emitter, Focus('input'), Migrating],
 
-    componentName: 'ElAutocomplete',
+    componentName: 'Autocomplete',
 
     components: {
-      ElInput,
-      ElAutocompleteSuggestions
+      'LvxInput': Input,
+      'LvxAutocompleteSuggestions': AutocompleteSuggestions
     },
 
     directives: { Clickoutside },
@@ -127,12 +127,12 @@
         return (isValidData || this.loading) && this.activated;
       },
       id() {
-        return `el-autocomplete-${generateId()}`;
+        return `${this.$clsPrefix}-autocomplete-${generateId()}`;
       }
     },
     watch: {
       suggestionVisible(val) {
-        this.broadcast('ElAutocompleteSuggestions', 'visible', [val, this.$refs.input.$refs.input.offsetWidth]);
+        this.broadcast('AutocompleteSuggestions', 'visible', [val, this.$refs.input.$refs.input.offsetWidth]);
       }
     },
     methods: {
@@ -213,8 +213,8 @@
         if (index >= this.suggestions.length) {
           index = this.suggestions.length - 1;
         }
-        const suggestion = this.$refs.suggestions.$el.querySelector('.el-autocomplete-suggestion__wrap');
-        const suggestionList = suggestion.querySelectorAll('.el-autocomplete-suggestion__list li');
+        const suggestion = this.$refs.suggestions.$el.querySelector(`.${this.$clsPrefix}-autocomplete-suggestion__wrap`);
+        const suggestionList = suggestion.querySelectorAll(`.${this.$clsPrefix}-autocomplete-suggestion__list li`);
 
         let highlightItem = suggestionList[index];
         let scrollTop = suggestion.scrollTop;
@@ -227,7 +227,7 @@
           suggestion.scrollTop -= highlightItem.scrollHeight;
         }
         this.highlightedIndex = index;
-        this.$el.querySelector('.el-input__inner').setAttribute('aria-activedescendant', `${this.id}-item-${this.highlightedIndex}`);
+        this.$el.querySelector(`.${this.$clsPrefix}-input__inner`).setAttribute('aria-activedescendant', `${this.id}-item-${this.highlightedIndex}`);
       }
     },
     mounted() {
@@ -237,7 +237,7 @@
       this.$on('item-click', item => {
         this.select(item);
       });
-      let $input = this.$el.querySelector('.el-input__inner');
+      let $input = this.$el.querySelector(`.${this.$clsPrefix}-input__inner`);
       $input.setAttribute('role', 'textbox');
       $input.setAttribute('aria-autocomplete', 'list');
       $input.setAttribute('aria-controls', 'id');

@@ -1,17 +1,16 @@
 <template>
-  <ul @click="onPagerClick" class="el-pager">
+  <ul @click="onPagerClick" :class="[`${$clsPrefix}-pager`]">
     <li
       :class="[{ active: currentPage === 1 }, pagerClass, (currentPage === 1 ? activeClass : '')]"
       v-if="pageCount > 0"
       :style="[pagerStyle, currentPage === 1 ? activeStyle : null]"
       class="number">1</li>
     <li
-      class="el-icon more btn-quickprev"
-      :class="[quickprevIconClass, moreClass]"
+      :class="[`${$clsPrefix}-icon more btn-quickprev`, quickprevIconClass, moreClass]"
       :style="[moreStyle]"
       v-if="showPrevMore"
-      @mouseenter="quickprevIconClass = 'el-icon-d-arrow-left'"
-      @mouseleave="quickprevIconClass = 'el-icon-more'">
+      @mouseenter="quickprevIconClass = `${$clsPrefix}-icon-d-arrow-left`"
+      @mouseleave="quickprevIconClass = `${$clsPrefix}-icon-more`">
     </li>
     <li
       v-for="pager in pagers"
@@ -20,12 +19,11 @@
       :style="[pagerStyle, currentPage === pager ? activeStyle : null]"
       >{{ pager }}</li>
     <li
-      class="el-icon more btn-quicknext"
-      :class="[quicknextIconClass, moreClass]"
+      :class="[`${$clsPrefix}-icon more btn-quicknext`, quicknextIconClass, moreClass]"
       :style="[moreStyle]"
       v-if="showNextMore"
-      @mouseenter="quicknextIconClass = 'el-icon-d-arrow-right'"
-      @mouseleave="quicknextIconClass = 'el-icon-more'">
+      @mouseenter="quicknextIconClass = `${$clsPrefix}-icon-d-arrow-right`"
+      @mouseleave="quicknextIconClass = `${$clsPrefix}-icon-more`">
     </li>
     <li
       :class="[{ active: currentPage === pageCount }, pagerClass, currentPage === pageCount ? activeClass : '']"
@@ -37,7 +35,7 @@
 
 <script type="text/babel">
   export default {
-    name: 'ElPager',
+    name: 'Pager',
 
     props: {
       currentPage: Number,
@@ -85,11 +83,11 @@
 
     watch: {
       showPrevMore(val) {
-        if (!val) this.quickprevIconClass = 'el-icon-more';
+        if (!val) this.quickprevIconClass = `${this.$clsPrefix}-icon-more`;
       },
 
       showNextMore(val) {
-        if (!val) this.quicknextIconClass = 'el-icon-more';
+        if (!val) this.quicknextIconClass = `${this.$clsPrefix}-icon-more`;
       }
     },
 
@@ -183,8 +181,8 @@
         current: null,
         showPrevMore: false,
         showNextMore: false,
-        quicknextIconClass: 'el-icon-more',
-        quickprevIconClass: 'el-icon-more'
+        quicknextIconClass: `${this.$clsPrefix}-icon-more`,
+        quickprevIconClass: `${this.$clsPrefix}-icon-more`
       };
     }
   };

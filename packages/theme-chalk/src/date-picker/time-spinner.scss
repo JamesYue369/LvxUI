@@ -2,11 +2,11 @@
 
 @include b(time-spinner) {
   &.has-seconds {
-    .el-time-spinner__wrapper {
+    .#{$prefix-css}-time-spinner__wrapper {
       width: 33.3%;
     }
 
-    .el-time-spinner__wrapper:nth-child(2) {
+    .#{$prefix-css}-time-spinner__wrapper:nth-child(2) {
       margin-left: 1%;
     }
   }
@@ -19,7 +19,7 @@
     vertical-align: top;
     position: relative;
 
-    & .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default) {
+    & .#{$prefix-css}-scrollbar__wrap:not(.#{$prefix-css}-scrollbar__wrap--hidden-default) {
       padding-bottom: 15px;
     }
 
@@ -28,11 +28,11 @@
       text-align: center;
       overflow: hidden;
 
-      .el-time-spinner__list {
+      .#{$prefix-css}-time-spinner__list {
         transform: translateY(-32px);
       }
 
-      .el-time-spinner__item:hover:not(.disabled):not(.active) {
+      .#{$prefix-css}-time-spinner__item:hover:not(.disabled):not(.active) {
         background: $--color-white;
         cursor: default;
       }
@@ -55,20 +55,20 @@
       color: $--color-primary;
     }
 
-    &.el-icon-arrow-up {
+    &.#{$prefix-css}-icon-arrow-up {
       top: 10px;
     }
 
-    &.el-icon-arrow-down {
+    &.#{$prefix-css}-icon-arrow-down {
       bottom: 10px;
     }
   }
 
   @include e(input) {
-    &.el-input {
+    &.#{$prefix-css}-input {
       width: 70%;
 
-      .el-input__inner {
+      .#{$prefix-css}-input__inner {
         padding: 0;
         text-align: center;
       }

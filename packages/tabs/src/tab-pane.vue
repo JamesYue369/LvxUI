@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-tab-pane"
+    :class="[`${$clsPrefix}-tab-pane`]"
     v-show="active"
     role="tabpanel"
     :aria-hidden="!active"
@@ -12,7 +12,7 @@
 </template>
 <script>
   export default {
-    name: 'ElTabPane',
+    name: 'TabPane',
 
     componentName: 'ElTabPane',
 

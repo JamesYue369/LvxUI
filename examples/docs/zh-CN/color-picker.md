@@ -35,7 +35,7 @@
     font-size: 14px;
     margin-bottom: 20px;
   }
-  .demo-color-picker .el-color-picker + .el-color-picker {
+  .demo-color-picker .lvx-color-picker + .lvx-color-picker {
     margin-left: 20px;
   }
 </style>
@@ -50,11 +50,11 @@
 ```html
 <div class="block">
   <span class="demonstration">有默认值</span>
-  <el-color-picker v-model="color1"></el-color-picker>
+  <lvx-color-picker v-model="color1"></lvx-color-picker>
 </div>
 <div class="block">
   <span class="demonstration">无默认值</span>
-  <el-color-picker v-model="color2"></el-color-picker>
+  <lvx-color-picker v-model="color2"></lvx-color-picker>
 </div>
 
 <script>
@@ -74,7 +74,7 @@
 
 :::demo ColorPicker 支持普通颜色，也支持带 Alpha 通道的颜色，通过`show-alpha`属性即可控制是否支持透明度的选择。
 ```html
-<el-color-picker v-model="color3" show-alpha></el-color-picker>
+<lvx-color-picker v-model="color3" show-alpha></lvx-color-picker>
 
 <script>
   export default {
@@ -92,10 +92,10 @@
 
 :::demo
 ```html
-<el-color-picker v-model="color4"></el-color-picker>
-<el-color-picker v-model="color4" size="medium"></el-color-picker>
-<el-color-picker v-model="color4" size="small"></el-color-picker>
-<el-color-picker v-model="color4" size="mini"></el-color-picker>
+<lvx-color-picker v-model="color4"></lvx-color-picker>
+<lvx-color-picker v-model="color4" size="medium"></lvx-color-picker>
+<lvx-color-picker v-model="color4" size="small"></lvx-color-picker>
+<lvx-color-picker v-model="color4" size="mini"></lvx-color-picker>
 
 <script>
   export default {

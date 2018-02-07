@@ -8,23 +8,22 @@ var utilsList = fs.readdirSync(path.resolve(__dirname, '../src/utils'));
 var mixinsList = fs.readdirSync(path.resolve(__dirname, '../src/mixins'));
 var transitionList = fs.readdirSync(path.resolve(__dirname, '../src/transitions'));
 var externals = {};
-
 Object.keys(Components).forEach(function(key) {
-  externals[`element-ui/packages/${key}`] = `lvx-ui/lib/${key}`;
+  externals[`~/packages/${key}`] = `~/lib/${key}`;
 });
 
-externals['element-ui/src/locale'] = 'lvx-ui/lib/locale';
+externals['~/src/locale'] = '~/lib/locale';
 utilsList.forEach(function(file) {
   file = path.basename(file, '.js');
-  externals[`element-ui/src/utils/${file}`] = `lvx-ui/lib/utils/${file}`;
+  externals[`~/src/utils/${file}`] = `~/lib/utils/${file}`;
 });
 mixinsList.forEach(function(file) {
   file = path.basename(file, '.js');
-  externals[`element-ui/src/mixins/${file}`] = `lvx-ui/lib/mixins/${file}`;
+  externals[`~/src/mixins/${file}`] = `~/lib/mixins/${file}`;
 });
 transitionList.forEach(function(file) {
   file = path.basename(file, '.js');
-  externals[`element-ui/src/transitions/${file}`] = `lvx-ui/lib/transitions/${file}`;
+  externals[`~/src/transitions/${file}`] = `~/lib/transitions/${file}`;
 });
 
 externals = [Object.assign({
@@ -37,7 +36,7 @@ exports.alias = {
   main: path.resolve(__dirname, '../src'),
   packages: path.resolve(__dirname, '../packages'),
   examples: path.resolve(__dirname, '../examples'),
-  'element-ui': path.resolve(__dirname, '../')
+  '~': path.resolve(__dirname, '../')
 };
 
 exports.vue = {

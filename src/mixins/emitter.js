@@ -1,6 +1,7 @@
+import config from '../config';
 function broadcast(componentName, eventName, params) {
   this.$children.forEach(child => {
-    var name = child.$options.componentName;
+    var name = config.prefix + child.$options.componentName;
 
     if (name === componentName) {
       child.$emit.apply(child, [eventName].concat(params));
@@ -12,14 +13,15 @@ function broadcast(componentName, eventName, params) {
 export default {
   methods: {
     dispatch(componentName, eventName, params) {
+      componentName = config.prefix + componentName;
       var parent = this.$parent || this.$root;
-      var name = parent.$options.componentName;
+      var name = config.prefix + parent.$options.componentName;
 
       while (parent && (!name || name !== componentName)) {
         parent = parent.$parent;
 
         if (parent) {
-          name = parent.$options.componentName;
+          name = config.prefix + parent.$options.componentName;
         }
       }
       if (parent) {
@@ -27,6 +29,7 @@ export default {
       }
     },
     broadcast(componentName, eventName, params) {
+      componentName = config.prefix + componentName;
       broadcast.call(this, componentName, eventName, params);
     }
   }

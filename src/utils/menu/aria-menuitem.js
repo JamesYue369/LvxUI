@@ -1,6 +1,6 @@
 import Utils from '../aria-utils';
 import SubMenu from './aria-submenu';
-
+import config from '../../config';
 const MenuItem = function(domNode) {
   this.domNode = domNode;
   this.submenu = null;
@@ -9,7 +9,7 @@ const MenuItem = function(domNode) {
 
 MenuItem.prototype.init = function() {
   this.domNode.setAttribute('tabindex', '0');
-  let menuChild = this.domNode.querySelector('.el-menu');
+  let menuChild = this.domNode.querySelector(`.${config.clsPrefix}-menu`);
   if (menuChild) {
     this.submenu = new SubMenu(this, menuChild);
   }

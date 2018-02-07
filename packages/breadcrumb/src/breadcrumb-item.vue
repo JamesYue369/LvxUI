@@ -1,15 +1,15 @@
 <template>
-  <span class="el-breadcrumb__item">
-    <span class="el-breadcrumb__inner" ref="link" role="link" :style="[itemStyle, lastItemStyle]">
+  <span :class="[`${$clsPrefix}-breadcrumb__item`]">
+    <span :class="[`${$clsPrefix}-breadcrumb__inner`]" ref="link" role="link" :style="[itemStyle, lastItemStyle]">
       <slot></slot>
     </span>
-    <i v-if="separatorClass" class="el-breadcrumb__separator" :class="separatorClass"></i>
-    <span v-else class="el-breadcrumb__separator" role="presentation">{{separator}}</span>
+    <i v-if="separatorClass" :class="[`${$clsPrefix}-breadcrumb__separator`, separatorClass]"></i>
+    <span v-else :class="[`${$clsPrefix}-breadcrumb__separator`]" role="presentation">{{separator}}</span>
   </span>
 </template>
 <script>
   export default {
-    name: 'ElBreadcrumbItem',
+    name: 'BreadcrumbItem',
     props: {
       to: {},
       replace: Boolean
@@ -23,13 +23,13 @@
       };
     },
 
-    inject: ['elBreadcrumb'],
+    inject: ['lvxBreadcrumb'],
 
     mounted() {
-      this.separator = this.elBreadcrumb.separator;
-      this.separatorClass = this.elBreadcrumb.separatorClass;
-      this.itemStyle = this.elBreadcrumb.itemStyle;
-      // this.lastItemStyle = this.elBreadcrumb.lastItemStyle;
+      this.separator = this.lvxBreadcrumb.separator;
+      this.separatorClass = this.lvxBreadcrumb.separatorClass;
+      this.itemStyle = this.lvxBreadcrumb.itemStyle;
+      // this.lastItemStyle = this.lvxBreadcrumb.lastItemStyle;
       let self = this;
       if (this.to) {
         let link = this.$refs.link;

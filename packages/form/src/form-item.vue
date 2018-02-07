@@ -1,27 +1,30 @@
 <template>
-  <div class="el-form-item" :class="[{
-      'el-form-item--feedback': elForm && elForm.statusIcon,
+  <div :class="[
+    `${$clsPrefix}-form-item`,
+    {
+      [`${$clsPrefix}-form-item--feedback`]: lvxForm && lvxForm.statusIcon,
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
       'is-required': isRequired || required
     },
-    sizeClass ? 'el-form-item--' + sizeClass : ''
+    sizeClass ? `${$clsPrefix}-form-item--` + sizeClass : ''
   ]">
-    <label :for="labelFor" class="el-form-item__label" v-bind:style="labelStyle" v-if="label || $slots.label">
+    <label :for="labelFor" :class="[`${$clsPrefix}-form-item__label`]" v-bind:style="labelStyle" v-if="label || $slots.label">
       <slot name="label">{{label + form.labelSuffix}}</slot>
     </label>
-    <div class="el-form-item__content" v-bind:style="contentStyle">
+    <div :class="[`${$clsPrefix}-form-item__content`]" v-bind:style="contentStyle">
       <slot></slot>
-      <transition name="el-zoom-in-top">
+      <transition :name="$clsPrefix+'-zoom-in-top'">
         <div
           v-if="validateState === 'error' && showMessage && form.showMessage"
-          class="el-form-item__error"
-          :class="{
-            'el-form-item__error--inline': typeof inlineMessage === 'boolean'
+          :class="[
+          `${$clsPrefix}-form-item__error`,
+          {
+            [`${$clsPrefix}-form-item__error--inline`]: typeof inlineMessage === 'boolean'
               ? inlineMessage
-              : (elForm && elForm.inlineMessage || false)
-          }"
+              : (lvxForm && lvxForm.inlineMessage || false)
+          }]"
         >
           {{validateMessage}}
         </div>
@@ -31,23 +34,23 @@
 </template>
 <script>
   import AsyncValidator from 'async-validator';
-  import emitter from 'element-ui/src/mixins/emitter';
-  import { noop, getPropByPath } from 'element-ui/src/utils/util';
+  import emitter from '~/src/mixins/emitter';
+  import { noop, getPropByPath } from '~/src/utils/util';
 
   export default {
-    name: 'ElFormItem',
+    name: 'FormItem',
 
-    componentName: 'ElFormItem',
+    componentName: 'FormItem',
 
     mixins: [emitter],
 
     provide() {
       return {
-        elFormItem: this
+        lvxFormItem: this
       };
     },
 
-    inject: ['elForm'],
+    inject: ['lvxForm'],
 
     props: {
       label: String,
@@ -107,8 +110,8 @@
       form() {
         let parent = this.$parent;
         let parentName = parent.$options.componentName;
-        while (parentName !== 'ElForm') {
-          if (parentName === 'ElFormItem') {
+        while (parentName !== 'Form') {
+          if (parentName === 'FormItem') {
             this.isNested = true;
           }
           parent = parent.$parent;
@@ -146,7 +149,7 @@
         return isRequired;
       },
       _formSize() {
-        return this.elForm.size;
+        return this.lvxForm.size;
       },
       elFormItemSize() {
         return this.size || this._formSize;
@@ -251,7 +254,7 @@
     },
     mounted() {
       if (this.prop) {
-        this.dispatch('ElForm', 'el.form.addField', [this]);
+        this.dispatch('Form', 'event.form.addField', [this]);
 
         let initialValue = this.fieldValue;
         if (Array.isArray(initialValue)) {
@@ -264,13 +267,13 @@
         let rules = this.getRules();
 
         if (rules.length || this.required !== undefined) {
-          this.$on('el.form.blur', this.onFieldBlur);
-          this.$on('el.form.change', this.onFieldChange);
+          this.$on('event.form.blur', this.onFieldBlur);
+          this.$on('event.form.change', this.onFieldChange);
         }
       }
     },
     beforeDestroy() {
-      this.dispatch('ElForm', 'el.form.removeField', [this]);
+      this.dispatch('Form', 'event.form.removeField', [this]);
     }
   };
 </script>

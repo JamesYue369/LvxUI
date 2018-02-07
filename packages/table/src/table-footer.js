@@ -1,5 +1,5 @@
 export default {
-  name: 'ElTableFooter',
+  name: 'TableFooter',
 
   render(h) {
     const sums = [];
@@ -35,7 +35,7 @@ export default {
 
     return (
       <table
-        class="el-table__footer"
+        class={`${this.$clsPrefix}-table__footer`}
         cellspacing="0"
         cellpadding="0"
         border="0">

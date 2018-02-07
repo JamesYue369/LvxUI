@@ -713,3 +713,5 @@ $--breakpoints-spec: (
   'lg-and-down': (max-width: $--xl - 1),
   'xl-only' : (min-width: $--xl),
 );
+//global config
+$prefix-css: lvx !default;

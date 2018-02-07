@@ -1,5 +1,5 @@
 <template>
-  <div class="el-tabs__active-bar" :style="barStyle"></div>
+  <div :class="[`${$clsPrefix}-tabs__active-bar`]" :style="barStyle"></div>
 </template>
 <script>
   export default {

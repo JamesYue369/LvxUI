@@ -1,8 +1,8 @@
 <template>
   <div
-    class="el-step"
     :style="style"
     :class="[
+      `${$clsPrefix}-step`,
       !isSimple && `is-${$parent.direction}`,
       isSimple && 'is-simple',
       isLast && !space && !isCenter && 'is-flex',
@@ -10,43 +10,39 @@
      ]">
     <!-- icon & line -->
     <div
-      class="el-step__head"
-      :class="`is-${currentStatus}`">
+      :class="[`${$clsPrefix}-step__head`, `is-${currentStatus}`]">
       <div
-        class="el-step__line"
+        :class="[`${$clsPrefix}-step__line`]"
         :style="[(isLast ? '' : { marginRight: $parent.stepOffset + 'px' }), borderStyle]"
       >
-        <i class="el-step__line-inner" :style="[lineStyle, {borderStyle: $parent.lineType}]"></i>
+        <i :class="[`${$clsPrefix}-step__line-inner`]" :style="[lineStyle, {borderStyle: $parent.lineType}]"></i>
       </div>
 
-      <div class="el-step__icon" :class="`is-${icon ? 'icon' : 'text'}`">
+      <div :class="[`${$clsPrefix}-step__icon`, `is-${icon ? 'icon' : 'text'}`]">
         <slot
           v-if="currentStatus !== 'success' && currentStatus !== 'error'"
           name="icon">
-          <i v-if="icon" class="el-step__icon-inner" :class="[icon]"></i>
-          <div class="el-step__icon-inner" v-if="!icon && !isSimple">{{ index + 1 }}</div>
+          <i v-if="icon" :class="[`${$clsPrefix}-step__icon-inner`, icon]" ></i>
+          <div :class="[`${$clsPrefix}-step__icon-inner`]" v-if="!icon && !isSimple">{{ index + 1 }}</div>
         </slot>
         <i
           v-else
-          :class="['el-icon-' + (currentStatus === 'success' ? 'check' : 'close')]"
-          class="el-step__icon-inner is-status"
+          :class="[`${$clsPrefix}-icon-` + (currentStatus === 'success' ? 'check' : 'close'), `${$clsPrefix}-step__icon-inner is-status`]"
         >
         </i>
       </div>
     </div>
     <!-- title & description -->
-    <div class="el-step__main">
+    <div :class="[`${$clsPrefix}-step__main`]">
       <div
-        class="el-step__title"
         ref="title"
-        :class="['is-' + currentStatus]">
+        :class="[`${$clsPrefix}-step__title`, 'is-' + currentStatus]">
         <slot name="title">{{ title }}</slot>
       </div>
-      <div v-if="isSimple" class="el-step__arrow"></div>
+      <div v-if="isSimple" :class="[`${$clsPrefix}-step__arrow`]"></div>
       <div
         v-else
-        class="el-step__description"
-        :class="['is-' + currentStatus]">
+        :class="[`${$clsPrefix}-step__description`, 'is-' + currentStatus]">
         <slot name="description">{{ description }}</slot>
       </div>
     </div>
@@ -55,7 +51,7 @@
 
 <script>
 export default {
-  name: 'ElStep',
+  name: 'Step',
 
   props: {
     title: String,
@@ -63,6 +59,8 @@ export default {
     description: String,
     status: String
   },
+
+  inject: ['steps'],
 
   data() {
     return {
@@ -73,7 +71,7 @@ export default {
     };
   },
 
-  beforeCreate() {
+  created() {
     this.$parent.steps.push(this);
   },
 

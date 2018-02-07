@@ -51,7 +51,7 @@
       transform: rotate(90deg);
     }
 
-    > .el-icon {
+    > .#{$prefix-css}-icon {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -226,7 +226,7 @@
     padding-left: 10px;
     padding-right: 10px;
 
-    &.el-tooltip {
+    &.#{$prefix-css}-tooltip {
       white-space: nowrap;
       min-width: 50px;
     }
@@ -327,9 +327,9 @@
     left: auto;
     right: 0;
 
-    .el-table__fixed-header-wrapper,
-    .el-table__fixed-body-wrapper,
-    .el-table__fixed-footer-wrapper {
+    .#{$prefix-css}-table__fixed-header-wrapper,
+    .#{$prefix-css}-table__fixed-body-wrapper,
+    .#{$prefix-css}-table__fixed-footer-wrapper {
       left: auto;
       right: 0;
     }
@@ -392,33 +392,33 @@
     position: relative;
 
     @include when(scroll-none) {
-      ~ .el-table__fixed,
-      ~ .el-table__fixed-right {
+      ~ .#{$prefix-css}-table__fixed,
+      ~ .#{$prefix-css}-table__fixed-right {
         box-shadow: none;
       }
     }
 
     @include when(scroll-left) {
-      ~ .el-table__fixed {
+      ~ .#{$prefix-css}-table__fixed {
         box-shadow: none;
       }
     }
 
     @include when(scroll-right) {
-      ~ .el-table__fixed-right {
+      ~ .#{$prefix-css}-table__fixed-right {
         box-shadow: none;
       }
     }
 
-    .el-table--border {
+    .#{$prefix-css}-table--border {
       @include when(scroll-right) {
-        ~ .el-table__fixed-right {
+        ~ .#{$prefix-css}-table__fixed-right {
           border-left: $--table-border;
         }
       }
 
       @include when(scroll-left) {
-        ~ .el-table__fixed {
+        ~ .#{$prefix-css}-table__fixed {
           border-right: $--table-border;
         }
       }
@@ -467,8 +467,8 @@
   }
 
   @include m(striped) {
-    & .el-table__body {
-      & tr.el-table__row--striped {
+    & .#{$prefix-css}-table__body {
+      & tr.#{$prefix-css}-table__row--striped {
         td {
           background: #FAFAFA;
         }
@@ -482,7 +482,7 @@
 
   @include e(body) {
     tr.hover-row {
-      &, &.el-table__row--striped {
+      &, &.#{$prefix-css}-table__row--striped {
         &, &.current-row {
           > td {
             background-color: $--table-current-row-background;
@@ -519,20 +519,20 @@
   }
 
   @include m(enable-row-transition) {
-    .el-table__body td {
+    .#{$prefix-css}-table__body td {
       transition: background-color .25s ease;
     }
   }
 
   @include m(enable-row-hover) {
-    .el-table__body tr:hover > td {
+    .#{$prefix-css}-table__body tr:hover > td {
       background-color: $--table-row-hover-background;
     }
   }
 
   @include m(fluid-height) {
-    .el-table__fixed,
-    .el-table__fixed-right {
+    .#{$prefix-css}-table__fixed,
+    .#{$prefix-css}-table__fixed-right {
       bottom: 0;
       overflow: hidden;
     }

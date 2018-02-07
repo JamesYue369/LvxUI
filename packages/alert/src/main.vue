@@ -1,31 +1,31 @@
 <template>
-  <transition name="el-alert-fade">
+  <transition :name="$clsPrefix+'-alert-fade'">
     <div
-      class="el-alert"
-      :class="[typeClass, center ? 'is-center' : '']"
+      :class="[`${$clsPrefix}-alert`, typeClass, center ? 'is-center' : '']"
       v-show="visible"
       role="alert"
     >
-      <i class="el-alert__icon" :class="[ iconClass, isBigIcon ]" v-if="showIcon"></i>
-      <div class="el-alert__content">
-        <span class="el-alert__title" :class="[ isBoldTitle ]" v-if="title">{{ title }}</span>
+      <i :class="[`${$clsPrefix}-alert__icon`, iconClass, isBigIcon ]" v-if="showIcon"></i>
+      <div :class="[`${$clsPrefix}-alert__content`]">
+        <span :class="[`${$clsPrefix}-alert__title`, isBoldTitle ]" v-if="title">{{ title }}</span>
         <slot>
-          <p class="el-alert__description" v-if="description">{{ description }}</p>
+          <p :class="[`${$clsPrefix}-alert__description`]" v-if="description">{{ description }}</p>
         </slot>
-        <i class="el-alert__closebtn" :class="{ 'is-customed': closeText !== '', 'el-icon-close': closeText === '' }" v-show="closable" @click="close()">{{closeText}}</i>
+        <i :class="[`${$clsPrefix}-alert__closebtn`, { 'is-customed': closeText !== '', [`${$clsPrefix}-icon-close`]: closeText === '' }]" v-show="closable" @click="close()">{{closeText}}</i>
       </div>
     </div>
   </transition>
 </template>
 
 <script type="text/babel">
+  import config from '~/src/config';
   const TYPE_CLASSES_MAP = {
-    'success': 'el-icon-success',
-    'warning': 'el-icon-warning',
-    'error': 'el-icon-error'
+    'success': `${config.clsPrefix}-icon-success`,
+    'warning': `${config.clsPrefix}-icon-warning`,
+    'error': `${config.clsPrefix}-icon-error`
   };
   export default {
-    name: 'ElAlert',
+    name: 'Alert',
 
     props: {
       title: {
@@ -68,11 +68,11 @@
 
     computed: {
       typeClass() {
-        return `el-alert--${ this.type }`;
+        return `${this.$clsPrefix}-alert--${ this.type }`;
       },
 
       iconClass() {
-        return TYPE_CLASSES_MAP[this.type] || 'el-icon-info';
+        return TYPE_CLASSES_MAP[this.type] || `${this.$clsPrefix}-icon-info`;
       },
 
       isBigIcon() {

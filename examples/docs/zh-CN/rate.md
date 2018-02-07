@@ -48,14 +48,14 @@
 ``` html
 <div class="block">
   <span class="demonstration">默认不区分颜色</span>
-  <el-rate v-model="value1"></el-rate>
+  <lvx-rate v-model="value1"></lvx-rate>
 </div>
 <div class="block">
   <span class="demonstration">区分颜色</span>
-  <el-rate
+  <lvx-rate
     v-model="value2"
     :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
-  </el-rate>
+  </lvx-rate>
 </div>
 
 <script>
@@ -77,10 +77,10 @@
 
 :::demo 为组件设置 `show-text` 属性会在右侧显示辅助文字。通过设置 `texts` 可以为每一个分值指定对应的辅助文字。`texts` 为一个数组，长度应等于最大值 `max`。
 ``` html
-<el-rate
+<lvx-rate
   v-model="value3"
   show-text>
-</el-rate>
+</lvx-rate>
 
 <script>
   export default {
@@ -100,12 +100,12 @@
 
 :::demo 设置`icon-classes`属性可以自定义对应 3 个不同分段的图标。本例还使用`void-icon-class`指定了未选中时的图标类名。
 ``` html
-<el-rate
+<lvx-rate
   v-model="value4"
   :icon-classes="['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3']"
   void-icon-class="icon-rate-face-off"
   :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
-</el-rate>
+</lvx-rate>
 
 <script>
   export default {
@@ -125,13 +125,13 @@
 
 :::demo 为组件设置 `disabled` 属性表示组件为只读，支持小数分值。此时若设置 `show-score`，则会在右侧显示目前的分值。可以提供 `score-template` 作为显示模板，模板为一个包含了 `{value}` 的字符串，`{value}` 会被解析为分值。
 ``` html
-<el-rate
+<lvx-rate
   v-model="value5"
   disabled
   show-score
   text-color="#ff9900"
   score-template="{value}">
-</el-rate>
+</lvx-rate>
 
 <script>
   export default {
@@ -156,9 +156,9 @@
 | colors | icon 的颜色数组，共有 3 个元素，为 3 个分段所对应的颜色 | array | — | ['#F7BA2A', '#F7BA2A', '#F7BA2A'] |
 | void-color | 未选中 icon 的颜色 | string | — | #C6D1DE |
 | disabled-void-color | 只读时未选中 icon 的颜色 | string | — | #EFF2F7 |
-| icon-classes | icon 的类名数组，共有 3 个元素，为 3 个分段所对应的类名 | array | — | ['el-icon-star-on', 'el-icon-star-on','el-icon-star-on'] |
-| void-icon-class | 未选中 icon 的类名 | string | — | el-icon-star-off |
-| disabled-void-icon-class | 只读时未选中 icon 的类名 | string | — | el-icon-star-on |
+| icon-classes | icon 的类名数组，共有 3 个元素，为 3 个分段所对应的类名 | array | — | ['lvx-icon-star-on', 'lvx-icon-star-on','lvx-icon-star-on'] |
+| void-icon-class | 未选中 icon 的类名 | string | — | lvx-icon-star-off |
+| disabled-void-icon-class | 只读时未选中 icon 的类名 | string | — | lvx-icon-star-on |
 | show-text | 是否显示辅助文字，若为真，则会从 texts 数组中选取当前分数对应的文字内容 | boolean | — | false |
 | show-score | 是否显示当前分数，show-score 和 show-text 不能同时为真 | boolean | — | false |
 | text-color | 辅助文字的颜色 | string | — | #1F2D3D |

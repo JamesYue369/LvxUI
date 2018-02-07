@@ -2,7 +2,6 @@
  * Show migrating guide in browser console.
  *
  * Usage:
- * import Migrating from 'element-ui/src/mixins/migrating';
  *
  * mixins: [Migrating]
  *
@@ -30,13 +29,13 @@ export default {
 
     for (let propName in definedProps) {
       if (definedProps.hasOwnProperty(propName) && props[propName]) {
-        console.warn(`[Element Migrating][${this.$options.name}][Attribute]: ${props[propName]}`);
+        console.warn(`[Lvx Migrating][${this.$options.name}][Attribute]: ${props[propName]}`);
       }
     }
 
     for (let eventName in definedEvents) {
       if (definedEvents.hasOwnProperty(eventName) && events[eventName]) {
-        console.warn(`[Element Migrating][${this.$options.name}][Event]: ${events[eventName]}`);
+        console.warn(`[Lvx Migrating][${this.$options.name}][Event]: ${events[eventName]}`);
       }
     }
   },

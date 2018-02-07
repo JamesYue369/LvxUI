@@ -1,18 +1,20 @@
 <template>
-  <div class="el-table"
-    :class="[{
-      'el-table--fit': fit,
-      'el-table--striped': stripe,
-      'el-table--border': border || isGroup,
-      'el-table--hidden': isHidden,
-      'el-table--group': isGroup,
-      'el-table--fluid-height': maxHeight,
-      'el-table--enable-row-hover': !store.states.isComplex,
-      'el-table--enable-row-transition': (store.states.data || []).length !== 0 && (store.states.data || []).length < 100
-    }, tableSize ? `el-table--${ tableSize }` : '']"
+  <div 
+    :class="[
+    `${$clsPrefix}-table`,
+    {
+      [`${$clsPrefix}-table--fit`]: fit,
+      [`${$clsPrefix}-table--striped`]: stripe,
+      [`${$clsPrefix}-table--border`]: border || isGroup,
+      [`${$clsPrefix}-table--hidden`]: isHidden,
+      [`${$clsPrefix}-table--group`]: isGroup,
+      [`${$clsPrefix}-table--fluid-height`]: maxHeight,
+      [`${$clsPrefix}-table--enable-row-hover`]: !store.states.isComplex,
+      [`${$clsPrefix}-table--enable-row-transition`]: (store.states.data || []).length !== 0 && (store.states.data || []).length < 100
+    }, tableSize ? `${$clsPrefix}-table--${ tableSize }` : '']"
     @mouseleave="handleMouseLeave($event)">
     <div class="hidden-columns" ref="hiddenColumns"><slot></slot></div>
-    <div class="el-table__header-wrapper" ref="headerWrapper" v-if="showHeader">
+    <div :class="[`${$clsPrefix}-table__header-wrapper`]" ref="headerWrapper" v-if="showHeader">
       <table-header
         ref="tableHeader"
         :store="store"
@@ -23,9 +25,8 @@
       </table-header>
     </div>
     <div
-      class="el-table__body-wrapper"
       ref="bodyWrapper"
-      :class="[`is-scroll-${scrollPosition}`]"
+      :class="[`${$clsPrefix}-table__body-wrapper`, `is-scroll-${scrollPosition}`]"
       :style="[bodyHeight]">
       <table-body
         :context="context"
@@ -37,31 +38,31 @@
         :highlight="highlightCurrentRow"
         :style="{ width: bodyWidth }">
       </table-body>
-      <div :style="{ width: bodyWidth }" class="el-table__empty-block" v-if="!data || data.length === 0">
-        <span class="el-table__empty-text"><slot name="empty">{{ emptyText || t('el.table.emptyText') }}</slot></span>
+      <div :style="{ width: bodyWidth }" :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0">
+        <span :class="[`${$clsPrefix}-table__empty-text`]"><slot name="empty">{{ emptyText || t('lang.table.emptyText') }}</slot></span>
       </div>
-      <div class="el-table__append-wrapper" ref="appendWrapper" v-if="$slots.append">
+      <div :class="[`${$clsPrefix}-table__append-wrapper`]" ref="appendWrapper" v-if="$slots.append">
         <slot name="append"></slot>
       </div>
     </div>
-    <div class="el-table__footer-wrapper" ref="footerWrapper" v-if="showSummary" v-show="data && data.length > 0">
+    <div :class="[`${$clsPrefix}-table__footer-wrapper`]" ref="footerWrapper" v-if="showSummary" v-show="data && data.length > 0">
       <table-footer
         :store="store"
         :layout="layout"
         :border="border"
-        :sum-text="sumText || t('el.table.sumText')"
+        :sum-text="sumText || t('lang.table.sumText')"
         :summary-method="summaryMethod"
         :default-sort="defaultSort"
         :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }">
       </table-footer>
     </div>
-    <div class="el-table__fixed" ref="fixedWrapper"
+    <div :class="[`${$clsPrefix}-table__fixed`]" ref="fixedWrapper"
       v-if="fixedColumns.length > 0"
       :style="[
         { width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' },
         fixedHeight
       ]">
-      <div class="el-table__fixed-header-wrapper" ref="fixedHeaderWrapper" v-if="showHeader">
+      <div :class="[`${$clsPrefix}-table__fixed-header-wrapper`]" ref="fixedHeaderWrapper" v-if="showHeader">
         <table-header
           ref="fixedTableHeader"
           fixed="left"
@@ -71,7 +72,7 @@
           :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"></table-header>
       </div>
       <div
-        class="el-table__fixed-body-wrapper"
+        :class="[`${$clsPrefix}-table__fixed-body-wrapper`]"
         ref="fixedBodyWrapper"
         :style="[
           { top: layout.headerHeight + 'px' },
@@ -87,27 +88,27 @@
           :row-style="rowStyle"
           :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }">
         </table-body>
-        <div class="el-table__append-gutter" :style="{ height: layout.appendHeight + 'px' }" v-if="$slots.append"></div>
+        <div :class="[`${$clsPrefix}-table__append-gutter`]" :style="{ height: layout.appendHeight + 'px' }" v-if="$slots.append"></div>
       </div>
-      <div class="el-table__fixed-footer-wrapper" ref="fixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
+      <div :class="[`${$clsPrefix}-table__fixed-footer-wrapper`]" ref="fixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
         <table-footer
           fixed="left"
           :border="border"
-          :sum-text="sumText || t('el.table.sumText')"
+          :sum-text="sumText || t('lang.table.sumText')"
           :summary-method="summaryMethod"
           :store="store"
           :layout="layout"
           :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"></table-footer>
       </div>
     </div>
-    <div class="el-table__fixed-right" ref="rightFixedWrapper"
+    <div :class="[`${$clsPrefix}-table__fixed-right`]" ref="rightFixedWrapper"
       v-if="rightFixedColumns.length > 0"
       :style="[
         { width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' },
         { right: layout.scrollY ? (border ? layout.gutterWidth : (layout.gutterWidth || 0)) + 'px' : '' },
         fixedHeight
       ]">
-      <div class="el-table__fixed-header-wrapper" ref="rightFixedHeaderWrapper" v-if="showHeader">
+      <div :class="[`${$clsPrefix}-table__fixed-header-wrapper`]" ref="rightFixedHeaderWrapper" v-if="showHeader">
         <table-header
           ref="rightFixedTableHeader"
           fixed="right"
@@ -116,7 +117,7 @@
           :layout="layout"
           :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"></table-header>
       </div>
-      <div class="el-table__fixed-body-wrapper" ref="rightFixedBodyWrapper"
+      <div :class="[`${$clsPrefix}-table__fixed-body-wrapper`]" ref="rightFixedBodyWrapper"
         :style="[
           { top: layout.headerHeight + 'px' },
           fixedBodyHeight
@@ -132,31 +133,31 @@
           :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }">
         </table-body>
       </div>
-      <div class="el-table__fixed-footer-wrapper" ref="rightFixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
+      <div :class="[`${$clsPrefix}-table__fixed-footer-wrapper`]" ref="rightFixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
         <table-footer
           fixed="right"
           :border="border"
-          :sum-text="sumText || t('el.table.sumText')"
+          :sum-text="sumText || t('lang.table.sumText')"
           :summary-method="summaryMethod"
           :store="store"
           :layout="layout"
           :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"></table-footer>
       </div>
     </div>
-    <div class="el-table__fixed-right-patch"
+    <div :class="[`${$clsPrefix}-table__fixed-right-patch`]"
       v-if="rightFixedColumns.length > 0"
       :style="{ width: layout.scrollY ? layout.gutterWidth + 'px' : '0', height: layout.headerHeight + 'px' }"></div>
-    <div class="el-table__column-resize-proxy" ref="resizeProxy" v-show="resizeProxyVisible"></div>
+    <div :class="[`${$clsPrefix}-table__column-resize-proxy`]" ref="resizeProxy" v-show="resizeProxyVisible"></div>
   </div>
 </template>
 
 <script type="text/babel">
-  import ElCheckbox from 'element-ui/packages/checkbox';
+  import Checkbox from '~/packages/checkbox';
   import throttle from 'throttle-debounce/throttle';
   import debounce from 'throttle-debounce/debounce';
-  import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
-  import Locale from 'element-ui/src/mixins/locale';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import { addResizeListener, removeResizeListener } from '~/src/utils/resize-event';
+  import Locale from '~/src/mixins/locale';
+  import Migrating from '~/src/mixins/migrating';
   import TableStore from './table-store';
   import TableLayout from './table-layout';
   import TableBody from './table-body';
@@ -167,7 +168,7 @@
   let tableIdSeed = 1;
 
   export default {
-    name: 'ElTable',
+    name: 'Table',
 
     mixins: [Locale, Migrating],
 
@@ -248,7 +249,7 @@
       TableHeader,
       TableFooter,
       TableBody,
-      ElCheckbox
+      'LvxCheckbox': Checkbox
     },
 
     methods: {
@@ -357,7 +358,7 @@
     },
 
     created() {
-      this.tableId = 'el-table_' + tableIdSeed + '_';
+      this.tableId = `${this.$clsPrefix}-table_` + tableIdSeed + '_';
       this.debouncedLayout = debounce(50, () => this.doLayout());
     },
 

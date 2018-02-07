@@ -1,31 +1,31 @@
 <template>
-  <transition name="el-zoom-in-top">
-    <div class="el-table-filter" v-if="multiple" v-show="showPopper">
-      <div class="el-table-filter__content">
-        <el-checkbox-group class="el-table-filter__checkbox-group" v-model="filteredValue">
-          <el-checkbox
+  <transition :name="$clsPrefix+'-zoom-in-top'">
+    <div :class="[`${$clsPrefix}-table-filter`]" v-if="multiple" v-show="showPopper">
+      <div :class="[`${$clsPrefix}-table-filter__content`]">
+        <lvx-checkbox-group :class="[`${$clsPrefix}-table-filter__checkbox-group`]" v-model="filteredValue">
+          <lvx-checkbox
             v-for="filter in filters"
             :key="filter.value"
-            :label="filter.value">{{ filter.text }}</el-checkbox>
-        </el-checkbox-group>
+            :label="filter.value">{{ filter.text }}</lvx-checkbox>
+        </lvx-checkbox-group>
       </div>
-      <div class="el-table-filter__bottom">
+      <div :class="[`${$clsPrefix}-table-filter__bottom`]">
         <button @click="handleConfirm"
           :class="{ 'is-disabled': filteredValue.length === 0 }"
-          :disabled="filteredValue.length === 0">{{ t('el.table.confirmFilter') }}</button>
-        <button @click="handleReset">{{ t('el.table.resetFilter') }}</button>
+          :disabled="filteredValue.length === 0">{{ t('lang.table.confirmFilter') }}</button>
+        <button @click="handleReset">{{ t('lang.table.resetFilter') }}</button>
       </div>
     </div>
-    <div class="el-table-filter" v-else v-show="showPopper">
-      <ul class="el-table-filter__list">
-        <li class="el-table-filter__list-item"
-            :class="{ 'is-active': filterValue === undefined || filterValue === null }"
-            @click="handleSelect(null)">{{ t('el.table.clearFilter') }}</li>
-        <li class="el-table-filter__list-item"
+    <div :class="[`${$clsPrefix}-table-filter`]" v-else v-show="showPopper">
+      <ul :class="[`${$clsPrefix}-table-filter__list`]">
+        <li 
+            :class="[`${$clsPrefix}-table-filter__list-item`, { 'is-active': filterValue === undefined || filterValue === null }]"
+            @click="handleSelect(null)">{{ t('lang.table.clearFilter') }}</li>
+        <li 
             v-for="filter in filters"
             :label="filter.value"
             :key="filter.value"
-            :class="{ 'is-active': isActive(filter) }"
+            :class="[`${$clsPrefix}-table-filter__list-item`, { 'is-active': isActive(filter) }]"
             @click="handleSelect(filter.value)" >{{ filter.text }}</li>
       </ul>
     </div>
@@ -33,16 +33,16 @@
 </template>
 
 <script type="text/babel">
-  import Popper from 'element-ui/src/utils/vue-popper';
-  import { PopupManager } from 'element-ui/src/utils/popup';
-  import Locale from 'element-ui/src/mixins/locale';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
+  import Popper from '~/src/utils/vue-popper';
+  import { PopupManager } from '~/src/utils/popup';
+  import Locale from '~/src/mixins/locale';
+  import Clickoutside from '~/src/utils/clickoutside';
   import Dropdown from './dropdown';
-  import ElCheckbox from 'element-ui/packages/checkbox';
-  import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
+  import Checkbox from '~/packages/checkbox';
+  import CheckboxGroup from '~/packages/checkbox-group';
 
   export default {
-    name: 'ElTableFilterPanel',
+    name: 'TableFilterPanel',
 
     mixins: [Popper, Locale],
 
@@ -51,8 +51,8 @@
     },
 
     components: {
-      ElCheckbox,
-      ElCheckboxGroup
+      'LvxCheckbox': Checkbox,
+      'LvxCheckboxGroup': CheckboxGroup
     },
 
     props: {
@@ -63,12 +63,12 @@
     },
 
     customRender(h) {
-      return (<div class="el-table-filter">
-        <div class="el-table-filter__content">
+      return (<div class={`${this.$clsPrefix}-table-filter`}>
+        <div class={`${this.$clsPrefix}-table-filter__content`}>
         </div>
-        <div class="el-table-filter__bottom">
-          <button on-click={ this.handleConfirm }>{ this.t('el.table.confirmFilter') }</button>
-          <button on-click={ this.handleReset }>{ this.t('el.table.resetFilter') }</button>
+        <div class={`${this.$clsPrefix}-table-filter__bottom`}>
+          <button on-click={ this.handleConfirm }>{ this.t('lang.table.confirmFilter') }</button>
+          <button on-click={ this.handleReset }>{ this.t('lang.table.resetFilter') }</button>
         </div>
       </div>);
     },

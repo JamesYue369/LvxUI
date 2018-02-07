@@ -1,14 +1,13 @@
 <template>
   <div
-    class="el-switch"
-    :class="{ 'is-disabled': disabled, 'is-checked': checked }"
+    :class="[`${$clsPrefix}-switch` ,{ 'is-disabled': disabled, 'is-checked': checked }]"
     role="switch"
     :aria-checked="checked"
     :aria-disabled="disabled"
     @click="switchValue"
   >
     <input
-      class="el-switch__input"
+      :class="[`${$clsPrefix}-switch__input`]"
       type="checkbox"
       @change="handleChange"
       ref="input"
@@ -19,16 +18,16 @@
       @keydown.enter="switchValue"
     >
     <span
-      :class="['el-switch__label', 'el-switch__label--left', !checked ? 'is-active' : '']"
+      :class="[`${$clsPrefix}-switch__label`, `${$clsPrefix}-switch__label--left`, !checked ? 'is-active' : '']"
       v-if="inactiveIconClass || inactiveText">
       <i :class="[inactiveIconClass]" v-if="inactiveIconClass"></i>
       <span v-if="!inactiveIconClass && inactiveText" :aria-hidden="checked">{{ inactiveText }}</span>
     </span>
-    <span class="el-switch__core" ref="core" :style="{ 'width': coreWidth + 'px' }">
-      <span class="el-switch__button" :style="{ transform }"></span>
+    <span :class="[`${$clsPrefix}-switch__core`]" ref="core" :style="{ 'width': coreWidth + 'px' }">
+      <span :class="[`${$clsPrefix}-switch__button`]" :style="{ transform }"></span>
     </span>
     <span
-      :class="['el-switch__label', 'el-switch__label--right', checked ? 'is-active' : '']"
+      :class="[`${$clsPrefix}-switch__label`, `${$clsPrefix}-switch__label--right`, checked ? 'is-active' : '']"
       v-if="activeIconClass || activeText">
       <i :class="[activeIconClass]" v-if="activeIconClass"></i>
       <span v-if="!activeIconClass && activeText" :aria-hidden="!checked">{{ activeText }}</span>
@@ -36,11 +35,11 @@
   </div>
 </template>
 <script>
-  import Focus from 'element-ui/src/mixins/focus';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import Focus from '~/src/mixins/focus';
+  import Migrating from '~/src/mixins/migrating';
 
   export default {
-    name: 'ElSwitch',
+    name: 'Switch',
     mixins: [Focus('input'), Migrating],
     props: {
       value: {

@@ -1,6 +1,6 @@
-import { hasClass, addClass, removeClass } from 'element-ui/src/utils/dom';
-import ElCheckbox from 'element-ui/packages/checkbox';
-import ElTag from 'element-ui/packages/tag';
+import { hasClass, addClass, removeClass } from '~/src/utils/dom';
+import Checkbox from '~/packages/checkbox';
+import Tag from '~/packages/tag';
 import Vue from 'vue';
 import FilterPanel from './filter-panel.vue';
 
@@ -63,7 +63,7 @@ const convertToRows = (originColumns) => {
 };
 
 export default {
-  name: 'ElTableHeader',
+  name: 'TableHeader',
 
   render(h) {
     const originColumns = this.store.states.originColumns;
@@ -74,7 +74,7 @@ export default {
 
     return (
       <table
-        class="el-table__header"
+        class={`${this.$clsPrefix}-table__header`}
         cellspacing="0"
         cellpadding="0"
         border="0">
@@ -119,16 +119,16 @@ export default {
                     {
                       column.sortable
                         ? <span class="caret-wrapper" on-click={ ($event) => this.handleSortClick($event, column) }>
-                            <i class="sort-caret ascending el-icon-caret-top" on-click={ ($event) => this.handleSortClick($event, column, 'ascending') }>
+                            <i class={`sort-caret ascending ${this.$clsPrefix}-icon-caret-top`} on-click={ ($event) => this.handleSortClick($event, column, 'ascending') }>
                             </i>
-                            <i class="sort-caret descending el-icon-caret-bottom" on-click={ ($event) => this.handleSortClick($event, column, 'descending') }>
+                            <i class={`sort-caret descending ${this.$clsPrefix}-icon-caret-bottom`} on-click={ ($event) => this.handleSortClick($event, column, 'descending') }>
                             </i>
                           </span>
                         : ''
                     }
                     {
                       column.filterable
-                         ? <span class="el-table__column-filter-trigger" on-click={ ($event) => this.handleFilterClick($event, column) }><i class={ ['el-icon-arrow-down', column.filterOpened ? 'el-icon-arrow-up' : ''] }></i></span>
+                         ? <span class={`${this.$clsPrefix}-table__column-filter-trigger`} on-click={ ($event) => this.handleFilterClick($event, column) }><i class={ [`${this.$clsPrefix}-icon-arrow-down`, column.filterOpened ? `${this.$clsPrefix}-icon-arrow-up` : ''] }></i></span>
                         : ''
                     }
                     </div>
@@ -169,8 +169,8 @@ export default {
   },
 
   components: {
-    ElCheckbox,
-    ElTag
+    'LvxCheckbox': Checkbox,
+    'LvxTag': Tag
   },
 
   computed: {
