@@ -23,7 +23,7 @@
   @include m(circle) {
     display: inline-block;
 
-    .#{$prefix-css}-progress__text {
+    .#{$--prefix-css}-progress__text {
       position: absolute;
       top: 50%;
       left: 0;
@@ -40,11 +40,11 @@
   }
 
   @include m(without-text) {
-    .#{$prefix-css}-progress__text {
+    .#{$--prefix-css}-progress__text {
       display: none;
     }
 
-    .#{$prefix-css}-progress-bar {
+    .#{$--prefix-css}-progress-bar {
       padding-right: 0;
       margin-right: 0;
       display: block;
@@ -52,28 +52,28 @@
   }
 
   @include m(text-inside) {
-    .#{$prefix-css}-progress-bar {
+    .#{$--prefix-css}-progress-bar {
       padding-right: 0;
       margin-right: 0;
     }
   }
 
   @include when(success) {
-    .#{$prefix-css}-progress-bar__inner {
+    .#{$--prefix-css}-progress-bar__inner {
       background-color: $--color-success;
     }
 
-    .#{$prefix-css}-progress__text {
+    .#{$--prefix-css}-progress__text {
       color: $--color-success;
     }
   }
 
   @include when(exception) {
-    .#{$prefix-css}-progress-bar__inner {
+    .#{$--prefix-css}-progress-bar__inner {
       background-color: $--color-danger;
     }
 
-    .#{$prefix-css}-progress__text {
+    .#{$--prefix-css}-progress__text {
       color: $--color-danger;
     }
   }

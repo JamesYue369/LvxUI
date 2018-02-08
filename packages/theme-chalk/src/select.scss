@@ -13,12 +13,12 @@
   position: relative;
 
   &:hover {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       border-color: $--select-border-color-hover;
     }
   }
 
-  .#{$prefix-css}-input__inner {
+  .#{$--prefix-css}-input__inner {
     cursor: pointer;
     padding-right: 35px;
 
@@ -27,8 +27,8 @@
     }
   }
 
-  .#{$prefix-css}-input {
-    & .#{$prefix-css}-select__caret {
+  .#{$--prefix-css}-input {
+    & .#{$--prefix-css}-select__caret {
       color: $--select-input-color;
       font-size: $--select-input-font-size;
       transition: transform .3s;
@@ -55,7 +55,7 @@
     }
 
     &.is-disabled {
-      & .#{$prefix-css}-input__inner {
+      & .#{$--prefix-css}-input__inner {
         cursor: not-allowed;
 
         &:hover {
@@ -64,12 +64,12 @@
       }
     }
 
-    &.is-focus .#{$prefix-css}-input__inner {
+    &.is-focus .#{$--prefix-css}-input__inner {
       border-color: $--select-input-focus-background;
     }
   }
 
-  > .#{$prefix-css}-input {
+  > .#{$--prefix-css}-input {
     display: block;
   }
 
@@ -121,17 +121,17 @@
     transform: translateY(-50%);
   }
 
-  .#{$prefix-css}-tag__close {
+  .#{$--prefix-css}-tag__close {
     margin-top: -2px;
   }
 
-  .#{$prefix-css}-tag {
+  .#{$--prefix-css}-tag {
     box-sizing: border-box;
     border-color: transparent;
     margin: 3px 0 3px 6px;
     background-color: #f0f2f5;
 
-    &__close.#{$prefix-css}-icon-close {
+    &__close.#{$--prefix-css}-icon-close {
       background-color: $--color-text-placeholder;
       right: -7px;
       top: 0;

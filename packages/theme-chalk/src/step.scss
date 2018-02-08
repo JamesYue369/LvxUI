@@ -84,7 +84,7 @@
     line-height: 1;
     color: inherit;
 
-    &[class*='#{$prefix-css}-icon']:not(.is-status) {
+    &[class*='#{$--prefix-css}-icon']:not(.is-status) {
       font-size: 25px;
       font-weight: normal;
     }
@@ -263,7 +263,7 @@
     }
 
     @include e(icon-inner) {
-      &[class*='#{$prefix-css}-icon']:not(.is-status) {
+      &[class*='#{$--prefix-css}-icon']:not(.is-status) {
         font-size: 18px;
       }
 

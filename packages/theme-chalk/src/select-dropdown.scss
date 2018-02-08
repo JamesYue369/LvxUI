@@ -13,7 +13,7 @@
   margin: 5px 0;
 
   @include when(multiple) {
-    & .#{$prefix-css}-select-dropdown__item.selected {
+    & .#{$--prefix-css}-select-dropdown__item.selected {
       color: $--select-option-selected;
       background-color: $--select-dropdown-background;
 
@@ -34,7 +34,7 @@
     }
   }
 
-  .#{$prefix-css}-scrollbar.is-empty .#{$prefix-css}-select-dropdown__list{
+  .#{$--prefix-css}-scrollbar.is-empty .#{$--prefix-css}-select-dropdown__list{
     padding: 0;
   }
 

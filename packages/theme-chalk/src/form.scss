@@ -4,12 +4,12 @@
 
 @include b(form) {
   @include m(label-left) {
-    & .#{$prefix-css}-form-item__label {
+    & .#{$--prefix-css}-form-item__label {
       text-align: left;
     }
   }
   @include m(label-top) {
-    & .#{$prefix-css}-form-item__label {
+    & .#{$--prefix-css}-form-item__label {
       float: none;
       display: inline-block;
       text-align: left;
@@ -17,20 +17,20 @@
     }
   }
   @include m(inline) {
-    & .#{$prefix-css}-form-item {
+    & .#{$--prefix-css}-form-item {
       display: inline-block;
       margin-right: 10px;
       vertical-align: top;
     }
-    & .#{$prefix-css}-form-item__label {
+    & .#{$--prefix-css}-form-item__label {
       float: none;
       display: inline-block;
     }
-    & .#{$prefix-css}-form-item__content {
+    & .#{$--prefix-css}-form-item__content {
       display: inline-block;
       vertical-align: top;
     }
-    &.#{$prefix-css}-form--label-top .#{$prefix-css}-form-item__content {
+    &.#{$--prefix-css}-form--label-top .#{$--prefix-css}-form-item__content {
       display: block;
     }
   }
@@ -39,47 +39,47 @@
   margin-bottom: 22px;
   @include utils-clearfix;
 
-  & .#{$prefix-css}-form-item {
+  & .#{$--prefix-css}-form-item {
     margin-bottom: 0;
   }
 
-  & .#{$prefix-css}-input__validateIcon {
+  & .#{$--prefix-css}-input__validateIcon {
     display: none;
   }
 
   @include m(medium) {
-    .#{$prefix-css}-form-item__label {
+    .#{$--prefix-css}-form-item__label {
       line-height: 36px;
     }
-    .#{$prefix-css}-form-item__content {
+    .#{$--prefix-css}-form-item__content {
       line-height: 36px;
     }
   }
   @include m(small) {
-    .#{$prefix-css}-form-item__label {
+    .#{$--prefix-css}-form-item__label {
       line-height: 32px;
     }
-    .#{$prefix-css}-form-item__content {
+    .#{$--prefix-css}-form-item__content {
       line-height: 32px;
     }
-    &.#{$prefix-css}-form-item {
+    &.#{$--prefix-css}-form-item {
       margin-bottom: 18px;
     }
-    .#{$prefix-css}-form-item__error {
+    .#{$--prefix-css}-form-item__error {
       padding-top: 2px;
     }
   }
   @include m(mini) {
-    .#{$prefix-css}-form-item__label {
+    .#{$--prefix-css}-form-item__label {
       line-height: 28px;
     }
-    .#{$prefix-css}-form-item__content {
+    .#{$--prefix-css}-form-item__content {
       line-height: 28px;
     }
-    &.#{$prefix-css}-form-item {
+    &.#{$--prefix-css}-form-item {
       margin-bottom: 18px;
     }
-    .#{$prefix-css}-form-item__error {
+    .#{$--prefix-css}-form-item__error {
       padding-top: 1px;
     }
   }
@@ -119,7 +119,7 @@
   }
 
   @include when(required) {
-    .#{$prefix-css}-form-item__label:before {
+    .#{$--prefix-css}-form-item__label:before {
       content: '*';
       color: $--color-danger;
       margin-right: 4px;
@@ -127,41 +127,41 @@
   }
 
   @include when(error) {
-    & .#{$prefix-css}-input__inner,
-    & .#{$prefix-css}-textarea__inner {
+    & .#{$--prefix-css}-input__inner,
+    & .#{$--prefix-css}-textarea__inner {
       &, &:focus {
         border-color: $--color-danger;
       }
     }
-    & .#{$prefix-css}-input-group__append,
-    & .#{$prefix-css}-input-group__prepend {
-      & .#{$prefix-css}-input__inner {
+    & .#{$--prefix-css}-input-group__append,
+    & .#{$--prefix-css}-input-group__prepend {
+      & .#{$--prefix-css}-input__inner {
         border-color: transparent;
       }
     }
-    .#{$prefix-css}-input__validateIcon {
+    .#{$--prefix-css}-input__validateIcon {
       color: $--color-danger;
     }
   }
   @include when(success) {
-    & .#{$prefix-css}-input__inner,
-    & .#{$prefix-css}-textarea__inner {
+    & .#{$--prefix-css}-input__inner,
+    & .#{$--prefix-css}-textarea__inner {
       &, &:focus {
         border-color: $--color-success;
       }
     }
-    & .#{$prefix-css}-input-group__append,
-    & .#{$prefix-css}-input-group__prepend {
-      & .#{$prefix-css}-input__inner {
+    & .#{$--prefix-css}-input-group__append,
+    & .#{$--prefix-css}-input-group__prepend {
+      & .#{$--prefix-css}-input__inner {
         border-color: transparent;
       }
     }
-    .#{$prefix-css}-input__validateIcon {
+    .#{$--prefix-css}-input__validateIcon {
       color: $--color-success;
     }
   }
   @include m(feedback) {
-    .#{$prefix-css}-input__validateIcon {
+    .#{$--prefix-css}-input__validateIcon {
       display: inline-block;
     }
   }

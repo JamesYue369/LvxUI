@@ -31,7 +31,7 @@
     cursor: pointer;
     transition: all .15s;
 
-    .#{$prefix-css}-icon-plus {
+    .#{$--prefix-css}-icon-plus {
       transform: scale(0.8, 0.8);
     }
 
@@ -99,7 +99,7 @@
       outline: none;
     }
 
-    & .#{$prefix-css}-icon-close {
+    & .#{$--prefix-css}-icon-close {
       border-radius: 50%;
       text-align: center;
       transition: all .3s cubic-bezier(.645,.045,.355,1);
@@ -134,21 +134,21 @@
     position: relative;
   }
   @include m(card) {
-    > .#{$prefix-css}-tabs__header {
+    > .#{$--prefix-css}-tabs__header {
       border-bottom: 1px solid $--border-color-light;
     }
-    > .#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__nav-wrap::after {
+    > .#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__nav-wrap::after {
       content: none;
     }
-    > .#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__nav {
+    > .#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__nav {
       border: 1px solid $--border-color-light;
       border-bottom: none;
       border-radius: 4px 4px 0 0;
     }
-    > .#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__active-bar {
+    > .#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__active-bar {
       display: none;
     }
-    > .#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__item .#{$prefix-css}-icon-close {
+    > .#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__item .#{$--prefix-css}-icon-close {
       position: relative;
       font-size: 12px;
       width: 0;
@@ -160,7 +160,7 @@
       right: -2px;
       transform-origin: 100% 50%;
     }
-    > .#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__item {
+    > .#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__item {
       border-bottom: 1px solid transparent;
       border-left: 1px solid $--border-color-light;
       transition: color .3s cubic-bezier(.645,.045,.355,1), padding .3s cubic-bezier(.645,.045,.355,1);
@@ -172,7 +172,7 @@
           padding-left: 13px;
           padding-right: 13px;
 
-          & .#{$prefix-css}-icon-close {
+          & .#{$--prefix-css}-icon-close {
             width: 14px;
           }
         }
@@ -184,7 +184,7 @@
           padding-left: 20px;
           padding-right: 20px;
 
-          .#{$prefix-css}-icon-close {
+          .#{$--prefix-css}-icon-close {
             width: 14px;
           }
         }
@@ -196,18 +196,18 @@
     border: 1px solid $--border-color-base;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
 
-    >.#{$prefix-css}-tabs__content {
+    >.#{$--prefix-css}-tabs__content {
       padding: 15px;
     }
-    >.#{$prefix-css}-tabs__header {
+    >.#{$--prefix-css}-tabs__header {
       background-color: $--background-color-base;
       border-bottom: 1px solid $--border-color-light;
       margin: 0;
     }
-    > .#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__nav-wrap::after {
+    > .#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__nav-wrap::after {
       content: none;
     }
-    >.#{$prefix-css}-tabs__header .#{$prefix-css}-tabs__item {
+    >.#{$--prefix-css}-tabs__header .#{$--prefix-css}-tabs__item {
       transition: all .3s cubic-bezier(.645,.045,.355,1);
       border: 1px solid transparent;
       margin: -1px -1px 0;
@@ -225,32 +225,32 @@
     }
   }
   @include m((top, bottom)) {
-    .#{$prefix-css}-tabs__item:nth-child(2) {
+    .#{$--prefix-css}-tabs__item:nth-child(2) {
       padding-left: 0;
     }
 
-    &.#{$prefix-css}-tabs--border-card, &.#{$prefix-css}-tabs--card,
-    .#{$prefix-css}-tabs--left, .#{$prefix-css}-tabs--right {
-      .#{$prefix-css}-tabs__item:nth-child(2) {
+    &.#{$--prefix-css}-tabs--border-card, &.#{$--prefix-css}-tabs--card,
+    .#{$--prefix-css}-tabs--left, .#{$--prefix-css}-tabs--right {
+      .#{$--prefix-css}-tabs__item:nth-child(2) {
         padding-left: 20px;
       }
     }
   }
   @include m(bottom) {
-    .#{$prefix-css}-tabs__header {
+    .#{$--prefix-css}-tabs__header {
       margin-bottom: 0;
       margin-top: 10px;
     }
-    &.#{$prefix-css}-tabs--border-card {
-      .#{$prefix-css}-tabs__header {
+    &.#{$--prefix-css}-tabs--border-card {
+      .#{$--prefix-css}-tabs__header {
         border-bottom: 0;
         border-top: 1px solid $--border-color-base;
       }
-      .#{$prefix-css}-tabs__nav-wrap {
+      .#{$--prefix-css}-tabs__nav-wrap {
         margin-top: -1px;
         margin-bottom: 0;
       }
-      .#{$prefix-css}-tabs__item {
+      .#{$--prefix-css}-tabs__item {
         border: 1px solid transparent;
         margin: 0 -1px -1px -1px;
       }
@@ -259,20 +259,20 @@
   @include m((left, right)) {
     overflow: hidden;
 
-    .#{$prefix-css}-tabs__header,
-    .#{$prefix-css}-tabs__nav-wrap,
-    .#{$prefix-css}-tabs__nav-scroll {
+    .#{$--prefix-css}-tabs__header,
+    .#{$--prefix-css}-tabs__nav-wrap,
+    .#{$--prefix-css}-tabs__nav-scroll {
       height: 100%;
     }
 
-    .#{$prefix-css}-tabs__active-bar {
+    .#{$--prefix-css}-tabs__active-bar {
       top: 0;
       bottom: auto;
       width: 2px;
       height: auto;
     }
 
-    .#{$prefix-css}-tabs__nav-wrap {
+    .#{$--prefix-css}-tabs__nav-wrap {
       margin-bottom: 0;
 
       &.is-scrollable {
@@ -287,15 +287,15 @@
       }
     }
 
-    .#{$prefix-css}-tabs__nav {
+    .#{$--prefix-css}-tabs__nav {
       float: none;
     }
-    .#{$prefix-css}-tabs__item {
+    .#{$--prefix-css}-tabs__item {
       display: block;
     }
 
-    .#{$prefix-css}-tabs__nav-prev,
-    .#{$prefix-css}-tabs__nav-next {
+    .#{$--prefix-css}-tabs__nav-prev,
+    .#{$--prefix-css}-tabs__nav-next {
       height: 30px;
       line-height: 30px;
       width: 100%;
@@ -306,51 +306,51 @@
         transform: rotateZ(90deg);
       }
     }
-    .#{$prefix-css}-tabs__nav-prev {
+    .#{$--prefix-css}-tabs__nav-prev {
       left: auto;
       top: 0;
     }
-    .#{$prefix-css}-tabs__nav-next {
+    .#{$--prefix-css}-tabs__nav-next {
       right: auto;
       bottom: 0;
     }
   }
   @include m(left) {
-    .#{$prefix-css}-tabs__header {
+    .#{$--prefix-css}-tabs__header {
       float: left;
       margin-bottom: 0;
       margin-right: 10px;
     }
-    .#{$prefix-css}-tabs__nav-wrap {
+    .#{$--prefix-css}-tabs__nav-wrap {
       margin-right: -1px;
       &::after {
         left: auto;
         right: 0;
       }
     }
-    .#{$prefix-css}-tabs__active-bar {
+    .#{$--prefix-css}-tabs__active-bar {
       right: 0;
       left: auto;
     }
-    .#{$prefix-css}-tabs__item {
+    .#{$--prefix-css}-tabs__item {
       text-align: right;
     }
 
-    &.#{$prefix-css}-tabs--card {
-      .#{$prefix-css}-tabs__active-bar {
+    &.#{$--prefix-css}-tabs--card {
+      .#{$--prefix-css}-tabs__active-bar {
         display: none;
       }
-      .#{$prefix-css}-tabs__item {
+      .#{$--prefix-css}-tabs__item {
         border-left: none;
         border-right: 1px solid $--border-color-light;
         border-bottom: none;
         border-top: 1px solid $--border-color-light;
       }
-      .#{$prefix-css}-tabs__item:first-child {
+      .#{$--prefix-css}-tabs__item:first-child {
         border-right: 1px solid $--border-color-light;
         border-top: none;
       }
-      .#{$prefix-css}-tabs__item.is-active {
+      .#{$--prefix-css}-tabs__item.is-active {
         border: 1px solid $--border-color-light;
         border-right-color: #fff;
         border-left: none;
@@ -364,22 +364,22 @@
         }
       }
 
-      .#{$prefix-css}-tabs__nav {
+      .#{$--prefix-css}-tabs__nav {
         border-radius: 4px 0 0 4px;
         border-bottom: 1px solid $--border-color-light;
         border-right: none;
       }
 
-      .#{$prefix-css}-tabs__new-tab {
+      .#{$--prefix-css}-tabs__new-tab {
         float: none;
       }
     }
 
-    &.#{$prefix-css}-tabs--border-card {
-      .#{$prefix-css}-tabs__header {
+    &.#{$--prefix-css}-tabs--border-card {
+      .#{$--prefix-css}-tabs__header {
         border-right: 1px solid #dfe4ed;
       }
-      .#{$prefix-css}-tabs__item {
+      .#{$--prefix-css}-tabs__item {
         border: 1px solid transparent;
         margin: -1px 0 -1px -1px;
 
@@ -392,13 +392,13 @@
     }
   }
   @include m(right) {
-    .#{$prefix-css}-tabs__header {
+    .#{$--prefix-css}-tabs__header {
       float: right;
       margin-bottom: 0;
       margin-left: 10px;
     }
 
-    .#{$prefix-css}-tabs__nav-wrap {
+    .#{$--prefix-css}-tabs__nav-wrap {
       margin-left: -1px;
       &::after {
         left: 0;
@@ -406,23 +406,23 @@
       }
     }
 
-    .#{$prefix-css}-tabs__active-bar {
+    .#{$--prefix-css}-tabs__active-bar {
       left: 0;
     }
 
-    &.#{$prefix-css}-tabs--card {
-      .#{$prefix-css}-tabs__active-bar {
+    &.#{$--prefix-css}-tabs--card {
+      .#{$--prefix-css}-tabs__active-bar {
         display: none;
       }
-      .#{$prefix-css}-tabs__item {
+      .#{$--prefix-css}-tabs__item {
         border-bottom: none;
         border-top: 1px solid $--border-color-light;
       }
-      .#{$prefix-css}-tabs__item:first-child {
+      .#{$--prefix-css}-tabs__item:first-child {
         border-left: 1px solid $--border-color-light;
         border-top: none;
       }
-      .#{$prefix-css}-tabs__item.is-active {
+      .#{$--prefix-css}-tabs__item.is-active {
         border: 1px solid $--border-color-light;
         border-left-color: #fff;
         border-right: none;
@@ -436,17 +436,17 @@
         }
       }
 
-      .#{$prefix-css}-tabs__nav {
+      .#{$--prefix-css}-tabs__nav {
         border-radius: 0 4px 4px 0;
         border-bottom: 1px solid $--border-color-light;
         border-left: none;
       }
     }
-    &.#{$prefix-css}-tabs--border-card {
-      .#{$prefix-css}-tabs__header {
+    &.#{$--prefix-css}-tabs--border-card {
+      .#{$--prefix-css}-tabs__header {
         border-left: 1px solid #dfe4ed;
       }
-      .#{$prefix-css}-tabs__item {
+      .#{$--prefix-css}-tabs__item {
         border: 1px solid transparent;
         margin: -1px -1px -1px 0;
 

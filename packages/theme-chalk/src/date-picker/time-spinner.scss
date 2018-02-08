@@ -2,11 +2,11 @@
 
 @include b(time-spinner) {
   &.has-seconds {
-    .#{$prefix-css}-time-spinner__wrapper {
+    .#{$--prefix-css}-time-spinner__wrapper {
       width: 33.3%;
     }
 
-    .#{$prefix-css}-time-spinner__wrapper:nth-child(2) {
+    .#{$--prefix-css}-time-spinner__wrapper:nth-child(2) {
       margin-left: 1%;
     }
   }
@@ -19,7 +19,7 @@
     vertical-align: top;
     position: relative;
 
-    & .#{$prefix-css}-scrollbar__wrap:not(.#{$prefix-css}-scrollbar__wrap--hidden-default) {
+    & .#{$--prefix-css}-scrollbar__wrap:not(.#{$--prefix-css}-scrollbar__wrap--hidden-default) {
       padding-bottom: 15px;
     }
 
@@ -28,11 +28,11 @@
       text-align: center;
       overflow: hidden;
 
-      .#{$prefix-css}-time-spinner__list {
+      .#{$--prefix-css}-time-spinner__list {
         transform: translateY(-32px);
       }
 
-      .#{$prefix-css}-time-spinner__item:hover:not(.disabled):not(.active) {
+      .#{$--prefix-css}-time-spinner__item:hover:not(.disabled):not(.active) {
         background: $--color-white;
         cursor: default;
       }
@@ -55,20 +55,20 @@
       color: $--color-primary;
     }
 
-    &.#{$prefix-css}-icon-arrow-up {
+    &.#{$--prefix-css}-icon-arrow-up {
       top: 10px;
     }
 
-    &.#{$prefix-css}-icon-arrow-down {
+    &.#{$--prefix-css}-icon-arrow-down {
       bottom: 10px;
     }
   }
 
   @include e(input) {
-    &.#{$prefix-css}-input {
+    &.#{$--prefix-css}-input {
       width: 70%;
 
-      .#{$prefix-css}-input__inner {
+      .#{$--prefix-css}-input__inner {
         padding: 0;
         text-align: center;
       }

@@ -31,7 +31,7 @@
   @include m(horizontal) {
     border-right: none;
     border-bottom: solid 1px #e6e6e6;
-    & .#{$prefix-css}-menu-item {
+    & .#{$--prefix-css}-menu-item {
       float: left;
       height: 60px;
       line-height: 60px;
@@ -51,16 +51,16 @@
         background-color: #fff;
       }
     }
-    & .#{$prefix-css}-submenu {
+    & .#{$--prefix-css}-submenu {
       float: left;
       position: relative;
       &:focus {
         outline: none;
-        > .#{$prefix-css}-submenu__title {
+        > .#{$--prefix-css}-submenu__title {
           color: $--color-text-primary;
         }
       }
-      > .#{$prefix-css}-menu {
+      > .#{$--prefix-css}-menu {
         position: absolute;
         top: 65px;
         left: 0;
@@ -73,18 +73,18 @@
         border-radius: $--border-radius-small;
       }
 
-      & .#{$prefix-css}-submenu__title {
+      & .#{$--prefix-css}-submenu__title {
         height: 60px;
         line-height: 60px;
         border-bottom: 2px solid transparent;
         color: $--color-text-secondary;
       }
 
-      .#{$prefix-css}-submenu__title:hover {
+      .#{$--prefix-css}-submenu__title:hover {
         background-color: #fff;
       }
 
-      & .#{$prefix-css}-menu-item {
+      & .#{$--prefix-css}-menu-item {
         background-color: $--color-white;
         float: none;
         height: 36px;
@@ -92,21 +92,21 @@
         padding: 0 10px;
       }
 
-      & .#{$prefix-css}-submenu__icon-arrow {
+      & .#{$--prefix-css}-submenu__icon-arrow {
         position: static;
         vertical-align: middle;
         margin-left: 8px;
         margin-top: -3px;
       }
     }
-    & .#{$prefix-css}-menu-item:hover,
-    & .#{$prefix-css}-submenu__title:hover,
-    & .#{$prefix-css}-menu-item:focus {
+    & .#{$--prefix-css}-menu-item:hover,
+    & .#{$--prefix-css}-submenu__title:hover,
+    & .#{$--prefix-css}-menu-item:focus {
       outline: none;
       color: $--color-text-primary;
     }
-    & > .#{$prefix-css}-menu-item.is-active,
-    & > .#{$prefix-css}-submenu.is-active .#{$prefix-css}-submenu__title {
+    & > .#{$--prefix-css}-menu-item.is-active,
+    & > .#{$--prefix-css}-submenu.is-active .#{$--prefix-css}-submenu__title {
       border-bottom: 2px solid $--color-primary;
       color: $--color-text-primary;
     }
@@ -114,15 +114,15 @@
   @include m(collapse) {
     width: 64px;
 
-    > .#{$prefix-css}-menu-item,
-    > .#{$prefix-css}-submenu > .#{$prefix-css}-submenu__title {
-      [class^="#{$prefix-css}-icon-"] {
+    > .#{$--prefix-css}-menu-item,
+    > .#{$--prefix-css}-submenu > .#{$--prefix-css}-submenu__title {
+      [class^="#{$--prefix-css}-icon-"] {
         margin: 0;
         vertical-align: middle;
         width: 24px;
         text-align: center;
       }
-      .#{$prefix-css}-submenu__icon-arrow {
+      .#{$--prefix-css}-submenu__icon-arrow {
         display: none;
       }
       span {
@@ -134,17 +134,17 @@
       }
     }
 
-    > .#{$prefix-css}-menu-item.is-active i {
+    > .#{$--prefix-css}-menu-item.is-active i {
       color: inherit;
     }
 
-    .#{$prefix-css}-menu .#{$prefix-css}-submenu {
+    .#{$--prefix-css}-menu .#{$--prefix-css}-submenu {
       min-width: 200px;
     }
 
-    .#{$prefix-css}-submenu {
+    .#{$--prefix-css}-submenu {
       position: relative;
-      & .#{$prefix-css}-menu {
+      & .#{$--prefix-css}-menu {
         position: absolute;
         margin-left: 5px;
         top: 0;
@@ -156,7 +156,7 @@
       }
 
       &.is-opened {
-        > .#{$prefix-css}-submenu__title .#{$prefix-css}-submenu__icon-arrow {
+        > .#{$--prefix-css}-submenu__title .#{$--prefix-css}-submenu__icon-arrow {
           transform: none;
         }
       }
@@ -166,7 +166,7 @@
 @include b(menu-item) {
   @include menu-item;
 
-  & [class^="#{$prefix-css}-icon-"] {
+  & [class^="#{$--prefix-css}-icon-"] {
     margin-right: 5px;
     width: 24px;
     text-align: center;
@@ -213,10 +213,10 @@
       background-color: $--menu-item-hover-fill;
     }
   }
-  & .#{$prefix-css}-menu {
+  & .#{$--prefix-css}-menu {
     border: none;
   }
-  & .#{$prefix-css}-menu-item {
+  & .#{$--prefix-css}-menu-item {
     height: 50px;
     line-height: 50px;
     padding: 0 45px;
@@ -231,16 +231,16 @@
     font-size: 12px;
   }
   @include when(active) {
-    .#{$prefix-css}-submenu__title {
+    .#{$--prefix-css}-submenu__title {
       border-bottom-color: $--color-primary;
     }
   }
   @include when(opened) {
-    > .#{$prefix-css}-submenu__title .#{$prefix-css}-submenu__icon-arrow {
+    > .#{$--prefix-css}-submenu__title .#{$--prefix-css}-submenu__icon-arrow {
       transform: rotateZ(180deg);
     }
   }
-  [class^="#{$prefix-css}-icon-"] {
+  [class^="#{$--prefix-css}-icon-"] {
     vertical-align: middle;
     margin-right: 5px;
     width: 24px;
@@ -261,7 +261,7 @@
   }
 }
 
-.horizontal-collapse-transition .#{$prefix-css}-submenu__title .#{$prefix-css}-submenu__icon-arrow {
+.horizontal-collapse-transition .#{$--prefix-css}-submenu__title .#{$--prefix-css}-submenu__icon-arrow {
   transition: .2s;
   opacity: 0;
 }

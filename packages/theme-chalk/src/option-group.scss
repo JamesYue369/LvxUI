@@ -36,7 +36,7 @@
     line-height: $--select-group-height;
   }
 
-  & .#{$prefix-css}-select-dropdown__item {
+  & .#{$--prefix-css}-select-dropdown__item {
     padding-left: $gap;
   }
 }

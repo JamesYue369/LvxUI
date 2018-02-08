@@ -61,7 +61,7 @@
       text-align: center;
       position: static;
       transform: none;
-      .#{$prefix-css}-carousel__indicator:hover button {
+      .#{$--prefix-css}-carousel__indicator:hover button {
         opacity: 0.64;
       }
       button {
@@ -76,14 +76,14 @@
       transform: none;
       text-align: center;
 
-      .#{$prefix-css}-carousel__button {
+      .#{$--prefix-css}-carousel__button {
         height: auto;
         width: auto;
         padding: 2px 18px;
         font-size: 12px;
       }
 
-      .#{$prefix-css}-carousel__indicator {
+      .#{$--prefix-css}-carousel__indicator {
         padding: 6px 4px;
       }
     }

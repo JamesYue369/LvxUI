@@ -27,7 +27,7 @@
   white-space: nowrap;
   outline: none;
   &:focus { /* focus */
-    > .#{$prefix-css}-tree-node__content {
+    > .#{$--prefix-css}-tree-node__content {
       background-color: $--tree-node-hover-color;
     }
   }
@@ -37,10 +37,10 @@
     height: 26px;
     cursor: pointer;
 
-    & > .#{$prefix-css}-tree-node__expand-icon {
+    & > .#{$--prefix-css}-tree-node__expand-icon {
       padding: 6px;
     }
-    & > .#{$prefix-css}-checkbox {
+    & > .#{$--prefix-css}-checkbox {
       margin-right: 8px;
     }
     &:hover {
@@ -76,16 +76,16 @@
     color: $--tree-expand-icon-color;
   }
 
-  & > .#{$prefix-css}-tree-node__children {
+  & > .#{$--prefix-css}-tree-node__children {
     overflow: hidden;
     background-color: transparent;
   }
 
-  &.is-expanded > .#{$prefix-css}-tree-node__children {
+  &.is-expanded > .#{$--prefix-css}-tree-node__children {
     display: block;
   }
 }
 
-.#{$prefix-css}-tree--highlight-current .#{$prefix-css}-tree-node.is-current > .#{$prefix-css}-tree-node__content {
+.#{$--prefix-css}-tree--highlight-current .#{$--prefix-css}-tree-node.is-current > .#{$--prefix-css}-tree-node__content {
   background-color: mix($--color-white, $--color-primary, 92%);
 }

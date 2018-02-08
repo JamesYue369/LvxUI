@@ -1,16 +1,15 @@
 @import "common/var";
 
 @font-face {
-  font-family: 'element-icons';
-  src: url('#{$--font-path}/element-icons.woff?t=1510834658947') format('woff'), /* chrome, firefox */
-       url('#{$--font-path}/element-icons.ttf?t=1510834658947') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  font-family: 'lvxui-icons';
+  src: url('#{$--font-path}/lvx-icons.woff?t=1510834658947') format('woff'), /* chrome, firefox */
+       url('#{$--font-path}/lvx-icons.ttf?t=1510834658947') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
   font-weight: normal;
   font-style: normal
 }
-
-[class^='#{$prefix-css}-icon-'], [class*=" #{$prefix-css}-icon-"] {
+[class^='#{$--prefix-css}-icon-'], [class*=' #{$--prefix-css}-icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'element-icons' !important;
+  font-family: 'lvxui-icons' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;

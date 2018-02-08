@@ -102,8 +102,8 @@
   }
 }
 
-.#{$prefix-css}-picker-panel *[slot=sidebar],
-.#{$prefix-css}-picker-panel__sidebar {
+.#{$--prefix-css}-picker-panel *[slot=sidebar],
+.#{$--prefix-css}-picker-panel__sidebar {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -115,7 +115,7 @@
   overflow: auto;
 }
 
-.#{$prefix-css}-picker-panel *[slot=sidebar] + .#{$prefix-css}-picker-panel__body,
-.#{$prefix-css}-picker-panel__sidebar + .#{$prefix-css}-picker-panel__body {
+.#{$--prefix-css}-picker-panel *[slot=sidebar] + .#{$--prefix-css}-picker-panel__body,
+.#{$--prefix-css}-picker-panel__sidebar + .#{$--prefix-css}-picker-panel__body {
   margin-left: 110px;
 }

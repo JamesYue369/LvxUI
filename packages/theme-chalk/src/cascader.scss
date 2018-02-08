@@ -9,16 +9,16 @@
   font-size: $--font-size-base;
   line-height: $--input-height;
 
-  .#{$prefix-css}-input,
-  .#{$prefix-css}-input__inner {
+  .#{$--prefix-css}-input,
+  .#{$--prefix-css}-input__inner {
     cursor: pointer;
   }
 
-  .#{$prefix-css}-input__icon {
+  .#{$--prefix-css}-input__icon {
     transition: none;
   }
 
-  .#{$prefix-css}-icon-arrow-down {
+  .#{$--prefix-css}-icon-arrow-down {
     transition: transform .3s;
     font-size: 14px;
 
@@ -27,7 +27,7 @@
     }
   }
 
-  .#{$prefix-css}-icon-circle-close {
+  .#{$--prefix-css}-icon-circle-close {
     z-index: #{$--index-normal + 1};
     transition: $--color-transition-base;
 
@@ -78,7 +78,7 @@
   }
 
   @include when(disabled) {
-    .#{$prefix-css}-cascader__label {
+    .#{$--prefix-css}-cascader__label {
       z-index: #{$--index-normal + 1};
       color: $--disabled-color-base;
     }
@@ -173,7 +173,7 @@
     max-height: 180px;
     overflow: auto;
 
-    .#{$prefix-css}-cascader-menu__item {
+    .#{$--prefix-css}-cascader-menu__item {
       overflow: visible;
     }
   }

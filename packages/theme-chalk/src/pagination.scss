@@ -21,22 +21,22 @@
     box-sizing: border-box;
   }
 
-  .#{$prefix-css}-input__inner {
+  .#{$--prefix-css}-input__inner {
     text-align: center;
     -moz-appearance: textfield;
   }
 
   // pagesize 的下拉 icon
-  .#{$prefix-css}-input__suffix {
+  .#{$--prefix-css}-input__suffix {
     right: 0;
     transform: scale(.8);
   }
 
-  .#{$prefix-css}-select .#{$prefix-css}-input {
+  .#{$--prefix-css}-select .#{$--prefix-css}-input {
     width: 100px;
     margin: 0 5px;
 
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       padding-right: 25px;
       border-radius: $--pagination-border-radius;
       height: $--pagination-button-height;
@@ -72,7 +72,7 @@
     margin: 0;
     color: $--pagination-button-color;
 
-    .#{$prefix-css}-icon {
+    .#{$--prefix-css}-icon {
       display: block;
       font-size: 12px;
       font-weight: bold;
@@ -90,8 +90,8 @@
   @include m(small) {
     .btn-prev,
     .btn-next,
-    .#{$prefix-css}-pager li,
-    .#{$prefix-css}-pager li:last-child {
+    .#{$--prefix-css}-pager li,
+    .#{$--prefix-css}-pager li:last-child {
       border-color: transparent;
       font-size: 12px;
       line-height: 22px;
@@ -109,7 +109,7 @@
     font-weight: normal;
     color: $--color-text-regular;
 
-    .#{$prefix-css}-input .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input .#{$--prefix-css}-input__inner {
       font-size: $--pagination-font-size;
       padding-left: 8px;
 
@@ -130,7 +130,7 @@
     font-weight: normal;
     color: $--color-text-regular;
 
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       padding: 0 3px;
     }
   }
@@ -149,16 +149,16 @@
     box-sizing: border-box;
     border-radius: $--pagination-border-radius;
 
-    &.#{$prefix-css}-input {
+    &.#{$--prefix-css}-input {
       width: 50px;
     }
 
-    &.#{$prefix-css}-input .#{$prefix-css}-input__inner {
+    &.#{$--prefix-css}-input .#{$--prefix-css}-input__inner {
       height: $--pagination-button-height;
     }
 
-    .#{$prefix-css}-input__inner::-webkit-inner-spin-button,
-    .#{$prefix-css}-input__inner::-webkit-outer-spin-button {
+    .#{$--prefix-css}-input__inner::-webkit-inner-spin-button,
+    .#{$--prefix-css}-input__inner::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
@@ -167,7 +167,7 @@
   @include when(background) {
     .btn-prev,
     .btn-next,
-    .#{$prefix-css}-pager li {
+    .#{$--prefix-css}-pager li {
       margin: 0 5px;
       background-color: $--color-info-lighter;
       color: $--color-text-regular;
@@ -183,7 +183,7 @@
       }
     }
 
-    .#{$prefix-css}-pager li {
+    .#{$--prefix-css}-pager li {
       &:hover {
         color: $--pagination-hover-fill;
       }
@@ -194,10 +194,10 @@
       }
     }
 
-    &.#{$prefix-css}-pagination--small {
+    &.#{$--prefix-css}-pagination--small {
       .btn-prev,
       .btn-next,
-      .#{$prefix-css}-pager li {
+      .#{$--prefix-css}-pager li {
         margin: 0 3px;
         min-width: 22px;
       }

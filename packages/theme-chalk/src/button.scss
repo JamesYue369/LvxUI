@@ -21,7 +21,7 @@
   transition: .1s;
   font-weight: $--button-font-weight;
   @include utils-user-select(none);
-  & + .#{$prefix-css}-button {
+  & + .#{$--prefix-css}-button {
     margin-left: 10px;
   }
 
@@ -44,7 +44,7 @@
     border: 0;
   }
 
-  & [class*="#{$prefix-css}-icon-"] {
+  & [class*="#{$--prefix-css}-icon-"] {
     & + span {
       margin-left: 5px;
     }
@@ -82,7 +82,7 @@
       border-color: $--button-disabled-border;
     }
 
-    &.#{$prefix-css}-button--text {
+    &.#{$--prefix-css}-button--text {
       background-color: transparent;
     }
 
@@ -173,10 +173,10 @@
   display: inline-block;
   vertical-align: middle;
 
-  & .#{$prefix-css}-button {
+  & .#{$--prefix-css}-button {
     float: left;
     position: relative;
-    & + .#{$prefix-css}-button {
+    & + .#{$--prefix-css}-button {
       margin-left: 0;
     }
 
@@ -207,7 +207,7 @@
   }
 
   @each $type in (primary, success, warning, danger, info) {
-    .#{$prefix-css}-button--#{$type} {
+    .#{$--prefix-css}-button--#{$type} {
       &:first-child {
         border-right-color: rgba($--color-white, 0.5);
       }

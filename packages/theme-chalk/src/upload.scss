@@ -52,7 +52,7 @@
     border-color: $--color-primary;
     color: $--color-primary;
 
-    .#{$prefix-css}-upload-dragger {
+    .#{$--prefix-css}-upload-dragger {
       border-color: $--color-primary;
     }
   }
@@ -70,24 +70,24 @@
   position: relative;
   overflow: hidden;
 
-  .#{$prefix-css}-icon-upload {
+  .#{$--prefix-css}-icon-upload {
     font-size: 67px;
     color: $--color-text-placeholder;
     margin: 40px 0 16px;
     line-height: 50px;
   }
 
-  + .#{$prefix-css}-upload__tip {
+  + .#{$--prefix-css}-upload__tip {
     text-align: center;
   }
 
-  ~ .#{$prefix-css}-upload__files {
+  ~ .#{$--prefix-css}-upload__files {
     border-top: $--border-base;
     margin-top: 7px;
     padding-top: 5px;
   }
 
-  .#{$prefix-css}-upload__text {
+  .#{$--prefix-css}-upload__text {
     color: $--color-text-regular;
     font-size: 14px;
     text-align: center;
@@ -124,19 +124,19 @@
     border-radius: 4px;
     width: 100%;
 
-    .#{$prefix-css}-progress {
+    .#{$--prefix-css}-progress {
       position: absolute;
       top: 20px;
       width: 100%;
     }
 
-    .#{$prefix-css}-progress__text {
+    .#{$--prefix-css}-progress__text {
       position: absolute;
       right: 0;
       top: -13px;
     }
 
-    .#{$prefix-css}-progress-bar {
+    .#{$--prefix-css}-progress-bar {
       margin-right: 0;
       padding-right: 0;
     }
@@ -145,11 +145,11 @@
       margin-top: 10px;
     }
 
-    & .#{$prefix-css}-icon-upload-success {
+    & .#{$--prefix-css}-icon-upload-success {
       color: $--color-success;
     }
 
-    .#{$prefix-css}-icon-close {
+    .#{$--prefix-css}-icon-close {
       display: none;
       position: absolute;
       top: 5px;
@@ -164,7 +164,7 @@
       }
     }
 
-    & .#{$prefix-css}-icon-close-tip {
+    & .#{$--prefix-css}-icon-close-tip {
       display: none;
       position: absolute;
       top: 5px;
@@ -178,40 +178,40 @@
     &:hover {
       background-color: $--background-color-base;
 
-      .#{$prefix-css}-icon-close {
+      .#{$--prefix-css}-icon-close {
         display: inline-block;
       }
 
-      .#{$prefix-css}-progress__text {
+      .#{$--prefix-css}-progress__text {
         display: none;
       }
     }
 
     @include when(success) {
-      .#{$prefix-css}-upload-list__item-status-label {
+      .#{$--prefix-css}-upload-list__item-status-label {
         display: block;
       }
 
-      .#{$prefix-css}-upload-list__item-name:hover, .#{$prefix-css}-upload-list__item-name:focus {
+      .#{$--prefix-css}-upload-list__item-name:hover, .#{$--prefix-css}-upload-list__item-name:focus {
         color: $--link-hover-color;
         cursor: pointer;
       }
 
       &:focus:not(:hover) {  /* 键盘focus */
-        .#{$prefix-css}-icon-close-tip {
+        .#{$--prefix-css}-icon-close-tip {
           display: inline-block;
         }
       }
 
       &:not(.focusing):focus, &:active { /* click时 */
         outline-width: 0;
-        .#{$prefix-css}-icon-close-tip {
+        .#{$--prefix-css}-icon-close-tip {
           display: none;
         }
       }
 
       &:hover, &:focus {
-        .#{$prefix-css}-upload-list__item-status-label {
+        .#{$--prefix-css}-upload-list__item-status-label {
           display: none;
         }
       }
@@ -219,7 +219,7 @@
   }
 
   @include when(disabled) {
-    .#{$prefix-css}-upload-list__item:hover .#{$prefix-css}-upload-list__item-status-label {
+    .#{$--prefix-css}-upload-list__item:hover .#{$--prefix-css}-upload-list__item-status-label {
       display: block;
     }
   }
@@ -234,7 +234,7 @@
     transition: color .3s;
     white-space: nowrap;
 
-    [class^="#{$prefix-css}-icon"] {
+    [class^="#{$--prefix-css}-icon"] {
       height: 100%;
       margin-right: 7px;
       color: $--color-text-secondary;
@@ -268,7 +268,7 @@
     display: inline;
     vertical-align: top;
 
-    .#{$prefix-css}-upload-list__item {
+    .#{$--prefix-css}-upload-list__item {
       overflow: hidden;
       background-color: #fff;
       border: 1px solid #c0ccda;
@@ -279,35 +279,35 @@
       margin: 0 8px 8px 0;
       display: inline-block;
 
-      .#{$prefix-css}-icon-check,
-      .#{$prefix-css}-icon-circle-check {
+      .#{$--prefix-css}-icon-check,
+      .#{$--prefix-css}-icon-circle-check {
         color: $--color-white;
       }
 
-      .#{$prefix-css}-icon-close {
+      .#{$--prefix-css}-icon-close {
         display: none;
       }
       &:hover {
-        .#{$prefix-css}-upload-list__item-status-label {
+        .#{$--prefix-css}-upload-list__item-status-label {
           display: none;
         }
 
-        .#{$prefix-css}-progress__text {
+        .#{$--prefix-css}-progress__text {
           display: block;
         }
       }
     }
 
-    .#{$prefix-css}-upload-list__item-name {
+    .#{$--prefix-css}-upload-list__item-name {
       display: none;
     }
 
-    .#{$prefix-css}-upload-list__item-thumbnail {
+    .#{$--prefix-css}-upload-list__item-thumbnail {
       width: 100%;
       height: 100%;
     }
 
-    .#{$prefix-css}-upload-list__item-status-label {
+    .#{$--prefix-css}-upload-list__item-status-label {
       position: absolute;
       right: -15px;
       top: -6px;
@@ -325,7 +325,7 @@
       }
     }
 
-    .#{$prefix-css}-upload-list__item-actions {
+    .#{$--prefix-css}-upload-list__item-actions {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -354,7 +354,7 @@
         margin-left: 15px;
       }
 
-      .#{$prefix-css}-upload-list__item-delete {
+      .#{$--prefix-css}-upload-list__item-delete {
         position: static;
         font-size: inherit;
         color: inherit;
@@ -368,21 +368,21 @@
       }
     }
 
-    .#{$prefix-css}-progress {
+    .#{$--prefix-css}-progress {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       bottom: auto;
       width: 126px;
 
-      .#{$prefix-css}-progress__text {
+      .#{$--prefix-css}-progress__text {
         top: 50%;
       }
     }
   }
 
   @include m(picture) {
-    .#{$prefix-css}-upload-list__item {
+    .#{$--prefix-css}-upload-list__item {
       overflow: hidden;
       background-color: #fff;
       border: 1px solid #c0ccda;
@@ -392,26 +392,26 @@
       padding: 10px 10px 10px 90px;
       height: 92px;
 
-      .#{$prefix-css}-icon-check,
-      .#{$prefix-css}-icon-circle-check {
+      .#{$--prefix-css}-icon-check,
+      .#{$--prefix-css}-icon-circle-check {
         color: $--color-white;
       }
 
       &:hover {
-        .#{$prefix-css}-upload-list__item-status-label {
+        .#{$--prefix-css}-upload-list__item-status-label {
           background: transparent;
           box-shadow: none;
           top: -2px;
           right: -12px;
         }
 
-        .#{$prefix-css}-progress__text {
+        .#{$--prefix-css}-progress__text {
           display: block;
         }
       }
 
       &.is-success {
-        .#{$prefix-css}-upload-list__item-name {
+        .#{$--prefix-css}-upload-list__item-name {
           line-height: 70px;
           margin-top: 0;
           i {
@@ -421,7 +421,7 @@
       }
     }
 
-    .#{$prefix-css}-upload-list__item-thumbnail {
+    .#{$--prefix-css}-upload-list__item-thumbnail {
       vertical-align: middle;
       display: inline-block;
       width: 70px;
@@ -432,7 +432,7 @@
       margin-left: -80px;
     }
 
-    .#{$prefix-css}-upload-list__item-name {
+    .#{$--prefix-css}-upload-list__item-name {
       display: block;
       margin-top: 20px;
 
@@ -445,7 +445,7 @@
       }
     }
 
-    .#{$prefix-css}-upload-list__item-status-label {
+    .#{$--prefix-css}-upload-list__item-status-label {
       position: absolute;
       right: -17px;
       top: -7px;
@@ -463,7 +463,7 @@
       }
     }
 
-    .#{$prefix-css}-progress {
+    .#{$--prefix-css}-progress {
       position: relative;
       top: -7px;
     }
@@ -512,7 +512,7 @@
     position: static;
     width: 243px;
 
-    + .#{$prefix-css}-upload__inner {
+    + .#{$--prefix-css}-upload__inner {
       opacity: 0;
     }
   }
@@ -593,7 +593,7 @@
     color: $--color-text-primary;
   }
 
-  + .#{$prefix-css}-upload__inner {
+  + .#{$--prefix-css}-upload__inner {
     opacity: 0;
     position: relative;
     z-index: 1;

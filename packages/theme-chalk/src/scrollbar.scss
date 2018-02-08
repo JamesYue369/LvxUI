@@ -8,7 +8,7 @@
   &:hover,
   &:active,
   &:focus {
-    > .#{$prefix-css}-scrollbar__bar {
+    > .#{$--prefix-css}-scrollbar__bar {
       opacity: 1;
       transition: opacity 340ms ease-out;
     }

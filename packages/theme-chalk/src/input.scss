@@ -8,7 +8,7 @@
   width: 100%;
   @include scroll-bar;
 
-  & .#{$prefix-css}-input__clear {
+  & .#{$--prefix-css}-input__clear {
     color: $--input-icon-color;
     font-size: $--input-font-size;
     line-height: 16px;
@@ -97,14 +97,14 @@
   }
 
   @include when(active) {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       outline: none;
       border-color: $--input-focus-border;
     }
   }
 
   @include when(disabled) {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       background-color: $--input-disabled-fill;
       border-color: $--input-disabled-border;
       color: $--input-disabled-color;
@@ -115,19 +115,19 @@
       }
     }
 
-    .#{$prefix-css}-input__icon {
+    .#{$--prefix-css}-input__icon {
       cursor: not-allowed;
     }
   }
 
   @include m(suffix) {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       padding-right: 30px;
     }
   }
 
   @include m(prefix) {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       padding-left: 30px;
     }
   }
@@ -139,7 +139,7 @@
       height: $--input-medium-height;
     }
 
-    .#{$prefix-css}-input__icon {
+    .#{$--prefix-css}-input__icon {
       line-height: $--input-medium-height;
     }
   }
@@ -150,7 +150,7 @@
       height: $--input-small-height;
     }
 
-    .#{$prefix-css}-input__icon {
+    .#{$--prefix-css}-input__icon {
       line-height: $--input-small-height;
     }
   }
@@ -161,7 +161,7 @@
       height: $--input-mini-height;
     }
 
-    .#{$prefix-css}-input__icon {
+    .#{$--prefix-css}-input__icon {
       line-height: $--input-mini-height;
     }
   }
@@ -173,7 +173,7 @@
   width: 100%;
   border-collapse: separate;
 
-  > .#{$prefix-css}-input__inner {
+  > .#{$--prefix-css}-input__inner {
     vertical-align: middle;
     display: table-cell;
   }
@@ -194,15 +194,15 @@
       outline: none;
     }
 
-    .#{$prefix-css}-select,
-    .#{$prefix-css}-button {
+    .#{$--prefix-css}-select,
+    .#{$--prefix-css}-button {
       display: inline-block;
       margin: -20px;
     }
 
-    button.#{$prefix-css}-button,
-    div.#{$prefix-css}-select .#{$prefix-css}-input__inner,
-    div.#{$prefix-css}-select:hover .#{$prefix-css}-input__inner {
+    button.#{$--prefix-css}-button,
+    div.#{$--prefix-css}-select .#{$--prefix-css}-input__inner,
+    div.#{$--prefix-css}-select:hover .#{$--prefix-css}-input__inner {
       border-color: transparent;
       background-color: transparent;
       color: inherit;
@@ -210,8 +210,8 @@
       border-bottom: 0;
     }
 
-    .#{$prefix-css}-button,
-    .#{$prefix-css}-input {
+    .#{$--prefix-css}-button,
+    .#{$--prefix-css}-input {
       font-size: inherit;
     }
   }
@@ -229,14 +229,14 @@
   }
 
   @include m(prepend) {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
   }
 
   @include m(append) {
-    .#{$prefix-css}-input__inner {
+    .#{$--prefix-css}-input__inner {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -278,7 +278,7 @@
   }
 
   @include when(disabled) {
-    .#{$prefix-css}-textarea__inner {
+    .#{$--prefix-css}-textarea__inner {
       background-color: $--input-disabled-fill;
       border-color: $--input-disabled-border;
       color: $--input-disabled-color;

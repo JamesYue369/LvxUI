@@ -3,7 +3,7 @@
     :style="style"
     :class="[
       `${$clsPrefix}-step`,
-      !isSimple && `is-${$parent.direction}`,
+      !isSimple && `is-${steps.direction}`,
       isSimple && 'is-simple',
       isLast && !space && !isCenter && 'is-flex',
       isCenter && !isVertical && !isSimple && 'is-center'
@@ -13,9 +13,9 @@
       :class="[`${$clsPrefix}-step__head`, `is-${currentStatus}`]">
       <div
         :class="[`${$clsPrefix}-step__line`]"
-        :style="[(isLast ? '' : { marginRight: $parent.stepOffset + 'px' }), borderStyle]"
+        :style="[(isLast ? '' : { marginRight: steps.stepOffset + 'px' }), borderStyle]"
       >
-        <i :class="[`${$clsPrefix}-step__line-inner`]" :style="[lineStyle, {borderStyle: $parent.lineType}]"></i>
+        <i :class="[`${$clsPrefix}-step__line-inner`]" :style="[lineStyle, {borderStyle: steps.lineType}]"></i>
       </div>
 
       <div :class="[`${$clsPrefix}-step__icon`, `is-${icon ? 'icon' : 'text'}`]">
@@ -66,17 +66,17 @@ export default {
     return {
       index: -1,
       lineStyle: {},
-      borderStyle: {borderStyle: `${this.$parent.lineType}`, borderColor: '#b4bccc'},
+      borderStyle: {borderStyle: `${this.steps.lineType}`, borderColor: '#b4bccc'},
       internalStatus: ''
     };
   },
 
   created() {
-    this.$parent.steps.push(this);
+    this.steps.steps.push(this);
   },
 
   beforeDestroy() {
-    const steps = this.$parent.steps;
+    const steps = this.steps.steps;
     const index = steps.indexOf(this);
     if (index >= 0) {
       steps.splice(index, 1);
@@ -88,24 +88,24 @@ export default {
       return this.status || this.internalStatus;
     },
     prevStatus() {
-      const prevStep = this.$parent.steps[this.index - 1];
+      const prevStep = this.steps.steps[this.index - 1];
       return prevStep ? prevStep.currentStatus : 'wait';
     },
     isCenter() {
-      return this.$parent.alignCenter;
+      return this.steps.alignCenter;
     },
     isVertical() {
-      return this.$parent.direction === 'vertical';
+      return this.steps.direction === 'vertical';
     },
     isSimple() {
-      return this.$parent.simple;
+      return this.steps.simple;
     },
     isLast() {
-      const parent = this.$parent;
+      const parent = this.steps;
       return parent.steps[parent.steps.length - 1] === this;
     },
     stepsCount() {
-      return this.$parent.steps.length;
+      return this.steps.steps.length;
     },
     space() {
       const { isSimple, $parent: { space } } = this;
@@ -113,7 +113,7 @@ export default {
     },
     style: function() {
       const style = {};
-      const parent = this.$parent;
+      const parent = this.steps;
       const len = parent.steps.length;
 
       const space = (typeof this.space === 'number'
@@ -126,7 +126,7 @@ export default {
       if (this.isLast) {
         style.maxWidth = 100 / this.stepsCount + '%';
       } else {
-        style.marginRight = -this.$parent.stepOffset + 'px';
+        style.marginRight = -this.steps.stepOffset + 'px';
       }
 
       return style;
@@ -135,12 +135,12 @@ export default {
 
   methods: {
     updateStatus(val) {
-      const prevChild = this.$parent.$children[this.index - 1];
+      const prevChild = this.steps.steps[this.index - 1];
 
       if (val > this.index) {
-        this.internalStatus = this.$parent.finishStatus;
+        this.internalStatus = this.steps.finishStatus;
       } else if (val === this.index && this.prevStatus !== 'error') {
-        this.internalStatus = this.$parent.processStatus;
+        this.internalStatus = this.steps.processStatus;
       } else {
         this.internalStatus = 'wait';
       }
@@ -152,7 +152,7 @@ export default {
       let step = 100;
       const style = {};
       style.transitionDelay = 150 * this.index + 'ms';
-      if (status === this.$parent.processStatus) {
+      if (status === this.steps.processStatus) {
         step = this.currentStatus !== 'error' ? 0 : 0;
       } else if (status === 'wait') {
         step = 0;
@@ -160,7 +160,7 @@ export default {
       }
 
       style.borderWidth = step ? '1px' : 0;
-      this.$parent.direction === 'vertical'
+      this.steps.direction === 'vertical'
         ? style.height = step + '%'
         : style.width = step + '%';
 
@@ -169,7 +169,7 @@ export default {
         this.borderStyle.borderStyle = 'none';
         this.borderStyle.borderColor = 'inherit';
       } else {
-        this.borderStyle.borderStyle = this.$parent.lineType;
+        this.borderStyle.borderStyle = this.steps.lineType;
         this.borderStyle.borderColor = '#b4bccc';
       }
     }
