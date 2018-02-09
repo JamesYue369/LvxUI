@@ -110,12 +110,12 @@ const generateMiscRoutes = function(lang) {
     component: load(lang, 'resource')
   };
 
-  let demoRoute = {
-    path: `/${ lang }/demo`, // 示例
-    meta: { lang },
-    name: 'demo' + lang,
-    component: load(lang, 'demo')
-  };
+  // let demoRoute = {
+  //   path: `/${ lang }/demo`, // 示例
+  //   meta: { lang },
+  //   name: 'demo' + lang,
+  //   component: load(lang, 'demo')
+  // };
 
   let indexRoute = {
     path: `/${ lang }`, // 首页
@@ -124,20 +124,20 @@ const generateMiscRoutes = function(lang) {
     component: load(lang, 'index')
   };
 
-  return [guideRoute, demoRoute, resourceRoute, indexRoute];
+  return [guideRoute, resourceRoute, indexRoute];
 };
 
 langs.forEach(lang => {
   route = route.concat(generateMiscRoutes(lang.lang));
 });
 
-route.push({
-  path: '/play',
-  name: 'play',
-  component: require('./play/index.vue')
-});
+// route.push({
+//   path: `/demo`,
+//   name: 'demo',
+//   component: require('./demo/index.vue')
+// });
 
-let userLanguage = localStorage.getItem('ELEMENT_LANGUAGE') || window.navigator.language || 'en-US';
+let userLanguage = localStorage.getItem('_LANGUAGE') || window.navigator.language || 'en-US';
 let defaultPath = '/en-US';
 if (userLanguage.indexOf('zh-') !== -1) {
   defaultPath = '/zh-CN';

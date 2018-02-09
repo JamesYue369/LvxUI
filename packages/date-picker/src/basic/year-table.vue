@@ -1,5 +1,5 @@
 <template>
-  <table @click="handleYearTableClick" class="el-year-table">
+  <table @click="handleYearTableClick" :class="[`${$clsPrefix}-year-table`]">
     <tbody>
     <tr>
       <td class="available" :class="getCellStyle(startYear + 0)">
@@ -44,7 +44,7 @@
 </template>
 
 <script type="text/babel">
-  import { hasClass } from 'element-ui/src/utils/dom';
+  import { hasClass } from '~/src/utils/dom';
   import { isDate, range, nextDate, getDayCountOfYear } from '../util';
 
   const datesInYear = year => {

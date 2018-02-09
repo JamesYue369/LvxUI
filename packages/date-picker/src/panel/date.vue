@@ -1,35 +1,38 @@
 <template>
-  <transition name="el-zoom-in-top" @after-enter="handleEnter" @after-leave="handleLeave">
+  <transition :name="transitionName" @after-enter="handleEnter" @after-leave="handleLeave">
     <div
       v-show="visible"
-      class="el-picker-panel el-date-picker el-popper"
-      :class="[{
+      :class="[
+      `${$clsPrefix}-picker-panel`,
+      `${$clsPrefix}-date-picker`,
+      `${$clsPrefix}-popper`,
+      {
         'has-sidebar': $slots.sidebar || shortcuts,
         'has-time': showTime
       }, popperClass]">
-      <div class="el-picker-panel__body-wrapper">
-        <slot name="sidebar" class="el-picker-panel__sidebar"></slot>
-        <div class="el-picker-panel__sidebar" v-if="shortcuts">
+      <div :class="[`${$clsPrefix}-picker-panel__body-wrapper`]">
+        <slot name="sidebar" :class="[`${$clsPrefix}-picker-panel__sidebar`]"></slot>
+        <div :class="[`${$clsPrefix}-picker-panel__sidebar`]" v-if="shortcuts">
           <button
             type="button"
-            class="el-picker-panel__shortcut"
+            :class="[`${$clsPrefix}-picker-panel__shortcut`]"
             v-for="shortcut in shortcuts"
             @click="handleShortcutClick(shortcut)">{{ shortcut.text }}</button>
         </div>
-        <div class="el-picker-panel__body">
-          <div class="el-date-picker__time-header" v-if="showTime">
-            <span class="el-date-picker__editor-wrap">
-              <el-input
-                :placeholder="t('el.datepicker.selectDate')"
+        <div :class="[`${$clsPrefix}-picker-panel__body`]">
+          <div :class="[`${$clsPrefix}-date-picker__time-header`]" v-if="showTime">
+            <span :class="[`${$clsPrefix}-date-picker__editor-wrap`]">
+              <lvx-input
+                :placeholder="t('lang.datepicker.selectDate')"
                 :value="visibleDate"
                 size="small"
                 @change.native="handleVisibleDateChange" />
             </span>
-            <span class="el-date-picker__editor-wrap">
-              <el-input
+            <span :class="[`${$clsPrefix}-date-picker__editor-wrap`]">
+              <lvx-input
                 ref="input"
                 @focus="timePickerVisible = !timePickerVisible"
-                :placeholder="t('el.datepicker.selectTime')"
+                :placeholder="t('lang.datepicker.selectTime')"
                 :value="visibleTime"
                 size="small"
                 @change.native="handleVisibleTimeChange" />
@@ -43,48 +46,46 @@
             </span>
           </div>
           <div
-            class="el-date-picker__header"
-            :class="{ 'el-date-picker__header--bordered': currentView === 'year' || currentView === 'month' }"
+            :class="[`${$clsPrefix}-date-picker__header`, { [`${$clsPrefix}-date-picker__header--bordered`]: currentView === 'year' || currentView === 'month' }]"
             v-show="currentView !== 'time'">
             <button
               type="button"
               @click="prevYear"
               :aria-label="t(`el.datepicker.prevYear`)"
-              class="el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-d-arrow-left">
+              :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__prev-btn`, `${$clsPrefix}-icon-d-arrow-left`]">
             </button>
             <button
               type="button"
               @click="prevMonth"
               v-show="currentView === 'date'"
               :aria-label="t(`el.datepicker.prevMonth`)"
-              class="el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-arrow-left">
+              :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__prev-btn`, `${$clsPrefix}-icon-arrow-left`]">
             </button>
             <span
               @click="showYearPicker"
               role="button"
-              class="el-date-picker__header-label">{{ yearLabel }}</span>
+              :class="[`${$clsPrefix}-date-picker__header-label`]">{{ yearLabel }}</span>
             <span
               @click="showMonthPicker"
               v-show="currentView === 'date'"
               role="button"
-              class="el-date-picker__header-label"
-              :class="{ active: currentView === 'month' }">{{t(`el.datepicker.month${ month + 1 }`)}}</span>
+              :class="[`${$clsPrefix}-date-picker__header-label`, { active: currentView === 'month' }]">{{t(`el.datepicker.month${ month + 1 }`)}}</span>
             <button
               type="button"
               @click="nextYear"
               :aria-label="t(`el.datepicker.nextYear`)"
-              class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-d-arrow-right">
+              :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__next-btn`, `${$clsPrefix}-icon-d-arrow-right`]">
             </button>
             <button
               type="button"
               @click="nextMonth"
               v-show="currentView === 'date'"
               :aria-label="t(`el.datepicker.nextMonth`)"
-              class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-arrow-right">
+              :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__next-btn`, `${$clsPrefix}-icon-arrow-right`]">
             </button>
           </div>
 
-          <div class="el-picker-panel__content">
+          <div :class="[`${$clsPrefix}-picker-panel__content`]">
             <date-table
               v-show="currentView === 'date'"
               @pick="handleDatePick"
@@ -116,22 +117,22 @@
       </div>
 
       <div
-        class="el-picker-panel__footer"
+        :class="[`${$clsPrefix}-picker-panel__footer`]"
         v-show="footerVisible && currentView === 'date'">
-        <el-button
+        <lvx-button
           size="mini"
           type="text"
-          class="el-picker-panel__link-btn"
+          :class="[`${$clsPrefix}-picker-panel__link-btn`]"
           @click="changeToNow">
-          {{ t('el.datepicker.now') }}
-        </el-button>
-        <el-button
+          {{ t('lang.datepicker.now') }}
+        </lvx-button>
+        <lvx-button
           plain
           size="mini"
-          class="el-picker-panel__link-btn"
+          :class="[`${$clsPrefix}-picker-panel__link-btn`]"
           @click="confirm">
-          {{ t('el.datepicker.confirm') }}
-        </el-button>
+          {{ t('lang.datepicker.confirm') }}
+        </lvx-button>
       </div>
     </div>
   </transition>
@@ -152,9 +153,9 @@
     prevMonth,
     nextMonth
   } from '../util';
-  import Locale from 'element-ui/src/mixins/locale';
-  import ElInput from 'element-ui/packages/input';
-  import ElButton from 'element-ui/packages/button';
+  import Locale from '~/src/mixins/locale';
+  import Input from '~/packages/input';
+  import Button from '~/packages/button';
   import TimePicker from './time';
   import YearTable from '../basic/year-table';
   import MonthTable from '../basic/month-table';
@@ -438,7 +439,12 @@
     },
 
     components: {
-      TimePicker, YearTable, MonthTable, DateTable, ElInput, ElButton
+      TimePicker,
+      YearTable,
+      MonthTable,
+      DateTable,
+      'LvxInput': Input,
+      'LvxButton': Button
     },
 
     data() {
@@ -457,7 +463,8 @@
         showWeekNumber: false,
         timePickerVisible: false,
         format: '',
-        arrowControl: false
+        arrowControl: false,
+        transitionName: `${this.$clsPrefix}-zoom-in-top`
       };
     },
 
@@ -493,7 +500,7 @@
       },
 
       yearLabel() {
-        const yearTranslation = this.t('el.datepicker.year');
+        const yearTranslation = this.t('lang.datepicker.year');
         if (this.currentView === 'year') {
           const startYear = Math.floor(this.year / 10) * 10;
           if (yearTranslation) {

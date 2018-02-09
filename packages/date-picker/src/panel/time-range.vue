@@ -1,17 +1,15 @@
 <template>
   <transition
-    name="el-zoom-in-top"
+    :name="transitionName"
     @after-leave="$emit('dodestroy')">
     <div
       v-show="visible"
-      class="el-time-range-picker el-picker-panel el-popper"
-      :class="popperClass">
-      <div class="el-time-range-picker__content">
-        <div class="el-time-range-picker__cell">
-          <div class="el-time-range-picker__header">{{ t('el.datepicker.startTime') }}</div>
+      :class="[`${$clsPrefix}-time-range-picker`, `${$clsPrefix}-picker-panel`, `${$clsPrefix}-popper`, popperClass]">
+      <div :class="[`${$clsPrefix}-time-range-picker__content`]">
+        <div :class="[`${$clsPrefix}-time-range-picker__cell`]">
+          <div :class="[`${$clsPrefix}-time-range-picker__header`]">{{ t('lang.datepicker.startTime') }}</div>
           <div
-            :class="{ 'has-seconds': showSeconds, 'is-arrow': arrowControl }"
-            class="el-time-range-picker__body el-time-panel__content">
+            :class="[`${$clsPrefix}-time-range-picker__body`, `${$clsPrefix}-time-panel__content`, { 'has-seconds': showSeconds, 'is-arrow': arrowControl }]">
             <time-spinner
               ref="minSpinner"
               :show-seconds="showSeconds"
@@ -23,11 +21,11 @@
             </time-spinner>
           </div>
         </div>
-        <div class="el-time-range-picker__cell">
-          <div class="el-time-range-picker__header">{{ t('el.datepicker.endTime') }}</div>
+        <div :class="[`${$clsPrefix}-time-range-picker__cell`]">
+          <div :class="[`${$clsPrefix}-time-range-picker__header`]">{{ t('lang.datepicker.endTime') }}</div>
           <div
-            :class="{ 'has-seconds': showSeconds, 'is-arrow': arrowControl }"
-            class="el-time-range-picker__body el-time-panel__content">
+            :class="[`${$clsPrefix}-time-range-picker__body`, `${$clsPrefix}-time-panel__content`, { 'has-seconds': showSeconds, 'is-arrow': arrowControl }]"
+            >
             <time-spinner
               ref="maxSpinner"
               :show-seconds="showSeconds"
@@ -40,16 +38,16 @@
           </div>
         </div>
       </div>
-      <div class="el-time-panel__footer">
+      <div :class="[`${$clsPrefix}-time-panel__footer`]">
         <button
           type="button"
-          class="el-time-panel__btn cancel"
-          @click="handleCancel()">{{ t('el.datepicker.cancel') }}</button>
+          :class="[`${$clsPrefix}-time-panel__btn`, 'cancel']"
+          @click="handleCancel()">{{ t('lang.datepicker.cancel') }}</button>
         <button
           type="button"
-          class="el-time-panel__btn confirm"
+          :class="[`${$clsPrefix}-time-panel__btn`, 'confirm']"
           @click="handleConfirm()"
-          :disabled="btnDisabled">{{ t('el.datepicker.confirm') }}</button>
+          :disabled="btnDisabled">{{ t('lang.datepicker.confirm') }}</button>
       </div>
     </div>
   </transition>
@@ -63,7 +61,7 @@
     clearMilliseconds,
     timeWithinRange
   } from '../util';
-  import Locale from 'element-ui/src/mixins/locale';
+  import Locale from '~/src/mixins/locale';
   import TimeSpinner from '../basic/time-spinner';
 
   const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss');
@@ -121,7 +119,8 @@
         format: 'HH:mm:ss',
         visible: false,
         selectionRange: [0, 2],
-        arrowControl: false
+        arrowControl: false,
+        transitionName: `${this.$clsPrefix}-zoom-in-top`
       };
     },
 

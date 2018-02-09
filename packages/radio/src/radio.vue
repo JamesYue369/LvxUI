@@ -1,8 +1,8 @@
 <template>
   <label
-    class="el-radio"
     :class="[
-      border && radioSize ? 'el-radio--' + radioSize : '',
+      `${$clsPrefix}-radio`,
+      border && radioSize ? `${$clsPrefix}-radio--` + radioSize : '',
       { 'is-disabled': isDisabled },
       { 'is-focus': focus },
       { 'is-bordered': border },
@@ -14,17 +14,19 @@
     :tabindex="tabIndex"
     @keydown.space.stop.prevent="model = label"
   >
-    <span class="el-radio__input"
-      :class="{
+    <span 
+      :class="[
+      `${$clsPrefix}-radio__input`,
+      {
         'is-disabled': isDisabled,
         'is-checked': model === label
-      }"
+      }]"
     >
-      <span class="el-radio__inner"  >
+      <span :class="[`${$clsPrefix}-radio__inner`]"  >
         <i class="afterVNode" ></i>
       </span>
       <input
-        class="el-radio__original"
+        :class="[`${$clsPrefix}-radio__original`]"
         :value="label"
         type="radio"
         v-model="model"
@@ -36,27 +38,27 @@
         tabindex="-1"
       >
     </span>
-    <span class="el-radio__label" >
+    <span :class="[`${$clsPrefix}-radio__label`]" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>
   </label>
 </template>
 <script>
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElRadio',
+    name: 'Radio',
 
     mixins: [Emitter],
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
 
-    componentName: 'ElRadio',
+    componentName: 'Radio',
 
     props: {
       value: {},
@@ -75,14 +77,14 @@
       };
     },
     mounted() {
-      let radio_inner = this.$el.querySelector('.el-radio__inner');
+      let radio_inner = this.$el.querySelector(`.${this.$clsPrefix}-radio__inner`);
       this.innerBorderColor = getComputedStyle(radio_inner, null).borderColor;
     },
     computed: {
       isGroup() {
         let parent = this.$parent;
         while (parent) {
-          if (parent.$options.componentName !== 'ElRadioGroup') {
+          if (parent.$options.componentName !== 'RadioGroup') {
             parent = parent.$parent;
           } else {
             // this._radioGroup = parent;
@@ -97,7 +99,7 @@
         },
         set(val) {
           if (this.isGroup) {
-            this.dispatch('ElRadioGroup', 'input', [val]);
+            this.dispatch('RadioGroup', 'input', [val]);
           } else {
             this.$emit('input', val);
           }
@@ -106,7 +108,7 @@
       _radioGroup() {
         let parent = this.$parent;
         while (parent) {
-          if (parent.$options.componentName !== 'ElRadioGroup') {
+          if (parent.$options.componentName !== 'RadioGroup') {
             parent = parent.$parent;
           } else {
             return parent;
@@ -115,7 +117,7 @@
         return false;
       },
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       radioSize() {
         const temRadioSize = this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
@@ -137,7 +139,7 @@
       handleChange() {
         this.$nextTick(() => {
           this.$emit('change', this.model);
-          this.isGroup && this.dispatch('ElRadioGroup', 'handleChange', this.model);
+          this.isGroup && this.dispatch('RadioGroup', 'handleChange', this.model);
         });
       },
       mouseoverHandle() {

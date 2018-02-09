@@ -1,16 +1,15 @@
 @import "common/var";
 
 @font-face {
-  font-family: 'element-icons';
-  src: url('#{$--font-path}/element-icons.woff?t=1510834658947') format('woff'), /* chrome, firefox */
-       url('#{$--font-path}/element-icons.ttf?t=1510834658947') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  font-family: 'lvxui-icons';
+  src: url('#{$--font-path}/lvx-icons.woff?t=1510834658947') format('woff'), /* chrome, firefox */
+       url('#{$--font-path}/lvx-icons.ttf?t=1510834658947') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
   font-weight: normal;
   font-style: normal
 }
-
-[class^="el-icon-"], [class*=" el-icon-"] {
+[class^='#{$--prefix-css}-icon-'], [class*=' #{$--prefix-css}-icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'element-icons' !important;
+  font-family: 'lvxui-icons' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -25,154 +24,154 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.el-icon-upload:before { content: "\e60d"; }
+.lvx-icon-upload:before { content: "\e60d"; }
 
-.el-icon-error:before { content: "\e62c"; }
+.lvx-icon-error:before { content: "\e62c"; }
 
-.el-icon-success:before { content: "\e62d"; }
+.lvx-icon-success:before { content: "\e62d"; }
 
-.el-icon-warning:before { content: "\e62e"; }
+.lvx-icon-warning:before { content: "\e62e"; }
 
-.el-icon-sort-down:before { content: "\e630"; }
+.lvx-icon-sort-down:before { content: "\e630"; }
 
-.el-icon-sort-up:before { content: "\e631"; }
+.lvx-icon-sort-up:before { content: "\e631"; }
 
-.el-icon-arrow-left:before { content: "\e600"; }
+.lvx-icon-arrow-left:before { content: "\e600"; }
 
-.el-icon-circle-plus:before { content: "\e601"; }
+.lvx-icon-circle-plus:before { content: "\e601"; }
 
-.el-icon-circle-plus-outline:before { content: "\e602"; }
+.lvx-icon-circle-plus-outline:before { content: "\e602"; }
 
-.el-icon-arrow-down:before { content: "\e603"; }
+.lvx-icon-arrow-down:before { content: "\e603"; }
 
-.el-icon-arrow-right:before { content: "\e604"; }
+.lvx-icon-arrow-right:before { content: "\e604"; }
 
-.el-icon-arrow-up:before { content: "\e605"; }
+.lvx-icon-arrow-up:before { content: "\e605"; }
 
-.el-icon-back:before { content: "\e606"; }
+.lvx-icon-back:before { content: "\e606"; }
 
-.el-icon-circle-close:before { content: "\e607"; }
+.lvx-icon-circle-close:before { content: "\e607"; }
 
-.el-icon-date:before { content: "\e608"; }
+.lvx-icon-date:before { content: "\e608"; }
 
-.el-icon-circle-close-outline:before { content: "\e609"; }
+.lvx-icon-circle-close-outline:before { content: "\e609"; }
 
-.el-icon-caret-left:before { content: "\e60a"; }
+.lvx-icon-caret-left:before { content: "\e60a"; }
 
-.el-icon-caret-bottom:before { content: "\e60b"; }
+.lvx-icon-caret-bottom:before { content: "\e60b"; }
 
-.el-icon-caret-top:before { content: "\e60c"; }
+.lvx-icon-caret-top:before { content: "\e60c"; }
 
-.el-icon-caret-right:before { content: "\e60e"; }
+.lvx-icon-caret-right:before { content: "\e60e"; }
 
-.el-icon-close:before { content: "\e60f"; }
+.lvx-icon-close:before { content: "\e60f"; }
 
-.el-icon-d-arrow-left:before { content: "\e610"; }
+.lvx-icon-d-arrow-left:before { content: "\e610"; }
 
-.el-icon-check:before { content: "\e611"; }
+.lvx-icon-check:before { content: "\e611"; }
 
-.el-icon-delete:before { content: "\e612"; }
+.lvx-icon-delete:before { content: "\e612"; }
 
-.el-icon-d-arrow-right:before { content: "\e613"; }
+.lvx-icon-d-arrow-right:before { content: "\e613"; }
 
-.el-icon-document:before { content: "\e614"; }
+.lvx-icon-document:before { content: "\e614"; }
 
-.el-icon-d-caret:before { content: "\e615"; }
+.lvx-icon-d-caret:before { content: "\e615"; }
 
-.el-icon-edit-outline:before { content: "\e616"; }
+.lvx-icon-edit-outline:before { content: "\e616"; }
 
-.el-icon-download:before { content: "\e617"; }
+.lvx-icon-download:before { content: "\e617"; }
 
-.el-icon-goods:before { content: "\e618"; }
+.lvx-icon-goods:before { content: "\e618"; }
 
-.el-icon-search:before { content: "\e619"; }
+.lvx-icon-search:before { content: "\e619"; }
 
-.el-icon-info:before { content: "\e61a"; }
+.lvx-icon-info:before { content: "\e61a"; }
 
-.el-icon-message:before { content: "\e61b"; }
+.lvx-icon-message:before { content: "\e61b"; }
 
-.el-icon-edit:before { content: "\e61c"; }
+.lvx-icon-edit:before { content: "\e61c"; }
 
-.el-icon-location:before { content: "\e61d"; }
+.lvx-icon-location:before { content: "\e61d"; }
 
-.el-icon-loading:before { content: "\e61e"; }
+.lvx-icon-loading:before { content: "\e61e"; }
 
-.el-icon-location-outline:before { content: "\e61f"; }
+.lvx-icon-location-outline:before { content: "\e61f"; }
 
-.el-icon-menu:before { content: "\e620"; }
+.lvx-icon-menu:before { content: "\e620"; }
 
-.el-icon-minus:before { content: "\e621"; }
+.lvx-icon-minus:before { content: "\e621"; }
 
-.el-icon-bell:before { content: "\e622"; }
+.lvx-icon-bell:before { content: "\e622"; }
 
-.el-icon-mobile-phone:before { content: "\e624"; }
+.lvx-icon-mobile-phone:before { content: "\e624"; }
 
-.el-icon-news:before { content: "\e625"; }
+.lvx-icon-news:before { content: "\e625"; }
 
-.el-icon-more:before { content: "\e646"; }
+.lvx-icon-more:before { content: "\e646"; }
 
-.el-icon-more-outline:before { content: "\e626"; }
+.lvx-icon-more-outline:before { content: "\e626"; }
 
-.el-icon-phone:before { content: "\e627"; }
+.lvx-icon-phone:before { content: "\e627"; }
 
-.el-icon-phone-outline:before { content: "\e628"; }
+.lvx-icon-phone-outline:before { content: "\e628"; }
 
-.el-icon-picture:before { content: "\e629"; }
+.lvx-icon-picture:before { content: "\e629"; }
 
-.el-icon-picture-outline:before { content: "\e62a"; }
+.lvx-icon-picture-outline:before { content: "\e62a"; }
 
-.el-icon-plus:before { content: "\e62b"; }
+.lvx-icon-plus:before { content: "\e62b"; }
 
-.el-icon-printer:before { content: "\e62f"; }
+.lvx-icon-printer:before { content: "\e62f"; }
 
-.el-icon-rank:before { content: "\e632"; }
+.lvx-icon-rank:before { content: "\e632"; }
 
-.el-icon-refresh:before { content: "\e633"; }
+.lvx-icon-refresh:before { content: "\e633"; }
 
-.el-icon-question:before { content: "\e634"; }
+.lvx-icon-question:before { content: "\e634"; }
 
-.el-icon-remove:before { content: "\e635"; }
+.lvx-icon-remove:before { content: "\e635"; }
 
-.el-icon-share:before { content: "\e636"; }
+.lvx-icon-share:before { content: "\e636"; }
 
-.el-icon-star-on:before { content: "\e637"; }
+.lvx-icon-star-on:before { content: "\e637"; }
 
-.el-icon-setting:before { content: "\e638"; }
+.lvx-icon-setting:before { content: "\e638"; }
 
-.el-icon-circle-check:before { content: "\e639"; }
+.lvx-icon-circle-check:before { content: "\e639"; }
 
-.el-icon-service:before { content: "\e63a"; }
+.lvx-icon-service:before { content: "\e63a"; }
 
-.el-icon-sold-out:before { content: "\e63b"; }
+.lvx-icon-sold-out:before { content: "\e63b"; }
 
-.el-icon-remove-outline:before { content: "\e63c"; }
+.lvx-icon-remove-outline:before { content: "\e63c"; }
 
-.el-icon-star-off:before { content: "\e63d"; }
+.lvx-icon-star-off:before { content: "\e63d"; }
 
-.el-icon-circle-check-outline:before { content: "\e63e"; }
+.lvx-icon-circle-check-outline:before { content: "\e63e"; }
 
-.el-icon-tickets:before { content: "\e63f"; }
+.lvx-icon-tickets:before { content: "\e63f"; }
 
-.el-icon-sort:before { content: "\e640"; }
+.lvx-icon-sort:before { content: "\e640"; }
 
-.el-icon-zoom-in:before { content: "\e641"; }
+.lvx-icon-zoom-in:before { content: "\e641"; }
 
-.el-icon-time:before { content: "\e642"; }
+.lvx-icon-time:before { content: "\e642"; }
 
-.el-icon-view:before { content: "\e643"; }
+.lvx-icon-view:before { content: "\e643"; }
 
-.el-icon-upload2:before { content: "\e644"; }
+.lvx-icon-upload2:before { content: "\e644"; }
 
-.el-icon-zoom-out:before { content: "\e645"; }
+.lvx-icon-zoom-out:before { content: "\e645"; }
 
-.el-icon-loading {
+.lvx-icon-loading {
   animation: rotating 2s linear infinite;
 }
 
-.el-icon--right {
+.lvx-icon--right {
   margin-left: 5px;
 }
-.el-icon--left {
+.lvx-icon--left {
   margin-right: 5px;
 }
 

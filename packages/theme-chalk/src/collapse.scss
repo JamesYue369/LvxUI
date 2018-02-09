@@ -45,9 +45,9 @@
   }
 
   @include when(active) {
-    .el-collapse-item__header {
+    .#{$--prefix-css}-collapse-item__header {
       border-bottom-color: transparent;
-      .el-collapse-item__arrow {
+      .#{$--prefix-css}-collapse-item__arrow {
         transform: rotate(90deg);
       }
     }

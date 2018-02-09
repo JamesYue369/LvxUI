@@ -1,29 +1,29 @@
 <template>
   <div
-    class="el-tree-node"
     @click.stop="handleClick"
     v-show="node.visible"
-    :class="{
+    :class="[
+    `${$clsPrefix}-tree-node`,
+    {
       'is-expanded': expanded,
       'is-current': tree.store.currentNode === node,
       'is-hidden': !node.visible,
       'is-focusable': !node.disabled,
       'is-checked': !node.disabled && node.checked
-    }"
+    }]"
     role="treeitem"
     tabindex="-1"
     :aria-expanded="expanded"
     :aria-disabled="node.disabled"
     :aria-checked="node.checked"
   >
-    <div class="el-tree-node__content"
+    <div :class="[`${$clsPrefix}-tree-node__content`]"
       :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
       <span
-        class="el-tree-node__expand-icon el-icon-caret-right"
         @click.stop="handleExpandIconClick"
-        :class="{ 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded }">
+        :class="[`${$clsPrefix}-tree-node__expand-icon ${$clsPrefix}-icon-caret-right`, { 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded }]">
       </span>
-      <el-checkbox
+      <lvx-checkbox
         v-if="showCheckbox"
         v-model="node.checked"
         :indeterminate="node.indeterminate"
@@ -31,42 +31,42 @@
         @click.native.stop
         @change="handleCheckChange"
       >
-      </el-checkbox>
+      </lvx-checkbox>
       <span
         v-if="node.loading"
-        class="el-tree-node__loading-icon el-icon-loading">
+        :class="[`${$clsPrefix}-tree-node__loading-icon ${$clsPrefix}-icon-loading`]">
       </span>
       <node-content :node="node"></node-content>
     </div>
-    <el-collapse-transition>
+    <lvx-collapse-transition>
       <div
-        class="el-tree-node__children"
+        :class="[`${$clsPrefix}-tree-node__children`]"
         v-if="childNodeRendered"
         v-show="expanded"
         role="group"
         :aria-expanded="expanded"
       >
-        <el-tree-node
+        <lvx-tree-node
           :render-content="renderContent"
           v-for="child in node.childNodes"
           :key="getNodeKey(child)"
           :node="child"
           @node-expand="handleChildNodeExpand">
-        </el-tree-node>
+        </lvx-tree-node>
       </div>
-    </el-collapse-transition>
+    </lvx-collapse-transition>
   </div>
 </template>
 
 <script type="text/jsx">
-  import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
-  import ElCheckbox from 'element-ui/packages/checkbox';
-  import emitter from 'element-ui/src/mixins/emitter';
-
+  import CollapseTransition from '~/src/transitions/collapse-transition';
+  import Checkbox from '~/packages/checkbox';
+  import emitter from '~/src/mixins/emitter';
+  import config from '~/src/config';
   export default {
-    name: 'ElTreeNode',
+    name: `${config.prefix}TreeNode`,
 
-    componentName: 'ElTreeNode',
+    componentName: 'TreeNode',
 
     mixins: [emitter],
 
@@ -81,8 +81,8 @@
     },
 
     components: {
-      ElCollapseTransition,
-      ElCheckbox,
+      'LvxCollapseTransition': CollapseTransition,
+      'LvxCheckbox': Checkbox,
       NodeContent: {
         props: {
           node: {
@@ -97,7 +97,7 @@
           return (
             parent.renderContent
               ? parent.renderContent.call(parent._renderProxy, h, { _self: parent.tree.$vnode.context, node, data, store })
-              : <span class="el-tree-node__label">{ this.node.label }</span>
+              : <span class={`${this.$clsPrefix}-tree-node__label`}>{ this.node.label }</span>
           );
         }
       }
@@ -175,7 +175,7 @@
       },
 
       handleChildNodeExpand(nodeData, node, instance) {
-        this.broadcast('ElTreeNode', 'tree-node-expand', node);
+        this.broadcast('TreeNode', 'tree-node-expand', node);
         this.tree.$emit('node-expand', nodeData, node, instance);
       }
     },

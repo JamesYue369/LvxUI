@@ -1,8 +1,8 @@
-import ElCheckbox from 'element-ui/packages/checkbox';
-import ElTag from 'element-ui/packages/tag';
-import objectAssign from 'element-ui/src/utils/merge';
-import { getPropByPath } from 'element-ui/src/utils/util';
-
+import Checkbox from '~/packages/checkbox';
+import Tag from '~/packages/tag';
+import objectAssign from '~/src/utils/merge';
+import { getPropByPath } from '~/src/utils/util';
+import config from '~/src/config';
 let columnIdSeed = 1;
 
 const defaults = {
@@ -14,7 +14,7 @@ const defaults = {
     minWidth: 48,
     realWidth: 48,
     order: '',
-    className: 'el-table-column--selection'
+    className: `${config.clsPrefix}-table-column--selection`
   },
   expand: {
     width: 48,
@@ -33,12 +33,12 @@ const defaults = {
 const forced = {
   selection: {
     renderHeader: function(h) {
-      return <el-checkbox
+      return <lvx-checkbox
         nativeOn-click={ this.toggleAllSelection }
         value={ this.isAllSelected } />;
     },
     renderCell: function(h, { row, column, store, $index }) {
-      return <el-checkbox
+      return <lvx-checkbox
         value={ store.isSelected(row) }
         disabled={ column.selectable ? !column.selectable.call(null, row, $index) : false }
         on-input={ () => { store.commit('rowSelectedChanged', row); } } />;
@@ -70,14 +70,14 @@ const forced = {
     },
     renderCell: function(h, { row, store }, proxy) {
       const expanded = store.states.expandRows.indexOf(row) > -1;
-      return <div class={ 'el-table__expand-icon ' + (expanded ? 'el-table__expand-icon--expanded' : '') }
+      return <div class={ proxy.$clsPrefix + '-table__expand-icon ' + (expanded ? proxy.$clsPrefix + '-table__expand-icon--expanded' : '') }
                   on-click={ () => proxy.handleExpandClick(row) }>
-        <i class='el-icon el-icon-arrow-right'></i>
+        <i class={proxy.$clsPrefix + '-icon ' + proxy.$clsPrefix + '-icon-arrow-right'}></i>
       </div>;
     },
     sortable: false,
     resizable: false,
-    className: 'el-table__expand-column'
+    className: `${config.clsPrefix}-table__expand-column`
   }
 };
 
@@ -114,7 +114,7 @@ const DEFAULT_RENDER_CELL = function(h, { row, column }) {
 };
 
 export default {
-  name: 'ElTableColumn',
+  name: 'TableColumn',
 
   props: {
     type: {
@@ -174,8 +174,8 @@ export default {
   },
 
   components: {
-    ElCheckbox,
-    ElTag
+    'LvxCheckbox': Checkbox,
+    'LvxTag': Tag
   },
 
   computed: {
@@ -283,7 +283,7 @@ export default {
       }
 
       return _self.showOverflowTooltip || _self.showTooltipWhenOverflow
-        ? <div class="cell el-tooltip" style={'width:' + (data.column.realWidth || data.column.width) + 'px'}>{ renderCell(h, data) }</div>
+        ? <div class={`${this.$clsPrefix}-tooltip cell`} style={'width:' + (data.column.realWidth || data.column.width) + 'px'}>{ renderCell(h, data) }</div>
         : <div class="cell">{ renderCell(h, data) }</div>;
     };
   },

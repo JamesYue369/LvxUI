@@ -5,7 +5,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var striptags = require('./strip-tags');
 var slugify = require('transliteration').slugify;
 var isProd = process.env.NODE_ENV === 'production';
-var isPlay = !!process.env.PLAY_ENV;
+var isDemo = !!process.env.DEMO_ENV;
 
 function convert(str) {
   str = str.replace(/(&#x)(\w{4});/gi, function($0) {
@@ -18,13 +18,13 @@ cooking.set({
   entry: isProd ? {
     docs: './examples/entry.js',
     'lvx-ui': './src/index.js'
-  } : (isPlay ? './examples/play.js' : './examples/entry.js'),
+  } : (isDemo ? './examples/demo.js' : './examples/entry.js'),
   dist: './examples/lvx-ui/',
   template: [
     {
       template: './examples/index.tpl',
       filename: './index.html',
-      favicon: './examples/favicon.ico'
+      favicon: './examples/favicon1.ico'
     }
   ],
   publicPath: process.env.CI_ENV || '',

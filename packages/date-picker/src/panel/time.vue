@@ -1,10 +1,9 @@
 <template>
-  <transition name="el-zoom-in-top" @after-leave="$emit('dodestroy')">
+  <transition :name="transitionName" @after-leave="$emit('dodestroy')">
     <div
       v-show="visible"
-      class="el-time-panel el-popper"
-      :class="popperClass">
-      <div class="el-time-panel__content" :class="{ 'has-seconds': showSeconds }">
+      :class="[`${$clsPrefix}-time-panel`, `${$clsPrefix}-popper`, popperClass]">
+      <div :class="[`${$clsPrefix}-time-panel__content`, { 'has-seconds': showSeconds }]">
         <time-spinner
           ref="spinner"
           @change="handleChange"
@@ -15,16 +14,15 @@
           :date="date">
         </time-spinner>
       </div>
-      <div class="el-time-panel__footer">
+      <div :class="[`${$clsPrefix}-time-panel__footer`]">
         <button
           type="button"
-          class="el-time-panel__btn cancel"
-          @click="handleCancel">{{ t('el.datepicker.cancel') }}</button>
+          :class="[`${$clsPrefix}-time-panel__btn`, 'cancel']"
+          @click="handleCancel">{{ t('lang.datepicker.cancel') }}</button>
         <button
           type="button"
-          class="el-time-panel__btn"
-          :class="{confirm: !disabled}"
-          @click="handleConfirm()">{{ t('el.datepicker.confirm') }}</button>
+          :class="[`${$clsPrefix}-time-panel__btn`, {confirm: !disabled}]"
+          @click="handleConfirm()">{{ t('lang.datepicker.confirm') }}</button>
       </div>
     </div>
   </transition>
@@ -32,7 +30,7 @@
 
 <script type="text/babel">
   import { limitTimeRange, isDate, clearMilliseconds, timeWithinRange } from '../util';
-  import Locale from 'element-ui/src/mixins/locale';
+  import Locale from '~/src/mixins/locale';
   import TimeSpinner from '../basic/time-spinner';
 
   export default {
@@ -95,7 +93,8 @@
         selectionRange: [0, 2],
         disabled: false,
         arrowControl: false,
-        needInitAdjust: true
+        needInitAdjust: true,
+        transitionName: `${this.$clsPrefix}-zoom-in-top`
       };
     },
 

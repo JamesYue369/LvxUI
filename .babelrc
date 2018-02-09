@@ -5,9 +5,9 @@
     "utils": {
       "plugins": [
         ["module-resolver", {
-          "root": ["element-ui"],
+          "root": ["~"],
           "alias": {
-            "element-ui/src": "lvx-ui/lib"
+            "~/src": "lvx-ui/lib"
           }
         }]
       ]

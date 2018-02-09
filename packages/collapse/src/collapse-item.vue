@@ -1,55 +1,56 @@
 <template>
-  <div class="el-collapse-item" :class="{'is-active': isActive}">
+  <div :class="[`${$clsPrefix}-collapse-item`, {'is-active': isActive}]">
     <div
       role="tab"
       :aria-expanded="isActive"
-      :aria-controls="`el-collapse-content-${id}`"
-      :aria-describedby ="`el-collapse-content-${id}`"
+      :aria-controls="`${$clsPrefix}-collapse-content-${id}`"
+      :aria-describedby ="`${$clsPrefix}-collapse-content-${id}`"
     >
       <div
-        class="el-collapse-item__header"
         @click="handleHeaderClick"
         role="button"
-        :id="`el-collapse-head-${id}`"
+        :id="`${$clsPrefix}-collapse-head-${id}`"
         tabindex="0"
         @keyup.space.enter.stop="handleEnterClick"
-        :class="{'focusing': focusing}"
+        :class="[`${$clsPrefix}-collapse-item__header`, {'focusing': focusing}]"
         @focus="handleFocus"
         @blur="focusing = false"
       >
-        <i class="el-collapse-item__arrow el-icon-arrow-right"></i>
+        <i :class="[`${$clsPrefix}-collapse-item__arrow ${$clsPrefix}-icon-arrow-right`]"></i>
         <slot name="title">{{title}}</slot>
       </div>
     </div>
-    <el-collapse-transition>
+    <lvx-collapse-transition>
       <div
-        class="el-collapse-item__wrap"
+        :class="[`${$clsPrefix}-collapse-item__wrap`]"
         v-show="isActive"
         role="tabpanel"
         :aria-hidden="!isActive"
-        :aria-labelledby="`el-collapse-head-${id}`"
-        :id="`el-collapse-content-${id}`"
+        :aria-labelledby="`${$clsPrefix}-collapse-head-${id}`"
+        :id="`${$clsPrefix}-collapse-content-${id}`"
       >
-        <div class="el-collapse-item__content">
+        <div :class="[`${$clsPrefix}-collapse-item__content`]">
           <slot></slot>
         </div>
       </div>
-    </el-collapse-transition>
+    </lvx-collapse-transition>
   </div>
 </template>
 <script>
-  import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import { generateId } from 'element-ui/src/utils/util';
+  import CollapseTransition from '~/src/transitions/collapse-transition';
+  import Emitter from '~/src/mixins/emitter';
+  import { generateId } from '~/src/utils/util';
 
   export default {
-    name: 'ElCollapseItem',
+    name: 'CollapseItem',
 
-    componentName: 'ElCollapseItem',
+    componentName: 'CollapseItem',
 
     mixins: [Emitter],
 
-    components: { ElCollapseTransition },
+    components: {
+      'LvxCollapseTransition': CollapseTransition
+    },
 
     data() {
       return {
@@ -95,12 +96,12 @@
         }, 50);
       },
       handleHeaderClick() {
-        this.dispatch('ElCollapse', 'item-click', this);
+        this.dispatch('Collapse', 'item-click', this);
         this.focusing = false;
         this.isClick = true;
       },
       handleEnterClick() {
-        this.dispatch('ElCollapse', 'item-click', this);
+        this.dispatch('Collapse', 'item-click', this);
       }
     }
   };

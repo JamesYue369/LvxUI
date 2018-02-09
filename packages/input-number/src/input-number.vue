@@ -1,7 +1,8 @@
 <template>
-  <div class="el-input-number"
+  <div 
     :class="[
-      inputNumberSize ? 'el-input-number--' + inputNumberSize : '',
+      `${$clsPrefix}-input-number`,
+      inputNumberSize ? `${$clsPrefix}-input-number--` + inputNumberSize : '',
       { 'is-disabled': disabled },
       { 'is-without-controls': !controls },
       { 'is-controls-right': controlsAtRight }
@@ -9,25 +10,23 @@
   >
     <span
       v-if="controls"
-      class="el-input-number__decrease"
-      :class="{'is-disabled': minDisabled}"
+      :class="[`${$clsPrefix}-input-number__decrease`, {'is-disabled': minDisabled}]"
       v-repeat-click="decrease"
       @keydown.enter="decrease"
       role="button"
     >
-      <i :class="`el-icon-${controlsAtRight ? 'arrow-down' : 'minus'}`"></i>
+      <i :class="`${$clsPrefix}-icon-${controlsAtRight ? 'arrow-down' : 'minus'}`"></i>
     </span>
     <span
       v-if="controls"
-      class="el-input-number__increase"
-      :class="{'is-disabled': maxDisabled}"
+      :class="[`${$clsPrefix}-input-number__increase`, {'is-disabled': maxDisabled}]"
       v-repeat-click="increase"
       @keydown.enter="increase"
       role="button"
     >
-      <i :class="`el-icon-${controlsAtRight ? 'arrow-up' : 'plus'}`"></i>
+      <i :class="`${$clsPrefix}-icon-${controlsAtRight ? 'arrow-up' : 'plus'}`"></i>
     </span>
-    <el-input
+    <lvx-input
       :value="currentValue"
       @keydown.up.native.prevent="increase"
       @keydown.down.native.prevent="decrease"
@@ -48,20 +47,20 @@
       <template slot="append" v-if="$slots.append">
         <slot name="append"></slot>
       </template> 
-    </el-input>
+    </lvx-input>
   </div>
 </template>
 <script>
-  import ElInput from 'element-ui/packages/input';
+  import Input from '~/packages/input';
   import debounce from 'throttle-debounce/debounce';
-  import Focus from 'element-ui/src/mixins/focus';
-  import RepeatClick from 'element-ui/src/directives/repeat-click';
+  import Focus from '~/src/mixins/focus';
+  import RepeatClick from '~/src/directives/repeat-click';
 
   export default {
-    name: 'ElInputNumber',
+    name: 'InputNumber',
     mixins: [Focus('input')],
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -69,7 +68,7 @@
       repeatClick: RepeatClick
     },
     components: {
-      ElInput
+      'LvxInput': Input
     },
     props: {
       step: {
@@ -137,7 +136,7 @@
         return this.controlsPosition === 'right';
       },
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       inputNumberSize() {
         return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;

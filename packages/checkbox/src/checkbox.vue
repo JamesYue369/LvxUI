@@ -1,8 +1,8 @@
 <template>
   <label
-    class="el-checkbox"
     :class="[
-      border && checkboxSize ? 'el-checkbox--' + checkboxSize : '',
+      `${$clsPrefix}-checkbox`,
+      border && checkboxSize ? `${$clsPrefix}-checkbox--` + checkboxSize : '',
       { 'is-disabled': isDisabled },
       { 'is-bordered': border },
       { 'is-checked': isChecked }
@@ -12,19 +12,21 @@
     :aria-disabled="isDisabled"
     :id="id"
   >
-    <span class="el-checkbox__input"
-      :class="{
+    <span 
+      :class="[
+      `${$clsPrefix}-checkbox__input`,
+      {
         'is-disabled': isDisabled,
         'is-checked': isChecked,
         'is-indeterminate': indeterminate,
         'is-focus': focus
-      }"
+      }]"
        aria-checked="mixed"
     >
-      <span class="el-checkbox__inner" ></span>
+      <span :class="[`${$clsPrefix}-checkbox__inner`]" ></span>
       <input
         v-if="trueLabel || falseLabel"
-        class="el-checkbox__original"
+        :class="[`${$clsPrefix}-checkbox__original`]"
         type="checkbox"
         :name="name"
         :disabled="isDisabled"
@@ -36,7 +38,7 @@
         @blur="focus = false">
       <input
         v-else
-        class="el-checkbox__original"
+        :class="[`${$clsPrefix}-checkbox__original`]"
         type="checkbox"
         :disabled="isDisabled"
         :value="label"
@@ -46,27 +48,27 @@
         @focus="focus = true"
         @blur="focus = false">
     </span>
-    <span class="el-checkbox__label" v-if="$slots.default || label" >
+    <span :class="[`${$clsPrefix}-checkbox__label`]" v-if="$slots.default || label" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>
   </label>
 </template>
 <script>
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElCheckbox',
+    name: 'Checkbox',
 
     mixins: [Emitter],
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
 
-    componentName: 'ElCheckbox',
+    componentName: 'Checkbox',
 
     data() {
       return {
@@ -96,7 +98,7 @@
               (this.isLimitExceeded = true));
 
             this.isLimitExceeded === false &&
-            this.dispatch('ElCheckboxGroup', 'input', [val]);
+            this.dispatch('CheckboxGroup', 'input', [val]);
           } else {
             this.$emit('input', val);
             this.selfModel = val;
@@ -117,7 +119,7 @@
       isGroup() {
         let parent = this.$parent;
         while (parent) {
-          if (parent.$options.componentName !== 'ElCheckboxGroup') {
+          if (parent.$options.componentName !== 'CheckboxGroup') {
             parent = parent.$parent;
           } else {
             this._checkboxGroup = parent;
@@ -138,7 +140,7 @@
       },
 
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
 
       checkboxSize() {
@@ -186,7 +188,7 @@
         this.$emit('change', value, ev);
         this.$nextTick(() => {
           if (this.isGroup) {
-            this.dispatch('ElCheckboxGroup', 'change', [this._checkboxGroup.value]);
+            this.dispatch('CheckboxGroup', 'change', [this._checkboxGroup.value]);
           }
         });
       }

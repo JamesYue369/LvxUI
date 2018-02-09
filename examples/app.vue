@@ -175,11 +175,10 @@
 
 <template>
   <div id="app" :class="{ 'is-component': isComponent }">
-    <main-header v-if="lang !== 'play'"></main-header>
+    <main-header v-if="lang !== 'demo'"></main-header>
     <div class="main-cnt">
       <router-view></router-view>
     </div>
-    <!-- <main-footer v-if="lang !== 'play' && !isComponent"></main-footer> -->
   </div>
 </template>
 
@@ -203,9 +202,6 @@
 
     watch: {
       lang(val) {
-        if (val === 'zh-CN') {
-          this.suggestJump();
-        }
         this.localize();
       }
     },
@@ -213,56 +209,11 @@
     methods: {
       localize() {
         use(this.lang === 'zh-CN' ? zhLocale : enLocale);
-      },
-      suggestJump() {
-        const href = location.href;
-        const preferGithub = localStorage.getItem('PREFER_GITHUB');
-        if (href.indexOf('element-cn') > -1 || preferGithub) return;
-        setTimeout(() => {
-          if (this.lang !== 'zh-CN') return;
-          this.$confirm('建议大陆用户访问部署在国内的站点，是否跳转？', '提示')
-            .then(() => {
-              location.href = location.href.replace('element.', 'element-cn.');
-            })
-            .catch(() => {
-              localStorage.setItem('PREFER_GITHUB', true);
-            });
-        }, 1000);
       }
     },
 
     mounted() {
       this.localize();
-      // this.suggestJump();
-      setTimeout(() => {
-        const notified = localStorage.getItem('ES_NOTIFIED');
-        if (!notified && this.lang !== 'zh-CN') {
-          const h = this.$createElement;
-          const title = this.lang === 'zh-CN'
-            ? '帮助我们完成西班牙语文档'
-            : 'Help us with Spanish docs';
-          const messages = this.lang === 'zh-CN'
-            ? ['点击', '这里', '查看详情']
-            : ['Click ', 'here', ' to learn more'];
-          this.$notify({
-            title,
-            duration: 0,
-            message: h('span', [
-              messages[0],
-              h('a', {
-                attrs: {
-                  target: '_blank',
-                  href: 'https://github.com/ElemeFE/element/issues/8074'
-                }
-              }, messages[1]),
-              messages[2]
-            ]),
-            onClose() {
-              localStorage.setItem('ES_NOTIFIED', 1);
-            }
-          });
-        }
-      }, 3500);
     }
   };
 </script>

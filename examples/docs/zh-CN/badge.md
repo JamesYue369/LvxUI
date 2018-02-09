@@ -1,5 +1,5 @@
 <style>
-  .demo-badge.demo-box .el-dropdown {
+  .demo-badge.demo-box .lvx-dropdown {
     vertical-align: middle;
   }
 </style>
@@ -14,28 +14,28 @@
 :::demo 定义`value`属性，它接受`Number`或者`String`。
 
 ```html
-<el-badge :value="12" class="item">
-  <el-button size="small">评论</el-button>
-</el-badge>
-<el-badge :value="3" class="item">
-  <el-button size="small">回复</el-button>
-</el-badge>
+<lvx-badge :value="12" class="item">
+  <lvx-button size="small">评论</lvx-button>
+</lvx-badge>
+<lvx-badge :value="3" class="item">
+  <lvx-button size="small">回复</lvx-button>
+</lvx-badge>
 
-<el-dropdown trigger="click">
-  <span class="el-dropdown-link">
-    点我查看<i class="el-icon-caret-bottom el-icon--right"></i>
+<lvx-dropdown trigger="click">
+  <span class="lvx-dropdown-link">
+    点我查看<i class="lvx-icon-caret-bottom lvx-icon--right"></i>
   </span>
-  <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item class="clearfix">
+  <lvx-dropdown-menu slot="dropdown">
+    <lvx-dropdown-item class="clearfix">
       评论
-      <el-badge class="mark" :value="12" />
-    </el-dropdown-item>
-    <el-dropdown-item class="clearfix">
+      <lvx-badge class="mark" :value="12" />
+    </lvx-dropdown-item>
+    <lvx-dropdown-item class="clearfix">
       回复
-      <el-badge class="mark" :value="3" />
-    </el-dropdown-item>
-  </el-dropdown-menu>
-</el-dropdown>
+      <lvx-badge class="mark" :value="3" />
+    </lvx-dropdown-item>
+  </lvx-dropdown-menu>
+</lvx-dropdown>
 
 <style>
 .item {
@@ -52,12 +52,12 @@
 :::demo 由`max`属性定义，它接受一个`Number`，需要注意的是，只有当`value`为`Number`时，它才会生效。
 
 ```html
-<el-badge :value="200" :max="99" class="item">
-  <el-button size="small">评论</el-button>
-</el-badge>
-<el-badge :value="100" :max="10" class="item">
-  <el-button size="small">回复</el-button>
-</el-badge>
+<lvx-badge :value="200" :max="99" class="item">
+  <lvx-button size="small">评论</lvx-button>
+</lvx-badge>
+<lvx-badge :value="100" :max="10" class="item">
+  <lvx-button size="small">回复</lvx-button>
+</lvx-badge>
 
 <style>
 .item {
@@ -74,12 +74,12 @@
 :::demo 定义`value`为`String`类型是时可以用于显示自定义文本。
 
 ```html
-<el-badge value="new" class="item">
-  <el-button size="small">评论</el-button>
-</el-badge>
-<el-badge value="hot" class="item">
-  <el-button size="small">回复</el-button>
-</el-badge>
+<lvx-badge value="new" class="item">
+  <lvx-button size="small">评论</lvx-button>
+</lvx-badge>
+<lvx-badge value="hot" class="item">
+  <lvx-button size="small">回复</lvx-button>
+</lvx-badge>
 
 <style>
 .item {
@@ -96,10 +96,10 @@
 :::demo 除了数字外，设置`is-dot`属性，它接受一个`Boolean`。
 
 ```html
-<el-badge is-dot class="item">数据查询</el-badge>
-<el-badge is-dot class="item">
-  <el-button class="share-button" icon="el-icon-share" type="primary"></el-button>
-</el-badge>
+<lvx-badge is-dot class="item">数据查询</lvx-badge>
+<lvx-badge is-dot class="item">
+  <lvx-button class="share-button" icon="lvx-icon-share" type="primary"></lvx-button>
+</lvx-badge>
 
 <style>
 .item {

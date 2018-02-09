@@ -1,7 +1,7 @@
 <template>
   <li
     :class="{
-      'el-submenu': true,
+      [`${$clsPrefix}-submenu`]: true,
       'is-active': active,
       'is-opened': opened
     }"
@@ -13,7 +13,7 @@
     :aria-expanded="opened"
   >
     <div
-      class="el-submenu__title"
+      :class="[`${$clsPrefix}-submenu__title`]"
       ref="submenu-title"
       @click="handleClick"
       @mouseenter="handleTitleMouseenter"
@@ -21,35 +21,37 @@
       :style="[paddingStyle, titleStyle, { backgroundColor }]">
       <slot name="title"></slot>
       <i :class="{
-        'el-submenu__icon-arrow': true,
-        'el-icon-arrow-down': rootMenu.mode === 'horizontal' || rootMenu.mode === 'vertical' && !rootMenu.collapse,
-        'el-icon-arrow-right': rootMenu.mode === 'vertical' && rootMenu.collapse
+        [`${$clsPrefix}-submenu__icon-arrow`]: true,
+        [`${$clsPrefix}-icon-arrow-down`]: rootMenu.mode === 'horizontal' || rootMenu.mode === 'vertical' && !rootMenu.collapse,
+        [`${$clsPrefix}-icon-arrow-right`]: rootMenu.mode === 'vertical' && rootMenu.collapse
       }">
       </i>
     </div>
     <template v-if="rootMenu.mode === 'horizontal' || (rootMenu.mode === 'vertical' && rootMenu.collapse)">
       <transition :name="menuTransitionName">
-        <ul class="el-menu" v-show="opened" :style="{ backgroundColor: rootMenu.backgroundColor || '' }" role="menu"><slot></slot></ul>
+        <ul :class="[`${$clsPrefix}-menu`]" v-show="opened" :style="{ backgroundColor: rootMenu.backgroundColor || '' }" role="menu"><slot></slot></ul>
       </transition>
     </template>
-    <el-collapse-transition v-else>
-      <ul class="el-menu" v-show="opened" :style="{ backgroundColor: rootMenu.backgroundColor || '' }" role="menu"><slot></slot></ul>
-    </el-collapse-transition>
+    <lvx-collapse-transition v-else>
+      <ul :class="[`${$clsPrefix}-menu`]" v-show="opened" :style="{ backgroundColor: rootMenu.backgroundColor || '' }" role="menu"><slot></slot></ul>
+    </lvx-collapse-transition>
   </li>
 </template>
 <script>
-  import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
+  import CollapseTransition from '~/src/transitions/collapse-transition';
   import menuMixin from './menu-mixin';
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElSubmenu',
+    name: 'Submenu',
 
-    componentName: 'ElSubmenu',
+    componentName: 'Submenu',
 
     mixins: [menuMixin, Emitter],
 
-    components: { ElCollapseTransition },
+    components: {
+      'LvxCollapseTransition': CollapseTransition
+    },
 
     props: {
       index: {
@@ -67,7 +69,7 @@
     },
     computed: {
       menuTransitionName() {
-        return this.rootMenu.collapse ? 'el-zoom-in-left' : 'el-zoom-in-top';
+        return this.rootMenu.collapse ? `${this.$clsPrefix}-zoom-in-left` : `${this.$clsPrefix}-zoom-in-top`;
       },
       opened() {
         return this.rootMenu.openedMenus.indexOf(this.index) > -1;
@@ -143,7 +145,7 @@
         ) {
           return;
         }
-        this.dispatch('ElMenu', 'submenu-click', this);
+        this.dispatch('Menu', 'submenu-click', this);
       },
       handleMouseenter() {
         const {rootMenu} = this;

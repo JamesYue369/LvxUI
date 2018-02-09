@@ -1,10 +1,11 @@
 <template>
   <li
-    class="el-dropdown-menu__item"
-    :class="{
+    :class="[
+    `${$clsPrefix}-dropdown-menu__item`,
+    {
       'is-disabled': disabled,
-      'el-dropdown-menu__item--divided': divided
-    }"
+      [`${$clsPrefix}-dropdown-menu__item--divided`]: divided
+    }]"
     @click="handleClick"
     :aria-disabled="disabled"
     :tabindex="disabled ? null : -1"
@@ -13,10 +14,10 @@
   </li>
 </template>
 <script>
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElDropdownItem',
+    name: 'DropdownItem',
 
     mixins: [Emitter],
 
@@ -28,7 +29,7 @@
 
     methods: {
       handleClick(e) {
-        this.dispatch('ElDropdown', 'menu-item-click', [this.command, this]);
+        this.dispatch('Dropdown', 'menu-item-click', [this.command, this]);
       }
     }
   };

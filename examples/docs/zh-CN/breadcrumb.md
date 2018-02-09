@@ -20,15 +20,15 @@
 
 适用广泛的基础用法。
 
-:::demo 在`el-breadcrumb`中使用`el-breadcrumb-item`标签表示从首页开始的每一级。Element 提供了一个`separator`属性，在`el-breadcrumb`标签中设置它来决定分隔符，它只能是字符串，默认为斜杠`/`。
+:::demo 在`lvx-breadcrumb`中使用`lvx-breadcrumb-item`标签表示从首页开始的每一级。Element 提供了一个`separator`属性，在`lvx-breadcrumb`标签中设置它来决定分隔符，它只能是字符串，默认为斜杠`/`。
 
 ```html
-<el-breadcrumb separator="/">
-  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-  <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-  <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-  <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-</el-breadcrumb>
+<lvx-breadcrumb separator="/">
+  <lvx-breadcrumb-item :to="{ path: '/' }">首页</lvx-breadcrumb-item>
+  <lvx-breadcrumb-item>活动管理</lvx-breadcrumb-item>
+  <lvx-breadcrumb-item>活动列表</lvx-breadcrumb-item>
+  <lvx-breadcrumb-item>活动详情</lvx-breadcrumb-item>
+</lvx-breadcrumb>
 ```
 :::
 
@@ -37,12 +37,12 @@
 :::demo 通过设置 `separator-class` 可使用相应的 `iconfont` 作为分隔符，注意这将使 `separator` 设置失效
 
 ```html
-<el-breadcrumb separator-class="el-icon-arrow-right">
-  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-  <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-  <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-  <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-</el-breadcrumb>
+<lvx-breadcrumb separator-class="lvx-icon-arrow-right">
+  <lvx-breadcrumb-item :to="{ path: '/' }">首页</lvx-breadcrumb-item>
+  <lvx-breadcrumb-item>活动管理</lvx-breadcrumb-item>
+  <lvx-breadcrumb-item>活动列表</lvx-breadcrumb-item>
+  <lvx-breadcrumb-item>活动详情</lvx-breadcrumb-item>
+</lvx-breadcrumb>
 ```
 :::
 
@@ -52,12 +52,12 @@
 
 ```html
 <template>
-  <el-breadcrumb separator="/" :item-style="itemStyle" :last-item-style="lastItemStyle">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-    <el-breadcrumb-item class="item-active">活动详情</el-breadcrumb-item>
-  </el-breadcrumb>
+  <lvx-breadcrumb separator="/" :item-style="itemStyle" :last-item-style="lastItemStyle">
+    <lvx-breadcrumb-item :to="{ path: '/' }">首页</lvx-breadcrumb-item>
+    <lvx-breadcrumb-item>活动管理</lvx-breadcrumb-item>
+    <lvx-breadcrumb-item>活动列表</lvx-breadcrumb-item>
+    <lvx-breadcrumb-item class="item-active">活动详情</lvx-breadcrumb-item>
+  </lvx-breadcrumb>
 </template>
 <script>
   export default {

@@ -1,12 +1,12 @@
-import Popper from 'element-ui/src/utils/vue-popper';
+import Popper from '~/src/utils/vue-popper';
 import debounce from 'throttle-debounce/debounce';
-import { addClass, removeClass } from 'element-ui/src/utils/dom';
-import { getFirstComponentChild } from 'element-ui/src/utils/vdom';
-import { generateId } from 'element-ui/src/utils/util';
+import { addClass, removeClass } from '~/src/utils/dom';
+import { getFirstComponentChild } from '~/src/utils/vdom';
+import { generateId } from '~/src/utils/util';
 import Vue from 'vue';
 
 export default {
-  name: 'ElTooltip',
+  name: 'Tooltip',
 
   mixins: [Popper],
 
@@ -28,7 +28,9 @@ export default {
     },
     transition: {
       type: String,
-      default: 'el-fade-in-linear'
+      default() {
+        return `${this.$clsPrefix}-fade-in-linear`;
+      }
     },
     popperOptions: {
       default() {
@@ -56,7 +58,7 @@ export default {
   },
   computed: {
     tooltipId() {
-      return `el-tooltip-${generateId()}`;
+      return `${this.$clsPrefix}-tooltip-${generateId()}`;
     }
   },
   beforeCreate() {
@@ -87,7 +89,7 @@ export default {
             aria-hidden={ (this.disabled || !this.showPopper) ? 'true' : 'false' }
             v-show={!this.disabled && this.showPopper}
             class={
-              ['el-tooltip__popper', 'is-' + this.effect, this.popperClass]
+              [`${this.$clsPrefix}-tooltip__popper`, 'is-' + this.effect, this.popperClass]
             }>
             { this.$slots.content || this.content }
           </div>
@@ -104,7 +106,7 @@ export default {
     const on = vnode.data.on = vnode.data.on || {};
     const nativeOn = vnode.data.nativeOn = vnode.data.nativeOn || {};
 
-    data.staticClass = this.concatClass(data.staticClass, 'el-tooltip');
+    data.staticClass = this.concatClass(data.staticClass, `${this.$clsPrefix}-tooltip`);
     nativeOn.mouseenter = on.mouseenter = this.addEventHandle(on.mouseenter, this.show);
     nativeOn.mouseleave = on.mouseleave = this.addEventHandle(on.mouseleave, this.hide);
     nativeOn.focus = on.focus = this.addEventHandle(on.focus, this.handleFocus);

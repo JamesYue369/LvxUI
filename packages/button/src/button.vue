@@ -1,15 +1,13 @@
 <template>
   <button
-    class="el-button"
     @click="handleClick"
-    @mouseover="mouseoverHandle"
-    @mouseleave="mouseleaveHandle"
     :disabled="disabled"
     :autofocus="autofocus"
     :type="nativeType"
     :class="[
-      type ? 'el-button--' + type : '',
-      buttonSize ? 'el-button--' + buttonSize : '',
+      `${$clsPrefix}-button`,
+      type ? `${$clsPrefix}-button--` + type : '',
+      buttonSize ? `${$clsPrefix}-button--` + buttonSize : '',
       {
         'is-disabled': disabled,
         'is-loading': loading,
@@ -24,19 +22,16 @@
       'color': textColor
     }, buttonStyle]"
   >
-    <i class="el-icon-loading" v-if="loading" @click="handleInnerClick"></i>
+    <i :class="[`${$clsPrefix}-icon-loading`]" v-if="loading" @click="handleInnerClick"></i>
     <i :class="icon" v-if="icon && !loading" @click="handleInnerClick"></i>
     <span v-if="$slots.default" @click="handleInnerClick"><slot></slot></span>
   </button>
 </template>
 <script>
-  import Color from 'color';
-  import convert from 'color-convert';
   export default {
-    name: 'ElButton',
-
+    name: 'Button',
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -85,7 +80,7 @@
 
     computed: {
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       buttonSize() {
         return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
@@ -99,18 +94,6 @@
       handleInnerClick(evt) {
         if (this.disabled) {
           evt.stopPropagation();
-        }
-      },
-      mouseoverHandle() {
-        if (this.fillColor) {
-          this.fillColor = `#${convert.rgb.hex(Color(this.fill).lighten(0.04).rgbArray())}`;
-          this.borderColor = this.fillColor;
-        }
-      },
-      mouseleaveHandle() {
-        if (this.fillColor) {
-          this.fillColor = this.fill;
-          this.borderColor = this.fill;
         }
       }
     }

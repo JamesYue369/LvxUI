@@ -1,9 +1,9 @@
 <template>
-  <transition name="el-message-fade">
+  <transition :name="$clsPrefix+'-message-fade'">
     <div
       :class="[
-        'el-message',
-        type && !iconClass ? `el-message--${ type }` : '',
+        `${$clsPrefix}-message`,
+        type && !iconClass ? `${$clsPrefix}-message--${ type }` : '',
         center ? 'is-center' : '',
         customClass]"
       v-show="visible"
@@ -15,10 +15,10 @@
       <i :class="iconClass" v-if="iconClass"></i>
       <i :class="typeClass" v-else></i>
       <slot>
-        <p v-if="!dangerouslyUseHTMLString" class="el-message__content">{{ message }}</p>
-        <p v-else v-html="message" class="el-message__content"></p>
+        <p v-if="!dangerouslyUseHTMLString" :class="[`${$clsPrefix}-message__content`]">{{ message }}</p>
+        <p v-else v-html="message" :class="[`${$clsPrefix}-message__content`]"></p>
       </slot>
-      <i v-if="showClose" class="el-message__closeBtn el-icon-close" @click="close"></i>
+      <i v-if="showClose" :class="[`${$clsPrefix}-message__closeBtn ${$clsPrefix}-icon-close`]" @click="close"></i>
     </div>
   </transition>
 </template>
@@ -52,16 +52,16 @@
 
     computed: {
       iconWrapClass() {
-        const classes = ['el-message__icon'];
+        const classes = [`${this.$clsPrefix}-message__icon`];
         if (this.type && !this.iconClass) {
-          classes.push(`el-message__icon--${ this.type }`);
+          classes.push(`${this.$clsPrefix}-message__icon--${ this.type }`);
         }
         return classes;
       },
 
       typeClass() {
         return this.type && !this.iconClass
-          ? `el-message__icon el-icon-${ typeMap[this.type] }`
+          ? `${this.$clsPrefix}-message__icon ${this.$clsPrefix}-icon-${ typeMap[this.type] }`
           : '';
       }
     },

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-
+import config from '../config';
 let scrollBarWidth;
 
 export default function() {
@@ -7,7 +7,7 @@ export default function() {
   if (scrollBarWidth !== undefined) return scrollBarWidth;
 
   const outer = document.createElement('div');
-  outer.className = 'el-scrollbar__wrap';
+  outer.className = `${config.clsPrefix}-scrollbar__wrap`;
   outer.style.visibility = 'hidden';
   outer.style.width = '100px';
   outer.style.position = 'absolute';

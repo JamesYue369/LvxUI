@@ -1,18 +1,18 @@
 <template>
-  <div class="el-transfer-panel">
-    <p class="el-transfer-panel__header">
-      <el-checkbox
+  <div :class="[`${$clsPrefix}-transfer-panel`]">
+    <p :class="[`${$clsPrefix}-transfer-panel__header`]">
+      <lvx-checkbox
         v-model="allChecked"
         @change="handleAllCheckedChange"
         :indeterminate="isIndeterminate">
         {{ title }}
         <span>{{ checkedSummary }}</span>
-      </el-checkbox>
+      </lvx-checkbox>
     </p>
     
-    <div :class="['el-transfer-panel__body', hasFooter ? 'is-with-footer' : '']">
-      <el-input
-        class="el-transfer-panel__filter"
+    <div :class="[`${$clsPrefix}-transfer-panel__body`, hasFooter ? 'is-with-footer' : '']">
+      <lvx-input
+        :class="[`${$clsPrefix}-transfer-panel__filter`]"
         v-model="query"
         size="small"
         :placeholder="placeholder"
@@ -20,61 +20,61 @@
         @mouseleave.native="inputHover = false"
         v-if="filterable">
         <i slot="prefix"
-          :class="['el-input__icon', 'el-icon-' + inputIcon]"
+          :class="[`${$clsPrefix}-input__icon`, `${$clsPrefix}-icon-` + inputIcon]"
           @click="clearQuery"
         ></i>
-      </el-input>
-      <el-checkbox-group
+      </lvx-input>
+      <lvx-checkbox-group
         v-model="checked"
         v-show="!hasNoMatch && data.length > 0"
-        :class="{ 'is-filterable': filterable }"
-        class="el-transfer-panel__list">
-        <el-checkbox
-          class="el-transfer-panel__item"
+        :class="[{ 'is-filterable': filterable }, `${$clsPrefix}-transfer-panel__list`]"
+        >
+        <lvx-checkbox
+          :class="[`${$clsPrefix}-transfer-panel__item`]"
           :label="item[keyProp]"
           :disabled="item[disabledProp]"
           :key="item[keyProp]"
           v-for="item in filteredData">
           <option-content :option="item"></option-content>
-        </el-checkbox>
-      </el-checkbox-group>
+        </lvx-checkbox>
+      </lvx-checkbox-group>
       <p
-        class="el-transfer-panel__empty"
-        v-show="hasNoMatch">{{ t('el.transfer.noMatch') }}</p>
+        :class="[`${$clsPrefix}-transfer-panel__empty`]"
+        v-show="hasNoMatch">{{ t('lang.transfer.noMatch') }}</p>
       <p
-        class="el-transfer-panel__empty"
-        v-show="data.length === 0 && !hasNoMatch">{{ t('el.transfer.noData') }}</p>
+        :class="[`${$clsPrefix}-transfer-panel__empty`]"
+        v-show="data.length === 0 && !hasNoMatch">{{ t('lang.transfer.noData') }}</p>
     </div>
-    <p class="el-transfer-panel__footer" v-if="hasFooter">
+    <p :class="[`${$clsPrefix}-transfer-panel__footer`]" v-if="hasFooter">
       <slot></slot>
     </p>
   </div>
 </template>
 
 <script>
-  import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
-  import ElCheckbox from 'element-ui/packages/checkbox';
-  import ElInput from 'element-ui/packages/input';
-  import Locale from 'element-ui/src/mixins/locale';
+  import CheckboxGroup from '~/packages/checkbox-group';
+  import Checkbox from '~/packages/checkbox';
+  import Input from '~/packages/input';
+  import Locale from '~/src/mixins/locale';
 
   export default {
     mixins: [Locale],
 
-    name: 'ElTransferPanel',
+    name: 'TransferPanel',
 
-    componentName: 'ElTransferPanel',
+    componentName: 'TransferPanel',
 
     components: {
-      ElCheckboxGroup,
-      ElCheckbox,
-      ElInput,
+      'LvxCheckboxGroup': CheckboxGroup,
+      'LvxCheckbox': Checkbox,
+      'LvxInput': Input,
       OptionContent: {
         props: {
           option: Object
         },
         render(h) {
           const getParent = vm => {
-            if (vm.$options.componentName === 'ElTransferPanel') {
+            if (vm.$options.componentName === 'TransferPanel') {
               return vm;
             } else if (vm.$parent) {
               return getParent(vm.$parent);

@@ -1,8 +1,8 @@
-import ElMenu from './src/menu';
+import Menu from './src/menu';
 
 /* istanbul ignore next */
-ElMenu.install = function(Vue) {
-  Vue.component(ElMenu.name, ElMenu);
+Menu.install = function(Vue) {
+  Vue.component(Vue.prototype.$prefix + Menu.name, Menu);
 };
 
-export default ElMenu;
+export default Menu;

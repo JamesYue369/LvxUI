@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-radio-group"
+    :class="[`${$clsPrefix}-radio-group`]"
     role="radiogroup"
     @keydown="handleKeydown"
   >
@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   const keyCode = Object.freeze({
     LEFT: 37,
@@ -17,12 +17,12 @@
     DOWN: 40
   });
   export default {
-    name: 'ElRadioGroup',
+    name: 'RadioGroup',
 
-    componentName: 'ElRadioGroup',
+    componentName: 'RadioGroup',
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -37,7 +37,7 @@
 
     computed: {
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       radioGroupSize() {
         return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
@@ -93,7 +93,7 @@
     },
     watch: {
       value(value) {
-        this.dispatch('ElFormItem', 'el.form.change', [this.value]);
+        this.dispatch('FormItem', 'event.form.change', [this.value]);
       }
     }
   };

@@ -1,10 +1,10 @@
 <template>
-  <i :class="'el-icon-' + name"></i>
+  <i :class="`${$clsPrefix}-icon-` + name"></i>
 </template>
 
 <script>
   export default {
-    name: 'ElIcon',
+    name: 'Icon',
 
     props: {
       name: String

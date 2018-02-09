@@ -1,28 +1,30 @@
 <template>
-  <el-menu-collapse-transition>
-    <ul class="el-menu"
+  <lvx-menu-collapse-transition>
+    <ul 
       :key="+collapse"
       :style="{ backgroundColor: backgroundColor || '' }"
-      :class="{
-        'el-menu--horizontal': mode === 'horizontal',
-        'el-menu--collapse': collapse
-      }"
+      :class="[
+      `${$clsPrefix}-menu`,
+      {
+        [`${$clsPrefix}-menu--horizontal`]: mode === 'horizontal',
+        [`${$clsPrefix}-menu--collapse`]: collapse
+      }]"
       role="menubar"
     >
       <slot></slot>
     </ul>
-  </el-menu-collapse-transition>
+  </lvx-menu-collapse-transition>
 </template>
 <script>
-  import emitter from 'element-ui/src/mixins/emitter';
-  import Migrating from 'element-ui/src/mixins/migrating';
-  import Menubar from 'element-ui/src/utils/menu/aria-menubar';
-  import { addClass, removeClass, hasClass } from 'element-ui/src/utils/dom';
-
+  import emitter from '~/src/mixins/emitter';
+  import Migrating from '~/src/mixins/migrating';
+  import Menubar from '~/src/utils/menu/aria-menubar';
+  import { addClass, removeClass, hasClass } from '~/src/utils/dom';
+  import config from '~/src/config';
   export default {
-    name: 'ElMenu',
+    name: 'Menu',
 
-    componentName: 'ElMenu',
+    componentName: 'Menu',
 
     mixins: [emitter, Migrating],
 
@@ -33,7 +35,7 @@
     },
 
     components: {
-      'el-menu-collapse-transition': {
+      ['lvx-menu-collapse-transition']: {
         functional: true,
         render(createElement, context) {
           const data = {
@@ -46,23 +48,24 @@
               },
 
               enter(el) {
-                addClass(el, 'el-opacity-transition');
+                addClass(el, `${config.clsPrefix}-opacity-transition`);
                 el.style.opacity = 1;
               },
 
               afterEnter(el) {
-                removeClass(el, 'el-opacity-transition');
+                removeClass(el, `${config.clsPrefix}-opacity-transition`);
                 el.style.opacity = '';
               },
 
               beforeLeave(el) {
+
                 if (!el.dataset) el.dataset = {};
 
-                if (hasClass(el, 'el-menu--collapse')) {
-                  removeClass(el, 'el-menu--collapse');
+                if (hasClass(el, `${config.clsPrefix}-menu--collapse`)) {
+                  removeClass(el, `${config.clsPrefix}-menu--collapse`);
                   el.dataset.oldOverflow = el.style.overflow;
                   el.dataset.scrollWidth = el.scrollWidth;
-                  addClass(el, 'el-menu--collapse');
+                  addClass(el, `${config.clsPrefix}-menu--collapse`);
                 }
 
                 el.style.width = el.scrollWidth + 'px';
@@ -70,7 +73,7 @@
               },
 
               leave(el) {
-                if (!hasClass(el, 'el-menu--collapse')) {
+                if (!hasClass(el, `${config.clsPrefix}-menu--collapse`)) {
                   addClass(el, 'horizontal-collapse-transition');
                   el.style.width = '64px';
                 } else {
@@ -81,7 +84,7 @@
 
               afterLeave(el) {
                 removeClass(el, 'horizontal-collapse-transition');
-                if (hasClass(el, 'el-menu--collapse')) {
+                if (hasClass(el, `${config.clsPrefix}-menu--collapse`)) {
                   el.style.width = el.dataset.scrollWidth + 'px';
                 } else {
                   el.style.width = '64px';

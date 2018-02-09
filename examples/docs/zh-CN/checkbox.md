@@ -47,20 +47,20 @@
   .checkbox{
     color: #333;
   }
-  .checkbox .el-checkbox__inner:hover{
+  .checkbox .lvx-checkbox__inner:hover{
     border-color: #6297ff;
   }
-  .checkbox .el-checkbox__input.is-checked .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-checked .lvx-checkbox__inner{
     background-color: #4081ff;
     border-color: #4081ff;
   }
-  .checkbox .el-checkbox__input.is-checked + .el-checkbox__label{
+  .checkbox .lvx-checkbox__input.is-checked + .lvx-checkbox__label{
     color: #333;
   }
-  .checkbox .el-checkbox__input.is-disabled .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-disabled .lvx-checkbox__inner{
     border-color: #d9d9d9;
   }
-  .checkbox .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-disabled.is-checked .lvx-checkbox__inner{
     background-color: #f7f7f7;
     border-color: #d9d9d9;
   }
@@ -72,12 +72,12 @@
 
 单独使用可以表示两种状态之间的切换，写在标签中的内容为 checkbox 按钮后的介绍。
 
-:::demo 在`el-checkbox`元素中定义`v-model`绑定变量，单一的`checkbox`中，默认绑定变量的值会是`Boolean`，选中为`true`。
+:::demo 在`lvx-checkbox`元素中定义`v-model`绑定变量，单一的`checkbox`中，默认绑定变量的值会是`Boolean`，选中为`true`。
 
 ```html
 <template>
   <!-- `checked` 为 true 或 false -->
-  <el-checkbox v-model="checked">备选项</el-checkbox>
+  <lvx-checkbox v-model="checked">备选项</lvx-checkbox>
 </template>
 <script>
   export default {
@@ -99,8 +99,8 @@
 
 ```html
 <template>
-  <el-checkbox v-model="checked1" disabled>备选项1</el-checkbox>
-  <el-checkbox v-model="checked2" disabled>备选项</el-checkbox>
+  <lvx-checkbox v-model="checked1" disabled>备选项1</lvx-checkbox>
+  <lvx-checkbox v-model="checked2" disabled>备选项</lvx-checkbox>
 </template>
 <script>
   export default {
@@ -119,17 +119,17 @@
 
 适用于多个勾选框绑定到同一个数组的情景，通过是否勾选来表示这一组选项中选中的项。
 
-:::demo `checkbox-group`元素能把多个 checkbox 管理为一组，只需要在 Group 中使用`v-model`绑定`Array`类型的变量即可。 `el-checkbox` 的 `label`属性是该 checkbox 对应的值，若该标签中无内容，则该属性也充当 checkbox 按钮后的介绍。`label`与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。
+:::demo `checkbox-group`元素能把多个 checkbox 管理为一组，只需要在 Group 中使用`v-model`绑定`Array`类型的变量即可。 `lvx-checkbox` 的 `label`属性是该 checkbox 对应的值，若该标签中无内容，则该属性也充当 checkbox 按钮后的介绍。`label`与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。
 
 ```html
 <template>
-  <el-checkbox-group v-model="checkList">
-    <el-checkbox label="复选框 A"></el-checkbox>
-    <el-checkbox label="复选框 B"></el-checkbox>
-    <el-checkbox label="复选框 C"></el-checkbox>
-    <el-checkbox label="禁用" disabled></el-checkbox>
-    <el-checkbox label="选中且禁用" disabled></el-checkbox>
-  </el-checkbox-group>
+  <lvx-checkbox-group v-model="checkList">
+    <lvx-checkbox label="复选框 A"></lvx-checkbox>
+    <lvx-checkbox label="复选框 B"></lvx-checkbox>
+    <lvx-checkbox label="复选框 C"></lvx-checkbox>
+    <lvx-checkbox label="禁用" disabled></lvx-checkbox>
+    <lvx-checkbox label="选中且禁用" disabled></lvx-checkbox>
+  </lvx-checkbox-group>
 </template>
 
 <script>
@@ -152,11 +152,11 @@
 
 ```html
 <template>
-  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+  <lvx-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</lvx-checkbox>
   <div style="margin: 15px 0;"></div>
-  <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
-    <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-  </el-checkbox-group>
+  <lvx-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+    <lvx-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</lvx-checkbox>
+  </lvx-checkbox-group>
 </template>
 <script>
   const cityOptions = ['上海', '北京', '广州', '深圳'];
@@ -193,12 +193,12 @@
 
 ```html
 <template>
-  <el-checkbox-group 
+  <lvx-checkbox-group 
     v-model="checkedCities1"
     :min="1"
     :max="2">
-    <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-  </el-checkbox-group>
+    <lvx-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</lvx-checkbox>
+  </lvx-checkbox-group>
 </template>
 <script>
   const cityOptions = ['上海', '北京', '广州', '深圳'];
@@ -219,28 +219,28 @@
 
 按钮样式的多选组合。
 
-:::demo 只需要把`el-checkbox`元素替换为`el-checkbox-button`元素即可。此外，Element 还提供了`size`属性。
+:::demo 只需要把`lvx-checkbox`元素替换为`lvx-checkbox-button`元素即可。此外，Element 还提供了`size`属性。
 ```html
 <template>
   <div>
-    <el-checkbox-group v-model="checkboxGroup1">
-      <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <lvx-checkbox-group v-model="checkboxGroup1">
+      <lvx-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</lvx-checkbox-button>
+    </lvx-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup2" size="medium">
-      <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <lvx-checkbox-group v-model="checkboxGroup2" size="medium">
+      <lvx-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</lvx-checkbox-button>
+    </lvx-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup3" size="small">
-      <el-checkbox-button v-for="city in cities" :label="city" :disabled="city === '北京'" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <lvx-checkbox-group v-model="checkboxGroup3" size="small">
+      <lvx-checkbox-button v-for="city in cities" :label="city" :disabled="city === '北京'" :key="city">{{city}}</lvx-checkbox-button>
+    </lvx-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup4" size="mini" disabled>
-      <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <lvx-checkbox-group v-model="checkboxGroup4" size="mini" disabled>
+      <lvx-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</lvx-checkbox-button>
+    </lvx-checkbox-group>
   </div>
 </template>
 <script>
@@ -266,24 +266,24 @@
 ```html
 <template>
   <div>
-    <el-checkbox v-model="checked3" label="备选项1" border></el-checkbox>
-    <el-checkbox v-model="checked4" label="备选项2" border></el-checkbox>
+    <lvx-checkbox v-model="checked3" label="备选项1" border></lvx-checkbox>
+    <lvx-checkbox v-model="checked4" label="备选项2" border></lvx-checkbox>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox v-model="checked5" label="备选项1" border size="medium"></el-checkbox>
-    <el-checkbox v-model="checked6" label="备选项2" border size="medium"></el-checkbox>
+    <lvx-checkbox v-model="checked5" label="备选项1" border size="medium"></lvx-checkbox>
+    <lvx-checkbox v-model="checked6" label="备选项2" border size="medium"></lvx-checkbox>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup5" size="small">
-      <el-checkbox label="备选项1" border></el-checkbox>
-      <el-checkbox label="备选项2" border disabled></el-checkbox>
-    </el-checkbox-group>
+    <lvx-checkbox-group v-model="checkboxGroup5" size="small">
+      <lvx-checkbox label="备选项1" border></lvx-checkbox>
+      <lvx-checkbox label="备选项2" border disabled></lvx-checkbox>
+    </lvx-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup6" size="mini" disabled>
-      <el-checkbox label="备选项1" border></el-checkbox>
-      <el-checkbox label="备选项2" border></el-checkbox>
-    </el-checkbox-group>
+    <lvx-checkbox-group v-model="checkboxGroup6" size="mini" disabled>
+      <lvx-checkbox label="备选项1" border></lvx-checkbox>
+      <lvx-checkbox label="备选项2" border></lvx-checkbox>
+    </lvx-checkbox-group>
   </div>
 </template>
 
@@ -310,13 +310,13 @@
 
 ``` html
 <template>
-  <el-checkbox-group v-model="checkList" >
-    <el-checkbox label="复选框 A" class="checkbox"></el-checkbox>
-    <el-checkbox label="复选框 B" class="checkbox"></el-checkbox>
-    <el-checkbox label="复选框 C" class="checkbox"></el-checkbox>
-    <el-checkbox label="禁用" class="checkbox" disabled></el-checkbox>
-    <el-checkbox label="选中且禁用" class="checkbox" disabled></el-checkbox>
-  </el-checkbox-group>
+  <lvx-checkbox-group v-model="checkList" >
+    <lvx-checkbox label="复选框 A" class="checkbox"></lvx-checkbox>
+    <lvx-checkbox label="复选框 B" class="checkbox"></lvx-checkbox>
+    <lvx-checkbox label="复选框 C" class="checkbox"></lvx-checkbox>
+    <lvx-checkbox label="禁用" class="checkbox" disabled></lvx-checkbox>
+    <lvx-checkbox label="选中且禁用" class="checkbox" disabled></lvx-checkbox>
+  </lvx-checkbox-group>
 </template>
 <script type="text/javascript">
   export default {
@@ -331,20 +331,20 @@
   .checkbox{
     color: #333;
   }
-  .checkbox .el-checkbox__inner:hover{
+  .checkbox .lvx-checkbox__inner:hover{
     border-color: #6297ff;
   }
-  .checkbox .el-checkbox__input.is-checked .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-checked .lvx-checkbox__inner{
     background-color: #4081ff;
     border-color: #4081ff;
   }
-  .checkbox .el-checkbox__input.is-checked + .el-checkbox__label{
+  .checkbox .lvx-checkbox__input.is-checked + .lvx-checkbox__label{
     color: #333;
   }
-  .checkbox .el-checkbox__input.is-disabled .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-disabled .lvx-checkbox__inner{
     border-color: #d9d9d9;
   }
-  .checkbox .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-disabled.is-checked .lvx-checkbox__inner{
     background-color: #f7f7f7;
     border-color: #d9d9d9;
   }

@@ -1,11 +1,11 @@
 <template>
-  <div class="el-color-svpanel"
+  <div :class="[`${$clsPrefix}-color-svpanel`]"
       :style="{
         backgroundColor: background
       }">
-    <div class="el-color-svpanel__white"></div>
-    <div class="el-color-svpanel__black"></div>
-    <div class="el-color-svpanel__cursor"
+    <div :class="[`${$clsPrefix}-color-svpanel__white`]"></div>
+    <div :class="[`${$clsPrefix}-color-svpanel__black`]"></div>
+    <div :class="[`${$clsPrefix}-color-svpanel__cursor`]"
       :style="{
         top: cursorTop + 'px',
         left: cursorLeft + 'px'

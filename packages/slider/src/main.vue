@@ -1,16 +1,16 @@
 <template>
-  <div class="el-slider"
-    :class="{ 'is-vertical': vertical, 'el-slider--with-input': showInput }"
+  <div 
+    :class="[`${$clsPrefix}-slider`, { 'is-vertical': vertical, [`${$clsPrefix}-slider--with-input`]: showInput }]"
      role="slider"
      :aria-valuemin="min"
      :aria-valuemax="max"
      :aria-orientation="vertical ? 'vertical': 'horizontal'"
      :aria-disabled="disabled"
   >
-    <el-input-number
+    <lvx-input-number
       v-model="firstValue"
       v-if="showInput && !range"
-      class="el-slider__input"
+      :class="[`${$clsPrefix}-slider__input`]"
       ref="input"
       @change="$nextTick(emitChange)"
       :step="step"
@@ -20,14 +20,14 @@
       :max="max"
       :debounce="debounce"
       size="small">
-    </el-input-number>
-    <div class="el-slider__runway"
-      :class="{ 'show-input': showInput, 'disabled': disabled }"
+    </lvx-input-number>
+    <div 
+      :class="[`${$clsPrefix}-slider__runway`, { 'show-input': showInput, 'disabled': disabled }]"
       :style="runwayStyle"
       @click="onSliderClick"
       ref="slider">
       <div
-        class="el-slider__bar"
+        :class="[`${$clsPrefix}-slider__bar`]"
         :style="barStyle">
       </div>
       <slider-button
@@ -42,7 +42,7 @@
         v-if="range">
       </slider-button>
       <div
-        class="el-slider__stop"
+        :class="[`${$clsPrefix}-slider__stop`]"
         v-for="item in stops"
         :style="vertical ? { 'bottom': item + '%' } : { 'left': item + '%' }"
         v-if="showStops">
@@ -52,12 +52,12 @@
 </template>
 
 <script type="text/babel">
-  import ElInputNumber from 'element-ui/packages/input-number';
+  import InputNumber from '~/packages/input-number';
   import SliderButton from './button.vue';
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElSlider',
+    name: 'Slider',
 
     mixins: [Emitter],
 
@@ -120,7 +120,7 @@
     },
 
     components: {
-      ElInputNumber,
+      'LvxInputNumber': InputNumber,
       SliderButton
     },
 
@@ -198,7 +198,7 @@
             this.firstValue = val[0];
             this.secondValue = val[1];
             if (this.valueChanged()) {
-              this.dispatch('ElFormItem', 'el.form.change', [this.minValue, this.maxValue]);
+              this.dispatch('FormItem', 'event.form.change', [this.minValue, this.maxValue]);
               this.oldValue = val.slice();
             }
           }
@@ -210,7 +210,7 @@
           } else {
             this.firstValue = val;
             if (this.valueChanged()) {
-              this.dispatch('ElFormItem', 'el.form.change', val);
+              this.dispatch('FormItem', 'event.form.change', val);
               this.oldValue = val;
             }
           }

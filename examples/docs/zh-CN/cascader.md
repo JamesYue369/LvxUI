@@ -249,12 +249,12 @@
 
 <style>
   .demo-cascader {
-    .el-cascader {
+    .lvx-cascader {
       width: 222px;
     }
   }
   .demo-cascader-size {
-    .el-cascader {
+    .lvx-cascader {
       vertical-align: top;
       margin-right: 15px;
     }
@@ -290,20 +290,20 @@
 ```html
 <div class="block">
   <span class="demonstration">默认 click 触发子菜单</span>
-  <el-cascader
+  <lvx-cascader
     :options="options"
     v-model="selectedOptions"
     @change="handleChange">
-  </el-cascader>
+  </lvx-cascader>
 </div>
 <div class="block">
   <span class="demonstration">hover 触发子菜单</span>
-  <el-cascader
+  <lvx-cascader
     expand-trigger="hover"
     :options="options"
     v-model="selectedOptions2"
     @change="handleChange">
-  </el-cascader>
+  </lvx-cascader>
 </div>
 
 <script>
@@ -525,9 +525,9 @@
 
 :::demo 本例中，`options`指定的数组中的第一个元素含有`disabled: true`键值对，因此是禁用的。在默认情况下，Cascader 会检查数据中每一项的`disabled`字段是否为`true`，如果你的数据中表示禁用含义的字段名不为`disabled`，可以通过`props`属性来指定（详见下方 API 表格）。当然，`value`、`label`和`children`这三个字段名也可以通过同样的方式指定。
 ```html
-<el-cascader
+<lvx-cascader
   :options="optionsWithDisabled"
-></el-cascader>
+></lvx-cascader>
 <script>
   export default {
     data() {
@@ -741,10 +741,10 @@
 
 :::demo 属性`show-all-levels`定义了是否显示完整的路径，将其赋值为`false`则仅显示最后一级
 ```html
-<el-cascader
+<lvx-cascader
   :options="options"
   :show-all-levels="false"
-></el-cascader>
+></lvx-cascader>
 <script>
   export default {
     data() {
@@ -955,10 +955,10 @@
 
 :::demo 默认值通过数组的方式指定。
 ```html
-<el-cascader
+<lvx-cascader
   :options="options"
   v-model="selectedOptions3"
-></el-cascader>
+></lvx-cascader>
 <script>
   export default {
     data() {
@@ -1172,10 +1172,10 @@
 
 :::demo 若需要允许用户选择任意一级选项，则可将`change-on-select`赋值为`true`
 ```html
-<el-cascader
+<lvx-cascader
   :options="options"
   change-on-select
-></el-cascader>
+></lvx-cascader>
 <script>
   export default {
     data() {
@@ -1388,11 +1388,11 @@
 
 :::demo 本例的选项数据源在初始化时不包含城市数据。利用`active-item-change`事件，可以在用户点击某个省份时拉取该省份下的城市数据。此外，本例还展示了`props`属性的用法。
 ```html
-<el-cascader
+<lvx-cascader
   :options="options2"
   @active-item-change="handleItemChange"
   :props="props"
-></el-cascader>
+></lvx-cascader>
 
 <script>
   export default {
@@ -1441,20 +1441,20 @@
 ```html
 <div class="block">
   <span class="demonstration">只可选择最后一级菜单的选项</span>
-  <el-cascader
+  <lvx-cascader
     placeholder="试试搜索：指南"
     :options="options"
     filterable
-  ></el-cascader>
+  ></lvx-cascader>
 </div>
 <div class="block">
   <span class="demonstration">可选择任意一级菜单的选项</span>
-  <el-cascader
+  <lvx-cascader
     placeholder="试试搜索：指南"
     :options="options"
     filterable
     change-on-select
-  ></el-cascader>
+  ></lvx-cascader>
 </div>
 
 <script>

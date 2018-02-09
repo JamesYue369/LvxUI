@@ -1,10 +1,9 @@
 <template>
   <div
-    class="el-slider__button-wrapper"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
     @mousedown="onButtonDown"
-    :class="{ 'hover': hovering, 'dragging': dragging }"
+    :class="[`${$clsPrefix}-slider__button-wrapper`, { 'hover': hovering, 'dragging': dragging }]"
     :style="wrapperStyle"
     ref="button"
     tabindex="0"
@@ -15,21 +14,21 @@
     @keydown.down.prevent="onLeftKeyDown"
     @keydown.up.prevent="onRightKeyDown"
   >
-    <el-tooltip placement="top" ref="tooltip" :disabled="!showTooltip">
+    <lvx-tooltip placement="top" ref="tooltip" :disabled="!showTooltip">
       <span slot="content">{{ formatValue }}</span>
-      <div class="el-slider__button" :class="{ 'hover': hovering, 'dragging': dragging }"></div>
-    </el-tooltip>
+      <div  :class="[`${$clsPrefix}-slider__button`, { 'hover': hovering, 'dragging': dragging }]"></div>
+    </lvx-tooltip>
   </div>
 </template>
 
 <script>
-  import ElTooltip from 'element-ui/packages/tooltip';
+  import Tooltip from '~/packages/tooltip';
 
   export default {
-    name: 'ElSliderButton',
+    name: 'SliderButton',
 
     components: {
-      ElTooltip
+      'LvxTooltip': Tooltip
     },
 
     props: {

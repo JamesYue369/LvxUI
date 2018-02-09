@@ -111,21 +111,21 @@ DateTimePicker 由 DatePicker 和 TimePicker 派生，`Picker Options` 或者其
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value1"
       type="datetime"
       placeholder="选择日期时间">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value2"
       type="datetime"
       placeholder="选择日期时间"
       align="right"
       :picker-options="pickerOptions1">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
 </template>
 
@@ -171,17 +171,17 @@ DateTimePicker 由 DatePicker 和 TimePicker 派生，`Picker Options` 或者其
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value3"
       type="datetimerange"
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value4"
       type="datetimerange"
       :picker-options="pickerOptions2"
@@ -189,7 +189,7 @@ DateTimePicker 由 DatePicker 和 TimePicker 派生，`Picker Options` 或者其
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       align="right">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
 </template>
 
