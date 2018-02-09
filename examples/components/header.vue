@@ -6,7 +6,6 @@
   .header {
     height: 80px;
     background-color: #fff;
-    color: #fff;
     top: 0;
     left: 0;
     width: 100%;
@@ -274,10 +273,7 @@
             </router-link>
           </li>
            <li class="nav-item">
-            <router-link
-              active-class="active"
-              :to="`/${ lang }/demo`">{{ langConfig.demo }}
-            </router-link>
+           {{ langConfig.eco }}
           </li>
          <!--  <li class="nav-item">
             <router-link
@@ -383,7 +379,7 @@
 
       switchLang(targetLang) {
         if (this.lang === targetLang) return;
-        localStorage.setItem('ELEMENT_LANGUAGE', targetLang);
+        localStorage.setItem('_LANGUAGE', targetLang);
         this.$router.push(this.$route.path.replace(this.lang, targetLang));
       },
 

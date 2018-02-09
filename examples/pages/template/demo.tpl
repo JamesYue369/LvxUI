@@ -136,53 +136,53 @@
   .radio{
     color: #333;
   }
-  .radio .el-radio__inner:hover{
+  .radio .lvx-radio__inner:hover{
     border-color: #6297ff;
   }
-  .radio .is-checked .el-radio__inner{
+  .radio .is-checked .lvx-radio__inner{
     background: none;
     border-color: #4081ff;
   }
-  .radio .is-checked .el-radio__inner .afterVNode{
+  .radio .is-checked .lvx-radio__inner .afterVNode{
     width: 6px;
     height: 6px;
     background-color: #4081ff;
   }
-  .radio .el-radio__input.is-checked + .el-radio__label {
+  .radio .lvx-radio__input.is-checked + .lvx-radio__label {
     color: #333;
   }
   .checkbox{
     color: #333;
   }
-  .checkbox .el-checkbox__inner:hover{
+  .checkbox .lvx-checkbox__inner:hover{
     border-color: #6297ff;
   }
-  .checkbox .el-checkbox__input.is-checked .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-checked .lvx-checkbox__inner{
     background-color: #4081ff;
     border-color: #4081ff;
   }
-  .checkbox .el-checkbox__input.is-checked + .el-checkbox__label{
+  .checkbox .lvx-checkbox__input.is-checked + .lvx-checkbox__label{
     color: #333;
   }
-  .checkbox .el-checkbox__input.is-disabled .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-disabled .lvx-checkbox__inner{
     border-color: #d9d9d9;
   }
-  .checkbox .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner{
+  .checkbox .lvx-checkbox__input.is-disabled.is-checked .lvx-checkbox__inner{
     background-color: #f7f7f7;
     border-color: #d9d9d9;
   }
   .input{
 
   }
-  .input .el-input__inner{
+  .input .lvx-input__inner{
     border-color: #f04143;
   }
-  .input.is-disabled .el-input__inner {
+  .input.is-disabled .lvx-input__inner {
     background-color: #f7f7f7;
     border-color: #d9d9d9;
   }
 
-  .el-carousel__item h3 {
+  .lvx-carousel__item h3 {
     color: #475669;
     font-size: 14px;
     opacity: 0.75;
@@ -190,11 +190,11 @@
     margin: 0;
   }
   
-  .el-carousel__item:nth-child(2n) {
+  .lvx-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
   }
   
-  .el-carousel__item:nth-child(2n+1) {
+  .lvx-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
   .pager-style{
@@ -222,7 +222,7 @@
     text-align: center;
     margin-top: 5px;
   }
-  .user-img .avatar-uploader .el-upload {
+  .user-img .avatar-uploader .lvx-upload {
     font-size: 12px;
     color: #959595;
   }
@@ -230,159 +230,159 @@
 <template>
   <div>
     <div>
-      <el-button>默认按钮</el-button>
-      <el-button class="btn1" >自定义颜色</el-button>
-      <el-button class="btn2">自定义颜色</el-button>
-      <el-button  class="btn3">自定义样式</el-button>
-      <el-button  class="btn4">自定义边框</el-button>
+      <lvx-button>默认按钮</lvx-button>
+      <lvx-button class="btn1" >自定义颜色</lvx-button>
+      <lvx-button class="btn2">自定义颜色</lvx-button>
+      <lvx-button  class="btn3">自定义样式</lvx-button>
+      <lvx-button  class="btn4">自定义边框</lvx-button>
     </br>
      </br>
-      <el-button class="btn1 btn" disabled>自定义颜色</el-button>
-      <el-button class="btn2 btn" disabled>自定义颜色</el-button>
-      <el-button  class="btn3 btn" disabled>自定义样式</el-button>
-      <el-button  class="btn4 btn" disabled>自定义边框</el-button>
+      <lvx-button class="btn1 btn" disabled>自定义颜色</lvx-button>
+      <lvx-button class="btn2 btn" disabled>自定义颜色</lvx-button>
+      <lvx-button  class="btn3 btn" disabled>自定义样式</lvx-button>
+      <lvx-button  class="btn4 btn" disabled>自定义边框</lvx-button>
     </div>
     
-    <el-radio-group v-model="radio2" >
-      <el-radio disabled :label="3" class="radio">备选项</el-radio>
-      <el-radio  :label="6" class="radio">备选项</el-radio>
-      <el-radio  :label="9" class="radio">备选项</el-radio>
-    </el-radio-group>
-    <el-checkbox-group v-model="checkList" >
-      <el-checkbox label="复选框 A" class="checkbox"></el-checkbox>
-      <el-checkbox label="复选框 B" class="checkbox"></el-checkbox>
-      <el-checkbox label="复选框 C" class="checkbox"></el-checkbox>
-      <el-checkbox label="禁用" class="checkbox" disabled></el-checkbox>
-      <el-checkbox label="选中且禁用" class="checkbox" disabled></el-checkbox>
-    </el-checkbox-group>
+    <lvx-radio-group v-model="radio2" >
+      <lvx-radio disabled :label="3" class="radio">备选项</lvx-radio>
+      <lvx-radio  :label="6" class="radio">备选项</lvx-radio>
+      <lvx-radio  :label="9" class="radio">备选项</lvx-radio>
+    </lvx-radio-group>
+    <lvx-checkbox-group v-model="checkList" >
+      <lvx-checkbox label="复选框 A" class="checkbox"></lvx-checkbox>
+      <lvx-checkbox label="复选框 B" class="checkbox"></lvx-checkbox>
+      <lvx-checkbox label="复选框 C" class="checkbox"></lvx-checkbox>
+      <lvx-checkbox label="禁用" class="checkbox" disabled></lvx-checkbox>
+      <lvx-checkbox label="选中且禁用" class="checkbox" disabled></lvx-checkbox>
+    </lvx-checkbox-group>
 
-    <el-breadcrumb separator="/" :item-style="itemStyle" :last-item-style="lastItemStyle">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item class="item-active">活动详情</el-breadcrumb-item>
-    </el-breadcrumb>
+    <lvx-breadcrumb separator="/" :item-style="itemStyle" :last-item-style="lastItemStyle">
+      <lvx-breadcrumb-item :to="{ path: '/' }">首页</lvx-breadcrumb-item>
+      <lvx-breadcrumb-item>活动管理</lvx-breadcrumb-item>
+      <lvx-breadcrumb-item>活动列表</lvx-breadcrumb-item>
+      <lvx-breadcrumb-item class="item-active">活动详情</lvx-breadcrumb-item>
+    </lvx-breadcrumb>
     <div style="width:250px">
-      <el-input
+      <lvx-input
         class="input"
         size="small"
         placeholder="请选择日期"
         v-model="input22">
-        <i slot="suffix" class="el-input__icon el-icon-date"></i>
-      </el-input>
-       <el-input
+        <i slot="suffix" class="lvx-input__icon lvx-icon-date"></i>
+      </lvx-input>
+       <lvx-input
         class="input"
         :disabled="disabled"
         size="small"
         placeholder="请选择日期"
         >
-        <i slot="suffix" class="el-input__icon el-icon-date"></i>
-      </el-input>
+        <i slot="suffix" class="lvx-input__icon lvx-icon-date"></i>
+      </lvx-input>
       
     </div>
     <div>
-      <el-steps :active="active" finish-status="success" >
-        <el-step title="步骤 1"></el-step>
-        <el-step title="步骤 2"></el-step>
-        <el-step title="步骤 3"></el-step>
-      </el-steps>
+      <lvx-steps :active="active" finish-status="success" >
+        <lvx-step title="步骤 1"></lvx-step>
+        <lvx-step title="步骤 2"></lvx-step>
+        <lvx-step title="步骤 3"></lvx-step>
+      </lvx-steps>
 
-      <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+      <lvx-button style="margin-top: 12px;" @click="next">下一步</lvx-button>
 
-      <el-steps :active="2" align-center :line-type="lineType">
-        <el-step title="步骤1" description="这是一段很长很长很长的描述性文字"></el-step>
-        <el-step title="步骤2" description="这是一段很长很长很长的描述性文字"></el-step>
-        <el-step title="步骤3" description="这是一段很长很长很长的描述性文字"></el-step>
-        <el-step title="步骤4" description="这是一段很长很长很长的描述性文字"></el-step>
-      </el-steps>
+      <lvx-steps :active="2" align-center :line-type="lineType">
+        <lvx-step title="步骤1" description="这是一段很长很长很长的描述性文字"></lvx-step>
+        <lvx-step title="步骤2" description="这是一段很长很长很长的描述性文字"></lvx-step>
+        <lvx-step title="步骤3" description="这是一段很长很长很长的描述性文字"></lvx-step>
+        <lvx-step title="步骤4" description="这是一段很长很长很长的描述性文字"></lvx-step>
+      </lvx-steps>
 
       <div style="height:300px">
-        <el-steps direction="vertical" :active="active1" >
-          <el-step title="步骤 1"></el-step>
-          <el-step title="步骤 2"></el-step>
-          <el-step title="步骤 3"></el-step>
-        </el-steps>
+        <lvx-steps direction="vertical" :active="active1" >
+          <lvx-step title="步骤 1"></lvx-step>
+          <lvx-step title="步骤 2"></lvx-step>
+          <lvx-step title="步骤 3"></lvx-step>
+        </lvx-steps>
         
       </div> 
-      <el-button style="margin-top: 12px;" @click="next1">下一步</el-button>   
+      <lvx-button style="margin-top: 12px;" @click="next1">下一步</lvx-button>   
       <div style="height:300px">
-        <el-steps direction="vertical" :active="active1" :line-type="lineType">
-          <el-step title="步骤 1"></el-step>
-          <el-step title="步骤 2"></el-step>
-          <el-step title="步骤 3"></el-step>
-        </el-steps>
+        <lvx-steps direction="vertical" :active="active1" :line-type="lineType">
+          <lvx-step title="步骤 1"></lvx-step>
+          <lvx-step title="步骤 2"></lvx-step>
+          <lvx-step title="步骤 3"></lvx-step>
+        </lvx-steps>
         
       </div>    
-      <el-button style="margin-top: 12px;" @click="next1">下一步</el-button>
+      <lvx-button style="margin-top: 12px;" @click="next1">下一步</lvx-button>
     </div>
     <div>
-      <el-button :plain="true" @click="open2">成功</el-button>
-      <el-button :plain="true" @click="open3">警告</el-button>
-      <el-button :plain="true" @click="open">消息</el-button>
-      <el-button :plain="true" @click="open4">错误</el-button>
+      <lvx-button :plain="true" @click="open2">成功</lvx-button>
+      <lvx-button :plain="true" @click="open3">警告</lvx-button>
+      <lvx-button :plain="true" @click="open">消息</lvx-button>
+      <lvx-button :plain="true" @click="open4">错误</lvx-button>
     </div>
     <div>
-       <el-table
+       <lvx-table
         :data="tableData"
         style="width: 100%"
         :headerRowStyle="headerStyle"
         :headerCellStyle="headerCellStyle"
         :cell-style="cellStyle"
         >
-        <el-table-column
+        <lvx-table-column
           label="日期"
           width="180"
           >
           <template slot-scope="scope">
-            <i class="el-icon-time"></i>
+            <i class="lvx-icon-time"></i>
             <span style="margin-left: 10px">{{ scope.row.date }}</span>
           </template>
-        </el-table-column>
-        <el-table-column
+        </lvx-table-column>
+        <lvx-table-column
           label="姓名"
           width="180">
           <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
+            <lvx-popover trigger="hover" placement="top">
               <p>姓名: {{ scope.row.name }}</p>
               <p>住址: {{ scope.row.address }}</p>
               <div slot="reference" class="name-wrapper">
-                <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                <lvx-tag size="medium">{{ scope.row.name }}</lvx-tag>
               </div>
-            </el-popover>
+            </lvx-popover>
           </template>
-        </el-table-column>
-        <el-table-column label="操作">
+        </lvx-table-column>
+        <lvx-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="text">编辑</el-button>
-            <el-button type="text">删除</el-button>
+            <lvx-button type="text">编辑</lvx-button>
+            <lvx-button type="text">删除</lvx-button>
             
           </template>
-        </el-table-column>
-      </el-table>
+        </lvx-table-column>
+      </lvx-table>
     </div>
     <div>
-      <el-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</el-button>
-      <el-button
+      <lvx-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</lvx-button>
+      <lvx-button
         type="primary"
         @click="openFullScreen2">
         loading...
-      </el-button>
-      <el-dialog
+      </lvx-button>
+      <lvx-dialog
         :visible.sync="centerDialogVisible"
         width="30%"
         titleClass="dialog-title"
         >
         <span slot="title">本地上传</span>
-        <i slot="close" class="el-icon-circle-close"></i>
+        <i slot="close" class="lvx-icon-circle-close"></i>
         <div class="dialog-content">
           <span>文件上传</span>
           <span>pdf上传</span>
           <span>图片上传</span>
         </div>
-      </el-dialog>
+      </lvx-dialog>
     </div>
     <div>
-      <el-pagination
+      <lvx-pagination
         layout="prev, pager, next"
         :more-pages="morePages"
         :more-style="moreStyle"
@@ -393,25 +393,25 @@
         active-class="page-active-style"
         :active-style="pagerActiveStyle"
         :total="1000">
-      </el-pagination>
+      </lvx-pagination>
     </div>
     <div class="user-img">
       <img v-if="imageUrl" :src="imageUrl" class="avatar">
-      <el-upload
+      <lvx-upload
         class="avatar-uploader"
         action="https://jsonplaceholder.typicode.com/posts/"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
         >
-        <i class="el-icon-setting"></i>修改头像
-      </el-upload>
+        <i class="lvx-icon-setting"></i>修改头像
+      </lvx-upload>
     </div>
     <div>
-      <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="item in 6" :key="item">
+      <lvx-carousel :interval="4000" type="card" height="200px">
+        <lvx-carousel-item v-for="item in 6" :key="item">
           <h3>{{ item }}</h3>
-        </el-carousel-item>
-      </el-carousel>
+        </lvx-carousel-item>
+      </lvx-carousel>
     </div>
   </div>
 </template>

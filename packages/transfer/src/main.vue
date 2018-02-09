@@ -1,38 +1,38 @@
 <template>
-  <div class="el-transfer">
+  <div :class="[`${$clsPrefix}-transfer`]">
     <transfer-panel
       v-bind="$props"
       :data="sourceData"
-      :title="titles[0] || t('el.transfer.titles.0')"
+      :title="titles[0] || t('lang.transfer.titles.0')"
       :default-checked="leftDefaultChecked"
-      :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
+      :placeholder="filterPlaceholder || t('lang.transfer.filterPlaceholder')"
       @checked-change="onSourceCheckedChange">
       <slot name="left-footer"></slot>
     </transfer-panel>
-    <div class="el-transfer__buttons">
-      <el-button
+    <div :class="[`${$clsPrefix}-transfer__buttons`]">
+      <lvx-button
         type="primary"
-        :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
+        :class="[`${$clsPrefix}-transfer__button`, hasButtonTexts ? 'is-with-texts' : '']"
         @click.native="addToLeft"
         :disabled="rightChecked.length === 0">
-        <i class="el-icon-arrow-left"></i>
+        <i :class="[`${$clsPrefix}-icon-arrow-left`]"></i>
         <span v-if="buttonTexts[0] !== undefined">{{ buttonTexts[0] }}</span>
-      </el-button>
-      <el-button
+      </lvx-button>
+      <lvx-button
         type="primary"
-        :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
+        :class="[`${$clsPrefix}-transfer__button`, hasButtonTexts ? 'is-with-texts' : '']"
         @click.native="addToRight"
         :disabled="leftChecked.length === 0">
         <span v-if="buttonTexts[1] !== undefined">{{ buttonTexts[1] }}</span>
-        <i class="el-icon-arrow-right"></i>
-      </el-button>
+        <i :class="[`${$clsPrefix}-icon-arrow-right`]"></i>
+      </lvx-button>
     </div>
     <transfer-panel
       v-bind="$props"
       :data="targetData"
-      :title="titles[1] || t('el.transfer.titles.1')"
+      :title="titles[1] || t('lang.transfer.titles.1')"
       :default-checked="rightDefaultChecked"
-      :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
+      :placeholder="filterPlaceholder || t('lang.transfer.filterPlaceholder')"
       @checked-change="onTargetCheckedChange">
       <slot name="right-footer"></slot>
     </transfer-panel>
@@ -40,20 +40,20 @@
 </template>
 
 <script>
-  import ElButton from 'element-ui/packages/button';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import Locale from 'element-ui/src/mixins/locale';
+  import Button from '~/packages/button';
+  import Emitter from '~/src/mixins/emitter';
+  import Locale from '~/src/mixins/locale';
   import TransferPanel from './transfer-panel.vue';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import Migrating from '~/src/mixins/migrating';
 
   export default {
-    name: 'ElTransfer',
+    name: 'Transfer',
 
     mixins: [Emitter, Locale, Migrating],
 
     components: {
       TransferPanel,
-      ElButton
+      'LvxButton': Button
     },
 
     props: {
@@ -141,7 +141,7 @@
 
     watch: {
       value(val) {
-        this.dispatch('ElFormItem', 'el.form.change', val);
+        this.dispatch('FormItem', 'event.form.change', val);
       }
     },
 

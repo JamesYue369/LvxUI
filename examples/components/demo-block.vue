@@ -22,18 +22,18 @@
       <transition name="text-slide">
         <span v-show="hovering">{{ controlText }}</span>
       </transition>
-      <el-tooltip effect="dark" :content="langConfig['tooltip-text']" placement="right">
+      <lvx-tooltip effect="dark" :content="langConfig['tooltip-text']" placement="right">
         <transition name="text-slide">
-          <el-button
+          <lvx-button
             v-show="hovering || isExpanded"
             size="small"
             type="text"
             class="control-button"
             @click.stop="goJsfiddle">
             {{ langConfig['button-text'] }}
-          </el-button>
+          </lvx-button>
         </transition>
-      </el-tooltip>
+      </lvx-tooltip>
     </div>
   </div>
 </template>
@@ -261,7 +261,7 @@
       },
 
       iconClass() {
-        return this.isExpanded ? 'el-icon-caret-top' : 'el-icon-caret-bottom';
+        return this.isExpanded ? 'lvx-icon-caret-top' : 'lvx-icon-caret-bottom';
       },
 
       controlText() {
@@ -291,7 +291,7 @@
           return;
         }
         setTimeout(() => {
-          this.scrollParent = document.querySelector('.page-component__scroll > .el-scrollbar__wrap');
+          this.scrollParent = document.querySelector('.page-component__scroll > .lvx-scrollbar__wrap');
           this.scrollParent && this.scrollParent.addEventListener('scroll', this.scrollHandler);
           this.scrollHandler();
         }, 200);

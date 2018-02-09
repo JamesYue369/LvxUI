@@ -1,12 +1,12 @@
 import Pager from './pager.vue';
-import ElSelect from 'element-ui/packages/select';
-import ElOption from 'element-ui/packages/option';
-import ElInput from 'element-ui/packages/input';
-import Locale from 'element-ui/src/mixins/locale';
-import { valueEquals } from 'element-ui/src/utils/util';
+import Select from '~/packages/select';
+import Option from '~/packages/option';
+import Input from '~/packages/input';
+import Locale from '~/src/mixins/locale';
+import { valueEquals } from '~/src/utils/util';
 
 export default {
-  name: 'ElPagination',
+  name: 'Pagination',
 
   props: {
     pageSize: {
@@ -111,9 +111,9 @@ export default {
   },
 
   render(h) {
-    let template = <div class={['el-pagination', {
+    let template = <div class={[`${this.$clsPrefix}-pagination`, {
       'is-background': this.background,
-      'el-pagination--small': this.small
+      [`${this.$clsPrefix}-pagination--small`]: this.small
     }] }></div>;
     const layout = this.layout || '';
     if (!layout) return;
@@ -137,7 +137,7 @@ export default {
       total: <total></total>
     };
     const components = layout.split(',').map((item) => item.trim());
-    const rightWrapper = <div class="el-pagination__rightwrapper"></div>;
+    const rightWrapper = <div class={`${this.$clsPrefix}-pagination__rightwrapper`}></div>;
     let haveRightWrapper = false;
 
     components.forEach(compo => {
@@ -181,7 +181,7 @@ export default {
             {
               this.$parent.prevText
                 ? <span>{ this.$parent.prevText }</span>
-                : <i class="el-icon el-icon-arrow-left"></i>
+                : <i class={`${this.$clsPrefix}-icon ${this.$clsPrefix}-icon-arrow-left`}></i>
             }
           </button>
         );
@@ -203,7 +203,7 @@ export default {
             {
               this.$parent.nextText
                 ? <span>{ this.$parent.nextText }</span>
-                : <i class="el-icon el-icon-arrow-right"></i>
+                : <i class={`${this.$clsPrefix}-icon ${this.$clsPrefix}-icon-arrow-right`}></i>
             }
           </button>
         );
@@ -233,27 +233,27 @@ export default {
 
       render(h) {
         return (
-          <span class="el-pagination__sizes">
-            <el-select
+          <span class={`${this.$clsPrefix}-pagination__sizes`}>
+            <lvx-select
               value={ this.$parent.internalPageSize }
               popperClass={ `${this.$parent.popperClass || ''} is-arrow-fixed` }
               on-input={ this.handleChange }>
               {
                 this.pageSizes.map(item =>
-                  <el-option
+                  <lvx-option
                     value={ item }
-                    label={ item + this.t('el.pagination.pagesize') }>
-                  </el-option>
+                    label={ item + this.t('lang.pagination.pagesize') }>
+                  </lvx-option>
                 )
               }
-            </el-select>
+            </lvx-select>
           </span>
         );
       },
 
       components: {
-        ElSelect,
-        ElOption
+        'LvxSelect': Select,
+        'LvxOption': Option
       },
 
       methods: {
@@ -275,7 +275,9 @@ export default {
         };
       },
 
-      components: { ElInput },
+      components: {
+        'LvxInput': Input
+      },
 
       methods: {
         handleFocus(event) {
@@ -309,10 +311,10 @@ export default {
 
       render(h) {
         return (
-          <span class="el-pagination__jump">
-            { this.t('el.pagination.goto') }
-            <el-input
-              class="el-pagination__editor is-in-pagination"
+          <span class={`${this.$clsPrefix}-pagination__jump`}>
+            { this.t('lang.pagination.goto') }
+            <lvx-input
+              class={`${this.$clsPrefix}-pagination__editor is-in-pagination`}
               min={ 1 }
               max={ this.$parent.internalPageCount }
               value={ this.$parent.internalCurrentPage }
@@ -322,7 +324,7 @@ export default {
               onChange={ this.handleChange }
               onFocus={ this.handleFocus }
               onBlur={ this.handleBlur }/>
-            { this.t('el.pagination.pageClassifier') }
+            { this.t('lang.pagination.pageClassifier') }
           </span>
         );
       }
@@ -334,7 +336,7 @@ export default {
       render(h) {
         return (
           typeof this.$parent.total === 'number'
-            ? <span class="el-pagination__total">{ this.t('el.pagination.total', { total: this.$parent.total }) }</span>
+            ? <span class={`${this.$clsPrefix}-pagination__total`}>{ this.t('lang.pagination.total', { total: this.$parent.total }) }</span>
             : ''
         );
       }

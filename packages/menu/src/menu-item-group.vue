@@ -1,6 +1,6 @@
 <template>
-  <li class="el-menu-item-group">
-    <div class="el-menu-item-group__title" :style="{paddingLeft: levelPadding + 'px'}">
+  <li :class="[`${$clsPrefix}-menu-item-group`]">
+    <div :class="[`${$clsPrefix}-menu-item-group__title`]" :style="{paddingLeft: levelPadding + 'px'}">
       <template v-if="!$slots.title">{{title}}</template>
       <slot v-else name="title"></slot>
     </div>
@@ -11,9 +11,9 @@
 </template>
 <script>
   export default {
-    name: 'ElMenuItemGroup',
+    name: 'MenuItemGroup',
 
-    componentName: 'ElMenuItemGroup',
+    componentName: 'MenuItemGroup',
 
     inject: ['rootMenu'],
     props: {
@@ -31,8 +31,8 @@
         let padding = 20;
         let parent = this.$parent;
         if (this.rootMenu.collapse) return 20;
-        while (parent && parent.$options.componentName !== 'ElMenu') {
-          if (parent.$options.componentName === 'ElSubmenu') {
+        while (parent && parent.$options.componentName !== 'Menu') {
+          if (parent.$options.componentName === 'Submenu') {
             padding += 20;
           }
           parent = parent.$parent;

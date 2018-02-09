@@ -2,19 +2,17 @@
   <table
     cellspacing="0"
     cellpadding="0"
-    class="el-date-table"
     @click="handleClick"
     @mousemove="handleMouseMove"
-    :class="{ 'is-week-mode': selectionMode === 'week' }">
+    :class="[`${$clsPrefix}-date-table`, { 'is-week-mode': selectionMode === 'week' }]">
     <tbody>
     <tr>
-      <th v-if="showWeekNumber">{{ t('el.datepicker.week') }}</th>
-      <th v-for="week in WEEKS">{{ t('el.datepicker.weeks.' + week) }}</th>
+      <th v-if="showWeekNumber">{{ t('lang.datepicker.week') }}</th>
+      <th v-for="week in WEEKS">{{ t('lang.datepicker.weeks.' + week) }}</th>
     </tr>
     <tr
-      class="el-date-table__row"
       v-for="row in rows"
-      :class="{ current: isWeekActive(row[1]) }">
+      :class="[`${$clsPrefix}-date-table__row`, { current: isWeekActive(row[1]) }]">
       <td
         v-for="cell in row"
         :class="getCellClasses(cell)">
@@ -31,8 +29,8 @@
 
 <script>
   import { getFirstDayOfMonth, getDayCountOfMonth, getWeekNumber, getStartDateOfMonth, nextDate, isDate } from '../util';
-  import { hasClass } from 'element-ui/src/utils/dom';
-  import Locale from 'element-ui/src/mixins/locale';
+  import { hasClass } from '~/src/utils/dom';
+  import Locale from '~/src/mixins/locale';
 
   const WEEKS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
   const clearHours = function(time) {

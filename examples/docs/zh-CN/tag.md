@@ -40,7 +40,7 @@
 
 <style>
   .demo-box.demo-tag {
-    .el-tag + .el-tag {
+    .lvx-tag + .lvx-tag {
       margin-left: 10px;
     }
     .button-new-tag {
@@ -66,11 +66,11 @@
 :::demo 由`type`属性来选择tag的类型，也可以通过`color`属性来自定义背景色。
 
 ```html
-<el-tag>标签一</el-tag>
-<el-tag type="success">标签二</el-tag>
-<el-tag type="info">标签三</el-tag>
-<el-tag type="warning">标签四</el-tag>
-<el-tag type="danger">标签五</el-tag>
+<lvx-tag>标签一</lvx-tag>
+<lvx-tag type="success">标签二</lvx-tag>
+<lvx-tag type="info">标签三</lvx-tag>
+<lvx-tag type="warning">标签四</lvx-tag>
+<lvx-tag type="danger">标签五</lvx-tag>
 ```
 :::
 
@@ -79,13 +79,13 @@
 :::demo 设置`closable`属性可以定义一个标签是否可移除。默认的标签移除时会附带渐变动画，如果不想使用，可以设置`disable-transitions`属性，它接受一个`Boolean`，true 为关闭。
 
 ```html
-<el-tag
+<lvx-tag
   v-for="tag in tags"
   :key="tag.name"
   closable
   :type="tag.type">
   {{tag.name}}
-</el-tag>
+</lvx-tag>
 
 <script>
   export default {
@@ -111,15 +111,15 @@
 
 :::demo
 ```html
-<el-tag
+<lvx-tag
   :key="tag"
   v-for="tag in dynamicTags"
   closable
   :disable-transitions="false"
   @close="handleClose(tag)">
   {{tag}}
-</el-tag>
-<el-input
+</lvx-tag>
+<lvx-input
   class="input-new-tag"
   v-if="inputVisible"
   v-model="inputValue"
@@ -128,11 +128,11 @@
   @keyup.enter.native="handleInputConfirm"
   @blur="handleInputConfirm"
 >
-</el-input>
-<el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+</lvx-input>
+<lvx-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</lvx-button>
 
 <style>
-  .el-tag + .el-tag {
+  .lvx-tag + .lvx-tag {
     margin-left: 10px;
   }
   .button-new-tag {
@@ -191,10 +191,10 @@ Tag 组件提供除了默认值以外的三种尺寸，可以在不同场景下�
 :::demo 额外的尺寸：`medium`、`small`、`mini`，通过设置`size`属性来配置它们。
 
 ```html
-<el-tag closable>默认标签</el-tag>
-<el-tag size="medium" closable>中等标签</el-tag>
-<el-tag size="small" closable>小型标签</el-tag>
-<el-tag size="mini" closable>超小标签</el-tag>
+<lvx-tag closable>默认标签</lvx-tag>
+<lvx-tag size="medium" closable>中等标签</lvx-tag>
+<lvx-tag size="small" closable>小型标签</lvx-tag>
+<lvx-tag size="mini" closable>超小标签</lvx-tag>
 ```
 :::
 

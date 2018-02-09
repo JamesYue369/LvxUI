@@ -107,21 +107,21 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value1"
       type="date"
       placeholder="选择日期">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value2"
       align="right"
       type="date"
       placeholder="选择日期"
       :picker-options="pickerOptions1">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
 </template>
 
@@ -171,29 +171,29 @@
 ```html
 <div class="block">
   <span class="demonstration">周</span>
-  <el-date-picker
+  <lvx-date-picker
     v-model="value3"
     type="week"
     format="yyyy 第 WW 周"
     placeholder="选择周">
-  </el-date-picker>
+  </lvx-date-picker>
 </div>
 <div class="block">
   <span class="demonstration">月</span>
-  <el-date-picker
+  <lvx-date-picker
     v-model="value4"
     type="month"
     placeholder="选择月">
-  </el-date-picker>
+  </lvx-date-picker>
 </div>
 <div class="block">
   <span class="demonstration">年</span>
-  <el-date-picker
+  <lvx-date-picker
     v-model="value5"
     align="right"
     type="year"
     placeholder="选择年">
-  </el-date-picker>
+  </lvx-date-picker>
 </div>
 
 <script>
@@ -219,17 +219,17 @@
 <template>
   <div class="block">
     <span class="demonstration">默认</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value6"
       type="daterange"
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">带快捷选项</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value7"
       type="daterange"
       align="right"
@@ -238,7 +238,7 @@
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       :picker-options="pickerOptions2">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
 </template>
 
@@ -292,22 +292,22 @@
 <template>
   <div class="block">
     <span class="demonstration">date</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value8"
       type="date"
       placeholder="选择日期"
       default-value="2010-10-01">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">daterange</span>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value9"
       type="daterange"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       default-value="2010-10-01">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
 </template>
 
@@ -339,23 +339,23 @@
   <div class="block">
     <span class="demonstration">默认为 Date 对象</span>
     <div class="demonstration">组件值：{{ value10 }}</div>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value10"
       type="date"
       placeholder="选择日期"
       format="yyyy 年 MM 月 dd 日">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
   <div class="block">
     <span class="demonstration">使用 value-format 进行格式化</span>
     <div class="demonstration">组件值：{{ value11 }}</div>
-    <el-date-picker
+    <lvx-date-picker
       v-model="value11"
       type="date"
       placeholder="选择日期"
       format="yyyy 年 MM 月 dd 日"
       value-format="yyyy-MM-dd">
-    </el-date-picker>
+    </lvx-date-picker>
   </div>
 </template>
 

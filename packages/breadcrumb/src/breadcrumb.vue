@@ -1,11 +1,11 @@
 <template>
-  <div class="el-breadcrumb" aria-label="Breadcrumb" role="navigation">
+  <div :class="[`${$clsPrefix}-breadcrumb`]" aria-label="Breadcrumb" role="navigation">
     <slot></slot>
   </div>
 </template>
 <script>
   export default {
-    name: 'ElBreadcrumb',
+    name: 'Breadcrumb',
 
     props: {
       separator: {
@@ -28,7 +28,7 @@
 
     provide() {
       return {
-        elBreadcrumb: this
+        lvxBreadcrumb: this
       };
     },
     beforeMount() {
@@ -37,7 +37,7 @@
       if (this.$slots.default.length > 1) {
         this.$slots.default[this.$slots.default.length - 1].componentInstance.lastItemStyle = this.lastItemStyle;
       }
-      const items = this.$el.querySelectorAll('.el-breadcrumb__item');
+      const items = this.$el.querySelectorAll(`.${this.$clsPrefix}-breadcrumb__item`);
       if (items.length) {
         items[items.length - 1].setAttribute('aria-current', 'page');
       }

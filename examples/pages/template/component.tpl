@@ -161,11 +161,11 @@
   }
 </style>
 <template>
-  <el-scrollbar class="page-component__scroll" ref="componentScrollBar">
+  <lvx-scrollbar class="page-component__scroll" ref="componentScrollBar">
   <div class="page-container page-component">
-    <el-scrollbar class="page-component__nav">
+    <lvx-scrollbar class="page-component__nav">
       <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"></side-nav>
-    </el-scrollbar>
+    </lvx-scrollbar>
     <div class="page-component__content">
       <router-view class="content"></router-view>
       <!-- <footer-nav></footer-nav> -->
@@ -178,11 +178,11 @@
         @mouseenter="hover = true"
         @mouseleave="hover = false"
         @click="toTop">
-        <i class="el-icon-caret-top"></i>
+        <i class="lvx-icon-caret-top"></i>
       </div>
     </transition>
   </div>
-  </el-scrollbar>
+  </lvx-scrollbar>
 </template>
 <script>
   import bus from '../../bus';
@@ -271,7 +271,7 @@
     },
     mounted() {
       this.componentScrollBar = this.$refs.componentScrollBar;
-      this.componentScrollBox = this.componentScrollBar.$el.querySelector('.el-scrollbar__wrap');
+      this.componentScrollBox = this.componentScrollBar.$el.querySelector('.lvx-scrollbar__wrap');
       this.throttledScrollHandler = throttle(300, this.handleScroll);
       this.componentScrollBox.addEventListener('scroll', this.throttledScrollHandler);
       this.renderAnchorHref();

@@ -1,19 +1,21 @@
 <template>
-  <li class="el-menu-item"
+  <li 
     :style="[paddingStyle, itemStyle, { backgroundColor }]"
     @click="handleClick"
     @mouseenter="onMouseEnter"
     @focus="onMouseEnter"
     @blur="onMouseLeave"
     @mouseleave="onMouseLeave"
-    :class="{
+    :class="[
+    `${$clsPrefix}-menu-item`,
+    {
       'is-active': active,
       'is-disabled': disabled
-    }"
+    }]"
     role="menuitem"
     tabindex="-1"
   >
-    <el-tooltip
+    <lvx-tooltip
       v-if="$parent === rootMenu && rootMenu.collapse"
       effect="dark"
       placement="right">
@@ -21,7 +23,7 @@
       <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;display: inline-block;box-sizing: border-box;padding: 0 20px;">
         <slot></slot>
       </div>
-    </el-tooltip>
+    </lvx-tooltip>
     <template v-else>
       <slot></slot>
       <slot name="title"></slot>
@@ -30,17 +32,19 @@
 </template>
 <script>
   import Menu from './menu-mixin';
-  import ElTooltip from 'element-ui/packages/tooltip';
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Tooltip from '~/packages/tooltip';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElMenuItem',
+    name: 'MenuItem',
 
-    componentName: 'ElMenuItem',
+    componentName: 'MenuItem',
 
     mixins: [Menu, Emitter],
 
-    components: { ElTooltip },
+    components: {
+      'LvxTooltip': Tooltip
+    },
 
     props: {
       index: {
@@ -100,7 +104,7 @@
         this.$el.style.backgroundColor = this.backgroundColor;
       },
       handleClick() {
-        this.dispatch('ElMenu', 'item-click', this);
+        this.dispatch('Menu', 'item-click', this);
         this.$emit('click', this);
       }
     },

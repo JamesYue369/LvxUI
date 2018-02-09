@@ -102,12 +102,12 @@
 
 ```html
 <template>
-  <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-  </el-tabs>
+  <lvx-tabs v-model="activeName" @tab-click="handleClick">
+    <lvx-tab-pane label="用户管理" name="first">用户管理</lvx-tab-pane>
+    <lvx-tab-pane label="配置管理" name="second">配置管理</lvx-tab-pane>
+    <lvx-tab-pane label="角色管理" name="third">角色管理</lvx-tab-pane>
+    <lvx-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</lvx-tab-pane>
+  </lvx-tabs>
 </template>
 <script>
   export default {
@@ -134,12 +134,12 @@
 
 ```html
 <template>
-  <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
-    <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-  </el-tabs>
+  <lvx-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+    <lvx-tab-pane label="用户管理" name="first">用户管理</lvx-tab-pane>
+    <lvx-tab-pane label="配置管理" name="second">配置管理</lvx-tab-pane>
+    <lvx-tab-pane label="角色管理" name="third">角色管理</lvx-tab-pane>
+    <lvx-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</lvx-tab-pane>
+  </lvx-tabs>
 </template>
 <script>
   export default {
@@ -164,12 +164,12 @@
 
 :::demo 将`type`设置为`border-card`。
 ```html
-<el-tabs type="border-card">
-  <el-tab-pane label="用户管理">用户管理</el-tab-pane>
-  <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-  <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-  <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-</el-tabs>
+<lvx-tabs type="border-card">
+  <lvx-tab-pane label="用户管理">用户管理</lvx-tab-pane>
+  <lvx-tab-pane label="配置管理">配置管理</lvx-tab-pane>
+  <lvx-tab-pane label="角色管理">角色管理</lvx-tab-pane>
+  <lvx-tab-pane label="定时任务补偿">定时任务补偿</lvx-tab-pane>
+</lvx-tabs>
 ```
 :::
 
@@ -181,19 +181,19 @@
 
 ```html
 <template>
-  <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;">
-    <el-radio-button label="top">top</el-radio-button>
-    <el-radio-button label="right">right</el-radio-button>
-    <el-radio-button label="bottom">bottom</el-radio-button>
-    <el-radio-button label="left">left</el-radio-button>
-  </el-radio-group>
+  <lvx-radio-group v-model="tabPosition" style="margin-bottom: 30px;">
+    <lvx-radio-button label="top">top</lvx-radio-button>
+    <lvx-radio-button label="right">right</lvx-radio-button>
+    <lvx-radio-button label="bottom">bottom</lvx-radio-button>
+    <lvx-radio-button label="left">left</lvx-radio-button>
+  </lvx-radio-group>
 
-  <el-tabs :tab-position="tabPosition" style="height: 200px;">
-    <el-tab-pane label="用户管理">用户管理</el-tab-pane>
-    <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-  </el-tabs>
+  <lvx-tabs :tab-position="tabPosition" style="height: 200px;">
+    <lvx-tab-pane label="用户管理">用户管理</lvx-tab-pane>
+    <lvx-tab-pane label="配置管理">配置管理</lvx-tab-pane>
+    <lvx-tab-pane label="角色管理">角色管理</lvx-tab-pane>
+    <lvx-tab-pane label="定时任务补偿">定时任务补偿</lvx-tab-pane>
+  </lvx-tabs>
 </template>
 <script>
   export default {
@@ -213,15 +213,15 @@
 
 :::demo
 ```html
-<el-tabs type="border-card">
-  <el-tab-pane>
-    <span slot="label"><i class="el-icon-date"></i> 我的行程</span>
+<lvx-tabs type="border-card">
+  <lvx-tab-pane>
+    <span slot="label"><i class="lvx-icon-date"></i> 我的行程</span>
     我的行程
-  </el-tab-pane>
-  <el-tab-pane label="消息中心">消息中心</el-tab-pane>
-  <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-  <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-</el-tabs>
+  </lvx-tab-pane>
+  <lvx-tab-pane label="消息中心">消息中心</lvx-tab-pane>
+  <lvx-tab-pane label="角色管理">角色管理</lvx-tab-pane>
+  <lvx-tab-pane label="定时任务补偿">定时任务补偿</lvx-tab-pane>
+</lvx-tabs>
 ```
 :::
 
@@ -231,16 +231,16 @@
 
 :::demo
 ```html
-<el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
-  <el-tab-pane
+<lvx-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
+  <lvx-tab-pane
     :key="item.name"
     v-for="(item, index) in editableTabs"
     :label="item.title"
     :name="item.name"
   >
     {{item.content}}
-  </el-tab-pane>
-</el-tabs>
+  </lvx-tab-pane>
+</lvx-tabs>
 <script>
   export default {
     data() {
@@ -298,23 +298,23 @@
 :::demo
 ```html
 <div style="margin-bottom: 20px;">
-  <el-button
+  <lvx-button
     size="small"
     @click="addTab(editableTabsValue2)"
   >
     add tab
-  </el-button>
+  </lvx-button>
 </div>
-<el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
-  <el-tab-pane
+<lvx-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
+  <lvx-tab-pane
     v-for="(item, index) in editableTabs2"
     :key="item.name"
     :label="item.title"
     :name="item.name"
   >
     {{item.content}}
-  </el-tab-pane>
-</el-tabs>
+  </lvx-tab-pane>
+</lvx-tabs>
 <script>
   export default {
     data() {

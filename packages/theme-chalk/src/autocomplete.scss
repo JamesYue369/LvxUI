@@ -15,7 +15,7 @@
   box-shadow: $--box-shadow-light;
   border-radius: $--border-radius-base;
 
-  &.el-popper .popper__arrow {
+  &.#{$--prefix-css}-popper .popper__arrow {
     left: 24px !important;
   }
 
@@ -78,7 +78,7 @@
       }
     }
 
-    & .el-icon-loading {
+    & .#{$--prefix-css}-icon-loading {
       vertical-align: middle;
     }
   }

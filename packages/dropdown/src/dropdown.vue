@@ -1,23 +1,23 @@
 <script>
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import Migrating from 'element-ui/src/mixins/migrating';
-  import ElButton from 'element-ui/packages/button';
-  import ElButtonGroup from 'element-ui/packages/button-group';
-  import { generateId } from 'element-ui/src/utils/util';
-
+  import Clickoutside from '~/src/utils/clickoutside';
+  import Emitter from '~/src/mixins/emitter';
+  import Migrating from '~/src/mixins/migrating';
+  import Button from '~/packages/button';
+  import ButtonGroup from '~/packages/button-group';
+  import { generateId } from '~/src/utils/util';
+  import config from '~/src/config';
   export default {
-    name: 'ElDropdown',
+    name: 'Dropdown',
 
-    componentName: 'ElDropdown',
+    componentName: 'Dropdown',
 
     mixins: [Emitter, Migrating],
 
     directives: { Clickoutside },
 
     components: {
-      ElButton,
-      ElButtonGroup
+      [`${config.prefix}Button`]: Button,
+      [`${config.prefix}ButtonGroup`]: ButtonGroup
     },
 
     provide() {
@@ -87,11 +87,11 @@
 
     watch: {
       visible(val) {
-        this.broadcast('ElDropdownMenu', 'visible', val);
+        this.broadcast('DropdownMenu', 'visible', val);
         this.$emit('visible-change', val);
       },
       focusing(val) {
-        const selfDefine = this.$el.querySelector('.el-dropdown-selfdefine');
+        const selfDefine = this.$el.querySelector(`.${this.$clsPrefix}-dropdown-selfdefine`);
         if (selfDefine) { // 自定义
           if (val) {
             selfDefine.className += ' focusing';
@@ -198,7 +198,7 @@
         if (!this.splitButton) { // 自定义
           this.triggerElm.setAttribute('role', 'button');
           this.triggerElm.setAttribute('tabindex', '0');
-          this.triggerElm.setAttribute('class', this.triggerElm.getAttribute('class') + ' el-dropdown-selfdefine'); // 控制
+          this.triggerElm.setAttribute('class', this.triggerElm.getAttribute('class') + ` ${this.$clsPrefix}-dropdown-selfdefine`); // 控制
         }
       },
       initEvent() {
@@ -248,19 +248,47 @@
         hide();
       };
 
+      let nodeBtnGroup = h(
+        `${this.$clsPrefix}-button-group`,
+        [
+          h(
+            `${this.$clsPrefix}-button`,
+            {
+              props: {
+                type: type,
+                size: dropdownSize
+              },
+              nativeOn: {
+                click: handleMainButtonClick
+              }
+            },
+            this.$slots.default
+          ),
+          h(
+            `${this.$clsPrefix}-button`,
+            {
+              ref: 'trigger',
+              'class': [
+                `${this.$clsPrefix}-dropdown__caret-button`
+              ],
+              props: {
+                type: type,
+                size: dropdownSize
+              }
+            }, [
+              h('i', {
+                'class': [`${this.$clsPrefix}-dropdown__icon`, `${this.$clsPrefix}-icon-arrow-down`]
+              })
+            ]
+          )
+        ]
+      );
       let triggerElm = !splitButton
         ? this.$slots.default
-        : (<el-button-group>
-            <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick}>
-              {this.$slots.default}
-            </el-button>
-            <el-button ref="trigger" type={type} size={dropdownSize} class="el-dropdown__caret-button">
-              <i class="el-dropdown__icon el-icon-arrow-down"></i>
-            </el-button>
-          </el-button-group>);
+        : nodeBtnGroup;
 
       return (
-        <div class="el-dropdown" v-clickoutside={hide}>
+        <div class={`${this.$clsPrefix}-dropdown`} v-clickoutside={hide}>
           {triggerElm}
           {this.$slots.dropdown}
         </div>

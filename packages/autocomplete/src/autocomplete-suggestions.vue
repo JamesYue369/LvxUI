@@ -1,39 +1,46 @@
 <template>
-  <transition name="el-zoom-in-top" @after-leave="doDestroy">
+  <transition :name="name" @after-leave="doDestroy">
     <div
       v-show="showPopper"
-      class="el-autocomplete-suggestion el-popper"
-      :class="{ 'is-loading': parent.loading }"
+      :class="[
+        `${$clsPrefix}-autocomplete-suggestion`,
+        `${$clsPrefix}-popper`,
+        {'is-loading': parent.loading}
+      ]"
       :style="{ width: dropdownWidth }"
       role="region"
     >
-      <el-scrollbar
+      <lvx-scrollbar
         tag="ul"
-        wrap-class="el-autocomplete-suggestion__wrap"
-        view-class="el-autocomplete-suggestion__list"
+        :wrap-class="wrapClass"
+        :view-class="viewClass"
       >
-        <li v-if="parent.loading"><i class="el-icon-loading"></i></li>
+        <li v-if="parent.loading"><i :class="[`${$clsPrefix}-icon-loading`]"></i></li>
         <slot v-else>
         </slot>
-      </el-scrollbar>
+      </lvx-scrollbar>
     </div>
   </transition>
 </template>
 <script>
-  import Popper from 'element-ui/src/utils/vue-popper';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import ElScrollbar from 'element-ui/packages/scrollbar';
-
+  import Popper from '~/src/utils/vue-popper';
+  import Emitter from '~/src/mixins/emitter';
+  import Scrollbar from '~/packages/scrollbar';
   export default {
-    components: { ElScrollbar },
+    components: {
+      'LvxScrollbar': Scrollbar
+    },
     mixins: [Popper, Emitter],
 
-    componentName: 'ElAutocompleteSuggestions',
+    componentName: 'AutocompleteSuggestions',
 
     data() {
       return {
         parent: this.$parent,
-        dropdownWidth: ''
+        dropdownWidth: '',
+        wrapClass: `${this.$clsPrefix}-autocomplete-suggestion__wrap`,
+        viewClass: `${this.$clsPrefix}-autocomplete-suggestion__list`,
+        name: `${this.$clsPrefix}-zoom-in-top`
       };
     },
 
@@ -50,7 +57,7 @@
 
     methods: {
       select(item) {
-        this.dispatch('ElAutocomplete', 'item-click', item);
+        this.dispatch('Autocomplete', 'item-click', item);
       }
     },
 
@@ -63,7 +70,7 @@
     mounted() {
       this.$parent.popperElm = this.popperElm = this.$el;
       this.referenceElm = this.$parent.$refs.input.$refs.input;
-      this.referenceList = this.$el.querySelector('.el-autocomplete-suggestion__list');
+      this.referenceList = this.$el.querySelector(`.${this.$clsPrefix}-autocomplete-suggestion__list`);
       this.referenceList.setAttribute('role', 'listbox');
       this.referenceList.setAttribute('id', this.id);
     },

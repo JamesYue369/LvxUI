@@ -1,9 +1,9 @@
 <template>
-  <div class="el-card">
-    <div class="el-card__header" v-if="$slots.header || header">
+  <div :class="[`${$clsPrefix}-card`]">
+    <div :class="[`${$clsPrefix}-card__header`]" v-if="$slots.header || header">
       <slot name="header">{{ header }}</slot>
     </div>
-    <div class="el-card__body" :style="bodyStyle">
+    <div :class="[`${$clsPrefix}-card__body`]" :style="bodyStyle">
       <slot></slot>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'ElCard',
+    name: 'Card',
 
     props: ['header', 'bodyStyle']
   };

@@ -1,22 +1,21 @@
 <template>
   <div
-    class="el-select"
-    :class="[selectSize ? 'el-select--' + selectSize : '']"
+    :class="[`${$clsPrefix}-select`, selectSize ? `${$clsPrefix}-select--` + selectSize : '']"
     v-clickoutside="handleClose">
     <div
-      class="el-select__tags"
+      :class="[`${$clsPrefix}-select__tags`]"
       v-if="multiple"
       @click.stop="toggleMenu"
       ref="tags"
       :style="{ 'max-width': inputWidth - 32 + 'px' }">
       <span
-        class="el-select__multiple-text"
+        :class="[`${$clsPrefix}-select__multiple-text`]"
         v-show="multipleText"
         v-if="collapseTags">
         {{ multipleText }}
       </span>
       <transition-group @after-leave="resetInputHeight" v-if="!collapseTags">
-        <el-tag
+        <lvx-tag
           v-for="item in selected"
           :key="getValueKey(item)"
           :closable="!disabled"
@@ -25,14 +24,13 @@
           type="info"
           @close="deleteTag($event, item)"
           disable-transitions>
-          <span class="el-select__tags-text">{{ item.currentLabel }}</span>
-        </el-tag>
+          <span :class="[`${$clsPrefix}-select__tags-text`]">{{ item.currentLabel }}</span>
+        </lvx-tag>
       </transition-group>
 
       <input
         type="text"
-        class="el-select__input"
-        :class="[selectSize ? `is-${ selectSize }` : '']"
+        :class="[`${$clsPrefix}-select__input`, selectSize ? `is-${ selectSize }` : '']"
         :disabled="disabled"
         @focus="handleFocus"
         @click.stop
@@ -50,7 +48,7 @@
         :style="{ width: inputLength + 'px', 'max-width': inputWidth - 42 + 'px' }"
         ref="input">
     </div>
-    <el-input
+    <lvx-input
       ref="reference"
       v-model="selectedLabel"
       type="text"
@@ -75,54 +73,54 @@
       @mouseenter.native="inputHovering = true"
       @mouseleave.native="inputHovering = false">
       <i slot="suffix"
-       :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"
+       :class="[`${$clsPrefix}-select__caret`, `${$clsPrefix}-input__icon`, `${$clsPrefix}-icon-` + iconClass]"
        @click="handleIconClick"
       ></i>
-    </el-input>
+    </lvx-input>
     <transition
-      name="el-zoom-in-top"
+      :name="$clsPrefix+'-zoom-in-top'"
       @before-enter="handleMenuEnter"
       @after-leave="doDestroy">
-      <el-select-menu
+      <lvx-select-menu
         ref="popper"
         v-show="visible && emptyText !== false">
-        <el-scrollbar
+        <lvx-scrollbar
           tag="ul"
-          wrap-class="el-select-dropdown__wrap"
-          view-class="el-select-dropdown__list"
+          :wrap-class="wrapClass"
+          :view-class="viewClass"
           ref="scrollbar"
           :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
           v-show="options.length > 0 && !loading">
-          <el-option
+          <lvx-option
             :value="query"
             created
             v-if="showNewOption">
-          </el-option>
+          </lvx-option>
           <slot></slot>
-        </el-scrollbar>
-        <p class="el-select-dropdown__empty" v-if="emptyText && (allowCreate && options.length === 0 || !allowCreate)">{{ emptyText }}</p>
-      </el-select-menu>
+        </lvx-scrollbar>
+        <p :class="[`${$clsPrefix}-select-dropdown__empty`]" v-if="emptyText && (allowCreate && options.length === 0 || !allowCreate)">{{ emptyText }}</p>
+      </lvx-select-menu>
     </transition>
   </div>
 </template>
 
 <script type="text/babel">
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import Focus from 'element-ui/src/mixins/focus';
-  import Locale from 'element-ui/src/mixins/locale';
-  import ElInput from 'element-ui/packages/input';
-  import ElSelectMenu from './select-dropdown.vue';
-  import ElOption from './option.vue';
-  import ElTag from 'element-ui/packages/tag';
-  import ElScrollbar from 'element-ui/packages/scrollbar';
+  import Emitter from '~/src/mixins/emitter';
+  import Focus from '~/src/mixins/focus';
+  import Locale from '~/src/mixins/locale';
+  import Input from '~/packages/input';
+  import SelectMenu from './select-dropdown.vue';
+  import Option from './option.vue';
+  import Tag from '~/packages/tag';
+  import Scrollbar from '~/packages/scrollbar';
   import debounce from 'throttle-debounce/debounce';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import { addClass, removeClass, hasClass } from 'element-ui/src/utils/dom';
-  import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
-  import { t } from 'element-ui/src/locale';
-  import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
-  import { getValueByPath } from 'element-ui/src/utils/util';
-  import { valueEquals } from 'element-ui/src/utils/util';
+  import Clickoutside from '~/src/utils/clickoutside';
+  import { addClass, removeClass, hasClass } from '~/src/utils/dom';
+  import { addResizeListener, removeResizeListener } from '~/src/utils/resize-event';
+  import { t } from '~/src/locale';
+  import scrollIntoView from '~/src/utils/scroll-into-view';
+  import { getValueByPath } from '~/src/utils/util';
+  import { valueEquals } from '~/src/utils/util';
   import NavigationMixin from './navigation-mixin';
 
   const sizeMap = {
@@ -134,12 +132,12 @@
   export default {
     mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
 
-    name: 'ElSelect',
+    name: 'Select',
 
-    componentName: 'ElSelect',
+    componentName: 'Select',
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -152,7 +150,7 @@
 
     computed: {
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       iconClass() {
         let criteria = this.clearable &&
@@ -170,14 +168,14 @@
 
       emptyText() {
         if (this.loading) {
-          return this.loadingText || this.t('el.select.loading');
+          return this.loadingText || this.t('lang.select.loading');
         } else {
           if (this.remote && this.query === '' && this.options.length === 0) return false;
           if (this.filterable && this.query && this.options.length > 0 && this.filteredOptionsCount === 0) {
-            return this.noMatchText || this.t('el.select.noMatch');
+            return this.noMatchText || this.t('lang.select.noMatch');
           }
           if (this.options.length === 0) {
-            return this.noDataText || this.t('el.select.noData');
+            return this.noDataText || this.t('lang.select.noData');
           }
         }
         return null;
@@ -203,11 +201,11 @@
     },
 
     components: {
-      ElInput,
-      ElSelectMenu,
-      ElOption,
-      ElTag,
-      ElScrollbar
+      'LvxInput': Input,
+      'LvxSelectMenu': SelectMenu,
+      'LvxOption': Option,
+      'LvxTag': Tag,
+      'LvxScrollbar': Scrollbar
     },
 
     directives: { Clickoutside },
@@ -239,7 +237,7 @@
       placeholder: {
         type: String,
         default() {
-          return t('el.select.placeholder');
+          return t('lang.select.placeholder');
         }
       },
       defaultFirstOption: Boolean,
@@ -269,7 +267,9 @@
         query: '',
         previousQuery: '',
         inputHovering: false,
-        currentPlaceholder: ''
+        currentPlaceholder: '',
+        wrapClass: `${this.$clsPrefix}-select-dropdown__wrap`,
+        viewClass: `${this.$clsPrefix}-select-dropdown__list`
       };
     },
 
@@ -307,7 +307,7 @@
         if (!val) {
           this.$refs.reference.$el.querySelector('input').blur();
           this.handleIconHide();
-          this.broadcast('ElSelectDropdown', 'destroyPopper');
+          this.broadcast('SelectDropdown', 'destroyPopper');
           if (this.$refs.input) {
             this.$refs.input.blur();
           }
@@ -335,7 +335,7 @@
           }
         } else {
           this.handleIconShow();
-          this.broadcast('ElSelectDropdown', 'updatePopper');
+          this.broadcast('SelectDropdown', 'updatePopper');
           if (this.filterable) {
             this.query = this.remote ? '' : this.selectedLabel;
             this.handleQueryChange(this.query);
@@ -343,10 +343,10 @@
               this.$refs.input.focus();
             } else {
               if (!this.remote) {
-                this.broadcast('ElOption', 'queryChange', '');
-                this.broadcast('ElOptionGroup', 'queryChange');
+                this.broadcast('Option', 'queryChange', '');
+                this.broadcast('OptionGroup', 'queryChange');
               }
-              this.broadcast('ElInput', 'inputSelect');
+              this.broadcast('Input', 'inputSelect');
             }
           }
         }
@@ -373,7 +373,7 @@
         if (this.previousQuery === val) return;
         this.previousQuery = val;
         this.$nextTick(() => {
-          if (this.visible) this.broadcast('ElSelectDropdown', 'updatePopper');
+          if (this.visible) this.broadcast('SelectDropdown', 'updatePopper');
         });
         this.hoverIndex = -1;
         if (this.multiple && this.filterable) {
@@ -387,11 +387,11 @@
           this.remoteMethod(val);
         } else if (typeof this.filterMethod === 'function') {
           this.filterMethod(val);
-          this.broadcast('ElOptionGroup', 'queryChange');
+          this.broadcast('OptionGroup', 'queryChange');
         } else {
           this.filteredOptionsCount = this.optionsCount;
-          this.broadcast('ElOption', 'queryChange', val);
-          this.broadcast('ElOptionGroup', 'queryChange');
+          this.broadcast('Option', 'queryChange', val);
+          this.broadcast('OptionGroup', 'queryChange');
         }
         if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
           this.checkDefaultFirstOption();
@@ -399,15 +399,15 @@
       },
 
       handleIconHide() {
-        let icon = this.$el.querySelector('.el-input__icon');
+        let icon = this.$el.querySelector(`.${this.$clsPrefix}-input__icon`);
         if (icon) {
           removeClass(icon, 'is-reverse');
         }
       },
 
       handleIconShow() {
-        let icon = this.$el.querySelector('.el-input__icon');
-        if (icon && !hasClass(icon, 'el-icon-circle-close')) {
+        let icon = this.$el.querySelector(`.${this.$clsPrefix}-input__icon`);
+        if (icon && !hasClass(icon, `${this.$clsPrefix}-icon-circle-close`)) {
           addClass(icon, 'is-reverse');
         }
       },
@@ -415,7 +415,7 @@
       scrollToOption(option) {
         const target = Array.isArray(option) && option[0] ? option[0].$el : option.$el;
         if (this.$refs.popper && target) {
-          const menu = this.$refs.popper.$el.querySelector('.el-select-dropdown__wrap');
+          const menu = this.$refs.popper.$el.querySelector(`.${this.$clsPrefix}-select-dropdown__wrap`);
           scrollIntoView(menu, target);
         }
         this.$refs.scrollbar && this.$refs.scrollbar.handleScroll();
@@ -428,7 +428,7 @@
       emitChange(val) {
         if (!valueEquals(this.value, val)) {
           this.$emit('change', val);
-          this.dispatch('ElFormItem', 'el.form.change', val);
+          this.dispatch('FormItem', 'event.form.change', val);
         }
       },
 
@@ -563,7 +563,7 @@
             ? (sizeMap[this.selectSize] || 40) + 'px'
             : Math.max(tags ? (tags.clientHeight + 10) : 0, sizeMap[this.selectSize] || 40) + 'px';
           if (this.visible && this.emptyText !== false) {
-            this.broadcast('ElSelectDropdown', 'updatePopper');
+            this.broadcast('SelectDropdown', 'updatePopper');
           }
         });
       },

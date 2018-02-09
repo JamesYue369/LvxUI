@@ -21,19 +21,19 @@
   .radio{
     color: #333;
   }
-  .radio .el-radio__inner:hover{
+  .radio .lvx-radio__inner:hover{
     border-color: #6297ff;
   }
-  .radio .is-checked .el-radio__inner{
+  .radio .is-checked .lvx-radio__inner{
     background: none;
     border-color: #4081ff;
   }
-  .radio .is-checked .el-radio__inner .afterVNode{
+  .radio .is-checked .lvx-radio__inner .afterVNode{
     width: 6px;
     height: 6px;
     background-color: #4081ff;
   }
-  .radio .el-radio__input.is-checked + .el-radio__label {
+  .radio .lvx-radio__input.is-checked + .lvx-radio__label {
     color: #333;
   }
 </style>
@@ -50,8 +50,8 @@
 
 ```html
 <template>
-  <el-radio v-model="radio" label="1">备选项</el-radio>
-  <el-radio v-model="radio" label="2">备选项</el-radio>
+  <lvx-radio v-model="radio" label="1">备选项</lvx-radio>
+  <lvx-radio v-model="radio" label="2">备选项</lvx-radio>
 </template>
 
 <script>
@@ -70,11 +70,11 @@
 
 单选框不可用的状态。
 
-:::demo 只要在`el-radio`元素中设置`disabled`属性即可，它接受一个`Boolean`，`true`为禁用。
+:::demo 只要在`lvx-radio`元素中设置`disabled`属性即可，它接受一个`Boolean`，`true`为禁用。
 ```html
 <template>
-  <el-radio disabled v-model="radio1" label="禁用">备选项</el-radio>
-  <el-radio disabled v-model="radio1" label="选中且禁用">备选项</el-radio>
+  <lvx-radio disabled v-model="radio1" label="禁用">备选项</lvx-radio>
+  <lvx-radio disabled v-model="radio1" label="选中且禁用">备选项</lvx-radio>
 </template>
 
 <script>
@@ -93,15 +93,15 @@
 
 适用于在多个互斥的选项中选择的场景
 
-:::demo 结合`el-radio-group`元素和子元素`el-radio`可以实现单选组，在`el-radio-group`中绑定`v-model`，在`el-radio`中设置好`label`即可，无需再给每一个`el-radio`绑定变量，另外，还提供了`change`事件来响应变化，它会传入一个参数`value`。
+:::demo 结合`lvx-radio-group`元素和子元素`lvx-radio`可以实现单选组，在`lvx-radio-group`中绑定`v-model`，在`lvx-radio`中设置好`label`即可，无需再给每一个`lvx-radio`绑定变量，另外，还提供了`change`事件来响应变化，它会传入一个参数`value`。
 
 ```html
 <template>
-  <el-radio-group v-model="radio2">
-    <el-radio :label="3">备选项</el-radio>
-    <el-radio :label="6">备选项</el-radio>
-    <el-radio :label="9">备选项</el-radio>
-  </el-radio-group>
+  <lvx-radio-group v-model="radio2">
+    <lvx-radio :label="3">备选项</lvx-radio>
+    <lvx-radio :label="6">备选项</lvx-radio>
+    <lvx-radio :label="9">备选项</lvx-radio>
+  </lvx-radio-group>
 </template>
 
 <script>
@@ -120,40 +120,40 @@
 
 按钮样式的单选组合。
 
-:::demo 只需要把`el-radio`元素换成`el-radio-button`元素即可，此外，Element 还提供了`size`属性。
+:::demo 只需要把`lvx-radio`元素换成`lvx-radio-button`元素即可，此外，Element 还提供了`size`属性。
 ```html
 <template>
   <div>
-    <el-radio-group v-model="radio3">
-      <el-radio-button label="上海"></el-radio-button>
-      <el-radio-button label="北京"></el-radio-button>
-      <el-radio-button label="广州"></el-radio-button>
-      <el-radio-button label="深圳"></el-radio-button>
-    </el-radio-group>
+    <lvx-radio-group v-model="radio3">
+      <lvx-radio-button label="上海"></lvx-radio-button>
+      <lvx-radio-button label="北京"></lvx-radio-button>
+      <lvx-radio-button label="广州"></lvx-radio-button>
+      <lvx-radio-button label="深圳"></lvx-radio-button>
+    </lvx-radio-group>
   </div>
   <div style="margin-top: 20px">
-    <el-radio-group v-model="radio4" size="medium">
-      <el-radio-button label="上海" ></el-radio-button>
-      <el-radio-button label="北京"></el-radio-button>
-      <el-radio-button label="广州"></el-radio-button>
-      <el-radio-button label="深圳"></el-radio-button>
-    </el-radio-group>
+    <lvx-radio-group v-model="radio4" size="medium">
+      <lvx-radio-button label="上海" ></lvx-radio-button>
+      <lvx-radio-button label="北京"></lvx-radio-button>
+      <lvx-radio-button label="广州"></lvx-radio-button>
+      <lvx-radio-button label="深圳"></lvx-radio-button>
+    </lvx-radio-group>
   </div>
   <div style="margin-top: 20px">
-    <el-radio-group v-model="radio5" size="small">
-      <el-radio-button label="上海"></el-radio-button>
-      <el-radio-button label="北京" disabled ></el-radio-button>
-      <el-radio-button label="广州"></el-radio-button>
-      <el-radio-button label="深圳"></el-radio-button>
-    </el-radio-group>
+    <lvx-radio-group v-model="radio5" size="small">
+      <lvx-radio-button label="上海"></lvx-radio-button>
+      <lvx-radio-button label="北京" disabled ></lvx-radio-button>
+      <lvx-radio-button label="广州"></lvx-radio-button>
+      <lvx-radio-button label="深圳"></lvx-radio-button>
+    </lvx-radio-group>
   </div>
   <div style="margin-top: 20px">
-    <el-radio-group v-model="radio6" disabled size="mini">
-      <el-radio-button label="上海"></el-radio-button>
-      <el-radio-button label="北京"></el-radio-button>
-      <el-radio-button label="广州"></el-radio-button>
-      <el-radio-button label="深圳"></el-radio-button>
-    </el-radio-group>
+    <lvx-radio-group v-model="radio6" disabled size="mini">
+      <lvx-radio-button label="上海"></lvx-radio-button>
+      <lvx-radio-button label="北京"></lvx-radio-button>
+      <lvx-radio-button label="广州"></lvx-radio-button>
+      <lvx-radio-button label="深圳"></lvx-radio-button>
+    </lvx-radio-group>
   </div>
 </template>
 
@@ -178,24 +178,24 @@
 ```html
 <template>
   <div>
-    <el-radio v-model="radio7" label="1" border>备选项1</el-radio>
-    <el-radio v-model="radio7" label="2" border>备选项2</el-radio>
+    <lvx-radio v-model="radio7" label="1" border>备选项1</lvx-radio>
+    <lvx-radio v-model="radio7" label="2" border>备选项2</lvx-radio>
   </div>
   <div style="margin-top: 20px">
-    <el-radio v-model="radio8" label="1" border size="medium">备选项1</el-radio>
-    <el-radio v-model="radio8" label="2" border size="medium">备选项2</el-radio>
+    <lvx-radio v-model="radio8" label="1" border size="medium">备选项1</lvx-radio>
+    <lvx-radio v-model="radio8" label="2" border size="medium">备选项2</lvx-radio>
   </div>
   <div style="margin-top: 20px">
-    <el-radio-group v-model="radio9" size="small">
-      <el-radio label="1" border>备选项1</el-radio>
-      <el-radio label="2" border disabled>备选项2</el-radio>
-    </el-radio-group>
+    <lvx-radio-group v-model="radio9" size="small">
+      <lvx-radio label="1" border>备选项1</lvx-radio>
+      <lvx-radio label="2" border disabled>备选项2</lvx-radio>
+    </lvx-radio-group>
   </div>
   <div style="margin-top: 20px">
-    <el-radio-group v-model="radio10" size="mini" disabled>
-      <el-radio label="1" border>备选项1</el-radio>
-      <el-radio label="2" border>备选项2</el-radio>
-    </el-radio-group>
+    <lvx-radio-group v-model="radio10" size="mini" disabled>
+      <lvx-radio label="1" border>备选项1</lvx-radio>
+      <lvx-radio label="2" border>备选项2</lvx-radio>
+    </lvx-radio-group>
   </div>
 </template>
 
@@ -219,11 +219,11 @@
 ::: demo 设置class可以自定义按钮的各种样式去覆盖初始样式
 ```html
 <template>
-  <el-radio-group v-model="radio2" >
-    <el-radio disabled :label="3" class="radio">备选项</el-radio>
-    <el-radio  :label="6" class="radio">备选项</el-radio>
-    <el-radio  :label="9" class="radio">备选项</el-radio>
-  </el-radio-group>
+  <lvx-radio-group v-model="radio2" >
+    <lvx-radio disabled :label="3" class="radio">备选项</lvx-radio>
+    <lvx-radio  :label="6" class="radio">备选项</lvx-radio>
+    <lvx-radio  :label="9" class="radio">备选项</lvx-radio>
+  </lvx-radio-group>
 </template>
 
 <script>
@@ -239,19 +239,19 @@
   .radio{
     color: #333;
   }
-  .radio .el-radio__inner:hover{
+  .radio .lvx-radio__inner:hover{
     border-color: #6297ff;
   }
-  .radio .is-checked .el-radio__inner{
+  .radio .is-checked .lvx-radio__inner{
     background: none;
     border-color: #4081ff;
   }
-  .radio .is-checked .el-radio__inner .afterVNode{
+  .radio .is-checked .lvx-radio__inner .afterVNode{
     width: 6px;
     height: 6px;
     background-color: #4081ff;
   }
-  .radio .el-radio__input.is-checked + .el-radio__label {
+  .radio .lvx-radio__input.is-checked + .lvx-radio__label {
     color: #333;
   }
 </style>

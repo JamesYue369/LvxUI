@@ -1,12 +1,12 @@
 <template>
   <span
-    class="el-cascader"
     :class="[
+      `${$clsPrefix}-cascader`,
       {
         'is-opened': menuVisible,
         'is-disabled': disabled
       },
-      cascaderSize ? 'el-cascader--' + cascaderSize : ''
+      cascaderSize ? `${$clsPrefix}-cascader--` + cascaderSize : ''
     ]"
     @click="handleClick"
     @mouseenter="inputHover = true"
@@ -17,7 +17,7 @@
     v-clickoutside="handleClickoutside"
     @keydown="handleKeydown"
   >
-    <el-input
+    <lvx-input
       ref="input"
       :readonly="!filterable"
       :placeholder="currentLabels.length ? undefined : placeholder"
@@ -31,18 +31,17 @@
         <i
           key="1"
           v-if="clearable && inputHover && currentLabels.length"
-          class="el-input__icon el-icon-circle-close el-cascader__clearIcon"
+          :class="[`${$clsPrefix}-input__icon`, `${$clsPrefix}-icon-circle-close`, `${$clsPrefix}-cascader__clearIcon`]"
           @click="clearValue"
         ></i>
         <i
           key="2"
           v-else
-          class="el-input__icon el-icon-arrow-down"
-          :class="{ 'is-reverse': menuVisible }"
+          :class="[`${$clsPrefix}-input__icon`, `${$clsPrefix}-icon-arrow-down`, { 'is-reverse': menuVisible }]"
         ></i>
       </template>
-    </el-input>
-    <span class="el-cascader__label" v-show="inputValue === ''">
+    </lvx-input>
+    <span :class="[`${$clsPrefix}-cascader__label`]" v-show="inputValue === ''">
       <template v-if="showAllLevels">
         <template v-for="(label, index) in currentLabels">
           {{ label }}
@@ -58,15 +57,15 @@
 
 <script>
 import Vue from 'vue';
-import ElCascaderMenu from './menu';
-import ElInput from 'element-ui/packages/input';
-import Popper from 'element-ui/src/utils/vue-popper';
-import Clickoutside from 'element-ui/src/utils/clickoutside';
-import emitter from 'element-ui/src/mixins/emitter';
-import Locale from 'element-ui/src/mixins/locale';
-import { t } from 'element-ui/src/locale';
+import CascaderMenu from './menu';
+import Input from '~/packages/input';
+import Popper from '~/src/utils/vue-popper';
+import Clickoutside from '~/src/utils/clickoutside';
+import emitter from '~/src/mixins/emitter';
+import Locale from '~/src/mixins/locale';
+import { t } from '~/src/locale';
 import debounce from 'throttle-debounce/debounce';
-import { generateId } from 'element-ui/src/utils/util';
+import { generateId } from '~/src/utils/util';
 
 const popperMixin = {
   props: {
@@ -85,20 +84,20 @@ const popperMixin = {
 };
 
 export default {
-  name: 'ElCascader',
+  name: 'Cascader',
 
   directives: { Clickoutside },
 
   mixins: [popperMixin, emitter, Locale],
 
   inject: {
-    elFormItem: {
+    lvxFormItem: {
       default: ''
     }
   },
 
   components: {
-    ElInput
+    'LvxInput': Input
   },
 
   props: {
@@ -130,7 +129,7 @@ export default {
     placeholder: {
       type: String,
       default() {
-        return t('el.cascader.placeholder');
+        return t('lang.cascader.placeholder');
       }
     },
     disabled: Boolean,
@@ -172,7 +171,8 @@ export default {
       menuVisible: false,
       inputHover: false,
       inputValue: '',
-      flatOptions: null
+      flatOptions: null,
+      menuItemKeyClass: `${this.$clsPrefix}-cascader-menu__item__keyword`
     };
   },
 
@@ -199,7 +199,7 @@ export default {
       return labels;
     },
     _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemSize;
+      return (this.lvxFormItem || {}).elFormItemSize;
     },
     cascaderSize() {
       return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
@@ -218,7 +218,7 @@ export default {
       this.currentValue = value;
     },
     currentValue(value) {
-      this.dispatch('ElFormItem', 'el.form.change', [value]);
+      this.dispatch('FormItem', 'event.form.change', [value]);
     },
     currentLabels(value) {
       const inputLabel = this.showAllLevels ? value.join('/') : value[value.length - 1] ;
@@ -238,7 +238,7 @@ export default {
 
   methods: {
     initMenu() {
-      this.menu = new Vue(ElCascaderMenu).$mount();
+      this.menu = new Vue(CascaderMenu).$mount();
       this.menu.options = this.options;
       this.menu.props = this.props;
       this.menu.expandTrigger = this.expandTrigger;
@@ -283,7 +283,7 @@ export default {
       } else if (keyCode === 40) { // down
         this.menuVisible = true; // 打开
         setTimeout(() => {
-          const firstMenu = this.popperElm.querySelectorAll('.el-cascader-menu')[0];
+          const firstMenu = this.popperElm.querySelectorAll(`.${this.$clsPrefix}-cascader-menu`)[0];
           firstMenu.querySelectorAll("[tabindex='-1']")[0].focus();
         });
         e.stopPropagation();
@@ -329,7 +329,7 @@ export default {
       } else {
         filteredFlatOptions = [{
           __IS__FLAT__OPTIONS: true,
-          label: this.t('el.cascader.noMatch'),
+          label: this.t('lang.cascader.noMatch'),
           value: '',
           disabled: true
         }];
@@ -350,7 +350,7 @@ export default {
       const h = this._c;
       return label.split(keyword)
         .map((node, index) => index === 0 ? node : [
-          h('span', { class: { 'el-cascader-menu__item__keyword': true }}, [this._v(keyword)]),
+          h('span', { class: { [this.menuItemKeyClass]: true }}, [this._v(keyword)]),
           node
         ]);
     },
@@ -394,7 +394,7 @@ export default {
       if (before && before.then) {
         this.menu.options = [{
           __IS__FLAT__OPTIONS: true,
-          label: this.t('el.cascader.loading'),
+          label: this.t('lang.cascader.loading'),
           value: '',
           disabled: true
         }];

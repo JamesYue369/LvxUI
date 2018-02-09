@@ -1,7 +1,7 @@
 <template>
-  <div class="el-color-hue-slider" :class="{ 'is-vertical': vertical }">
-    <div class="el-color-hue-slider__bar" @click="handleClick" ref="bar"></div>
-    <div class="el-color-hue-slider__thumb"
+  <div  :class="[`${$clsPrefix}-color-hue-slider`, { 'is-vertical': vertical }]">
+    <div :class="[`${$clsPrefix}-color-hue-slider__bar`]" @click="handleClick" ref="bar"></div>
+    <div :class="[`${$clsPrefix}-color-hue-slider__thumb`]"
          :style="{
            left: thumbLeft + 'px',
            top: thumbTop + 'px'

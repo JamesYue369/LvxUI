@@ -1,20 +1,21 @@
 <template>
-  <form class="el-form" :class="[
-    labelPosition ? 'el-form--label-' + labelPosition : '',
-    { 'el-form--inline': inline }
+  <form  :class="[
+    `${$clsPrefix}-form`,
+    labelPosition ? `${$clsPrefix}-form--label-` + labelPosition : '',
+    { [`${$clsPrefix}-form--inline`]: inline }
   ]">
     <slot></slot>
   </form>
 </template>
 <script>
   export default {
-    name: 'ElForm',
+    name: 'Form',
 
-    componentName: 'ElForm',
+    componentName: 'Form',
 
     provide() {
       return {
-        elForm: this
+        lvxForm: this
       };
     },
 
@@ -47,13 +48,13 @@
       };
     },
     created() {
-      this.$on('el.form.addField', (field) => {
+      this.$on('event.form.addField', (field) => {
         if (field) {
           this.fields.push(field);
         }
       });
       /* istanbul ignore next */
-      this.$on('el.form.removeField', (field) => {
+      this.$on('event.form.removeField', (field) => {
         if (field.prop) {
           this.fields.splice(this.fields.indexOf(field), 1);
         }
@@ -63,7 +64,7 @@
       resetFields() {
         if (!this.model) {
           process.env.NODE_ENV !== 'production' &&
-          console.warn('[Element Warn][Form]model is required for resetFields to work.');
+          console.warn('[Lvx Warn][Form]model is required for resetFields to work.');
           return;
         }
         this.fields.forEach(field => {
@@ -77,7 +78,7 @@
       },
       validate(callback) {
         if (!this.model) {
-          console.warn('[Element Warn][Form]model is required for validate to work!');
+          console.warn('[Lvx Warn][Form]model is required for validate to work!');
           return;
         }
 

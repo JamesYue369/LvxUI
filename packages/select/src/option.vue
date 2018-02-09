@@ -2,13 +2,14 @@
   <li
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
-    class="el-select-dropdown__item"
     v-show="visible"
-    :class="{
+    :class="[
+    `${$clsPrefix}-select-dropdown__item`,
+    {
       'selected': itemSelected,
       'is-disabled': disabled || groupDisabled || limitReached,
       'hover': hover
-    }">
+    }]">
     <slot>
       <span>{{ currentLabel }}</span>
     </slot>
@@ -16,15 +17,15 @@
 </template>
 
 <script type="text/babel">
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import { getValueByPath } from 'element-ui/src/utils/util';
+  import Emitter from '~/src/mixins/emitter';
+  import { getValueByPath } from '~/src/utils/util';
 
   export default {
     mixins: [Emitter],
 
-    name: 'ElOption',
+    name: 'Option',
 
-    componentName: 'ElOption',
+    componentName: 'Option',
 
     inject: ['select'],
 
@@ -84,10 +85,10 @@
 
     watch: {
       currentLabel() {
-        if (!this.created && !this.select.remote) this.dispatch('ElSelect', 'setSelected');
+        if (!this.created && !this.select.remote) this.dispatch('Select', 'setSelected');
       },
       value() {
-        if (!this.created && !this.select.remote) this.dispatch('ElSelect', 'setSelected');
+        if (!this.created && !this.select.remote) this.dispatch('Select', 'setSelected');
       }
     },
 
@@ -124,7 +125,7 @@
 
       selectOptionClick() {
         if (this.disabled !== true && this.groupDisabled !== true) {
-          this.dispatch('ElSelect', 'handleOptionClick', this);
+          this.dispatch('Select', 'handleOptionClick', this);
         }
       },
 

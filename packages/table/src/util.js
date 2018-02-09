@@ -1,5 +1,5 @@
-import { getValueByPath } from 'element-ui/src/utils/util';
-
+import { getValueByPath } from '~/src/utils/util';
+import config from '~/src/config';
 export const getCell = function(event) {
   let cell = event.target;
 
@@ -85,7 +85,9 @@ export const getColumnById = function(table, columnId) {
 };
 
 export const getColumnByCell = function(table, cell) {
-  const matches = (cell.className || '').match(/el-table_[^\s]+/gm);
+  let prefix = `${config.clsPrefix}-table_`;
+  let parttern = new RegExp(`${prefix}[^\\s]+`, 'gm');
+  const matches = (cell.className || '').match(parttern);
   if (matches) {
     return getColumnById(table, matches[0]);
   }

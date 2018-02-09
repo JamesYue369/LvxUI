@@ -1,8 +1,8 @@
 <template>
-  <el-color-picker
+  <lvx-color-picker
     class="theme-picker"
     popper-class="theme-picker-dropdown"
-    v-model="theme"></el-color-picker>
+    v-model="theme"></lvx-color-picker>
 </template>
 
 <style>

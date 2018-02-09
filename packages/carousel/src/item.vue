@@ -1,14 +1,15 @@
 <template>
   <div
     v-show="ready"
-    class="el-carousel__item"
-    :class="{
+    :class="[
+    `${$clsPrefix}-carousel__item`,
+    {
       'is-active': active,
-      'el-carousel__item--card': $parent.type === 'card',
+      [`${$clsPrefix}-carousel__item--card`]: $parent.type === 'card',
       'is-in-stage': inStage,
       'is-hover': hover,
       'is-animating': animating
-    }"
+    }]"
     @click="handleItemClick"
     :style="{
       msTransform: `translateX(${ translate }px) scale(${ scale })`,
@@ -18,7 +19,7 @@
     <div
       v-if="$parent.type === 'card'"
       v-show="!active"
-      class="el-carousel__mask">
+      :class="[`${$clsPrefix}-carousel__mask`]">
     </div>
     <slot></slot>
   </div>
@@ -27,8 +28,8 @@
 <script>
   const CARD_SCALE = 0.83;
   export default {
-    name: 'ElCarouselItem',
-
+    name: 'CarouselItem',
+    componentName: 'CarouselItem',
     props: {
       name: String,
       label: {

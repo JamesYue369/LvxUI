@@ -1,25 +1,25 @@
 <template>
   <div
     :class="[
-      'el-color-picker',
+      `${$clsPrefix}-color-picker`,
       disabled ? 'is-disabled' : '',
-      colorSize ? `el-color-picker--${ colorSize }` : ''
+      colorSize ? `${$clsPrefix}-color-picker--${ colorSize }` : ''
     ]"
     v-clickoutside="hide">
-    <div class="el-color-picker__mask" v-if="disabled"></div>
-    <div class="el-color-picker__trigger" @click="handleTrigger">
-      <span class="el-color-picker__color" :class="{ 'is-alpha': showAlpha }">
-        <span class="el-color-picker__color-inner"
+    <div :class="[`${$clsPrefix}-color-picker__mask`]" v-if="disabled"></div>
+    <div :class="[`${$clsPrefix}-color-picker__trigger`]" @click="handleTrigger">
+      <span :class="[`${$clsPrefix}-color-picker__color`,{ 'is-alpha': showAlpha }]">
+        <span :class="[`${$clsPrefix}-color-picker__color-inner`]"
           :style="{
             backgroundColor: displayedColor
           }"></span>
-        <span class="el-color-picker__empty el-icon-close" v-if="!value && !showPanelColor"></span>
+        <span :class="[`${$clsPrefix}-color-picker__empty`, `${$clsPrefix}-icon-close`]" v-if="!value && !showPanelColor"></span>
       </span>
-      <span class="el-color-picker__icon el-icon-arrow-down" v-show="value || showPanelColor"></span>
+      <span :class="[`${$clsPrefix}-color-picker__icon`, `${$clsPrefix}-icon-arrow-down`]" v-show="value || showPanelColor"></span>
     </div>
     <picker-dropdown
        ref="dropdown"
-       :class="['el-color-picker__panel', popperClass || '']"
+       :class="[`${$clsPrefix}-color-picker__panel`, popperClass || '']"
        v-model="showPicker"
        @pick="confirmValue"
        @clear="clearValue"
@@ -32,10 +32,10 @@
 <script>
   import Color from './color';
   import PickerDropdown from './components/picker-dropdown.vue';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
+  import Clickoutside from '~/src/utils/clickoutside';
 
   export default {
-    name: 'ElColorPicker',
+    name: 'ColorPicker',
 
     props: {
       value: String,
@@ -47,7 +47,7 @@
     },
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -67,7 +67,7 @@
       },
 
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
 
       colorSize() {

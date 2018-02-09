@@ -1,8 +1,8 @@
 <template>
   <label
-    class="el-radio-button"
     :class="[
-      size ? 'el-radio-button--' + size : '',
+      `${$clsPrefix}-radio-button`,
+      size ? `${$clsPrefix}-radio-button--` + size : '',
       { 'is-active': value === label },
       { 'is-disabled': isDisabled },
       { 'is-focus': focus }
@@ -14,7 +14,7 @@
     @keydown.space.stop.prevent="value = label"
   >
     <input
-      class="el-radio-button__orig-radio"
+      :class="[`${$clsPrefix}-radio-button__orig-radio`]"
       :value="label"
       type="radio"
       v-model="value"
@@ -25,22 +25,22 @@
       @focus="focus = true"
       @blur="focus = false"
     >
-    <span class="el-radio-button__inner" >
+    <span :class="[`${$clsPrefix}-radio-button__inner`]" >
       <slot></slot>
       <template v-if="!$slots.default">{{label}}</template>
     </span>
   </label>
 </template>
 <script>
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElRadioButton',
+    name: 'RadioButton',
 
     mixins: [Emitter],
 
     inject: {
-      elFormItem: {
+      lvxFormItem: {
         default: ''
       }
     },
@@ -67,7 +67,7 @@
       _radioGroup() {
         let parent = this.$parent;
         while (parent) {
-          if (parent.$options.componentName !== 'ElRadioGroup') {
+          if (parent.$options.componentName !== 'RadioGroup') {
             parent = parent.$parent;
           } else {
             return parent;
@@ -76,7 +76,7 @@
         return false;
       },
       _elFormItemSize() {
-        return (this.elFormItem || {}).elFormItemSize;
+        return (this.lvxFormItem || {}).elFormItemSize;
       },
       size() {
         return this._radioGroup.radioGroupSize || this._elFormItemSize || (this.$ELEMENT || {}).size;
@@ -92,7 +92,7 @@
     methods: {
       handleChange() {
         this.$nextTick(() => {
-          this.dispatch('ElRadioGroup', 'handleChange', this.value);
+          this.dispatch('RadioGroup', 'handleChange', this.value);
         });
       }
     }

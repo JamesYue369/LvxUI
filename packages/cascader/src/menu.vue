@@ -1,7 +1,7 @@
 <script>
-  import { isDef } from 'element-ui/src/utils/shared';
-  import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
-  import { generateId } from 'element-ui/src/utils/util';
+  import { isDef } from '~/src/utils/shared';
+  import scrollIntoView from '~/src/utils/scroll-into-view';
+  import { generateId } from '~/src/utils/util';
 
   const copyArray = (arr, props) => {
     if (!arr || !Array.isArray(arr) || !props) return arr;
@@ -28,7 +28,7 @@
   };
 
   export default {
-    name: 'ElCascaderMenu',
+    name: 'CascaderMenu',
 
     data() {
       return {
@@ -264,8 +264,8 @@
           return (
             <li
               class={{
-                'el-cascader-menu__item': true,
-                'el-cascader-menu__item--extensible': item.children,
+                [`${this.$clsPrefix}-cascader-menu__item`]: true,
+                [`${this.$clsPrefix}-cascader-menu__item--extensible`]: item.children,
                 'is-active': item.value === activeValue[menuIndex],
                 'is-disabled': item.disabled
               }}
@@ -301,8 +301,8 @@
         return (
           <ul
             class={{
-              'el-cascader-menu': true,
-              'el-cascader-menu--flexible': isFlat
+              [`${this.$clsPrefix}-cascader-menu`]: true,
+              [`${this.$clsPrefix}-cascader-menu--flexible`]: isFlat
             }}
             {...hoverMenuEvent}
             style={menuStyle}
@@ -350,11 +350,12 @@
       }
 
       return (
-        <transition name="el-zoom-in-top" on-before-enter={this.handleMenuEnter} on-after-leave={this.handleMenuLeave}>
+        <transition name={`${this.$clsPrefix}-zoom-in-top`} on-before-enter={this.handleMenuEnter} on-after-leave={this.handleMenuLeave}>
           <div
             v-show={visible}
             class={[
-              'el-cascader-menus el-popper',
+              `${this.$clsPrefix}-cascader-menus`,
+              `${this.$clsPrefix}-popper`,
               popperClass
             ]}
             ref="wrapper"

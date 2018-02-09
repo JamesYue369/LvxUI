@@ -1,21 +1,27 @@
 <template>
   <div
-    class="el-steps"
     :class="[
-       !simple && 'el-steps--' + direction,
-       simple && 'el-steps--simple'
+       `${$clsPrefix}-steps`,
+       !simple && `${$clsPrefix}-steps--` + direction,
+       simple && `${$clsPrefix}-steps--simple`
      ]">
       <slot></slot>
   </div>
 </template>
 
 <script>
-import Migrating from 'element-ui/src/mixins/migrating';
+import Migrating from '~/src/mixins/migrating';
 
 export default {
-  name: 'ElSteps',
+  name: 'Steps',
 
   mixins: [Migrating],
+
+  provide() {
+    return {
+      steps: this
+    };
+  },
 
   props: {
     space: [Number, String],

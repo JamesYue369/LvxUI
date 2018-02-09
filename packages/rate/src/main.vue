@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-rate"
+    :class="[`${$clsPrefix}-rate`]"
     @keydown="handelKey"
     role="slider"
     :aria-valuenow="currentValue"
@@ -10,33 +10,32 @@
     tabindex="0">
     <span
       v-for="item in max"
-      class="el-rate__item"
+      :class="[`${$clsPrefix}-rate__item`]"
       @mousemove="setCurrentValue(item, $event)"
       @mouseleave="resetCurrentValue"
       @click="selectValue(item)"
       :style="{ cursor: disabled ? 'auto' : 'pointer' }">
       <i
-        :class="[classes[item - 1], { 'hover': hoverIndex === item }]"
-        class="el-rate__icon"
+        :class="[classes[item - 1], { 'hover': hoverIndex === item }, `${$clsPrefix}-rate__icon`]"
         :style="getIconStyle(item)">
         <i
           v-if="showDecimalIcon(item)"
-          :class="decimalIconClass"
+          :class="[decimalIconClass, `${$clsPrefix}-rate__decimal`]"
           :style="decimalStyle"
-          class="el-rate__decimal">
+         >
         </i>
       </i>
     </span>
-    <span v-if="showText || showScore" class="el-rate__text" :style="{ color: textColor }">{{ text }}</span>
+    <span v-if="showText || showScore" :class="[`${$clsPrefix}-rate__text`]" :style="{ color: textColor }">{{ text }}</span>
   </div>
 </template>
 
 <script>
-  import { hasClass } from 'element-ui/src/utils/dom';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import { hasClass } from '~/src/utils/dom';
+  import Migrating from '~/src/mixins/migrating';
 
   export default {
-    name: 'ElRate',
+    name: 'Rate',
 
     mixins: [Migrating],
 
@@ -83,16 +82,20 @@
       iconClasses: {
         type: Array,
         default() {
-          return ['el-icon-star-on', 'el-icon-star-on', 'el-icon-star-on'];
+          return [`${this.$clsPrefix}-icon-star-on`, `${this.$clsPrefix}-icon-star-on`, `${this.$clsPrefix}-icon-star-on`];
         }
       },
       voidIconClass: {
         type: String,
-        default: 'el-icon-star-off'
+        default() {
+          return this.$clsPrefix + '-icon-star-off';
+        }
       },
       disabledVoidIconClass: {
         type: String,
-        default: 'el-icon-star-on'
+        default() {
+          return `${this.$clsPrefix}-icon-star-on`;
+        }
       },
       disabled: {
         type: Boolean,
@@ -292,10 +295,10 @@
         /* istanbul ignore if */
         if (this.allowHalf) {
           let target = event.target;
-          if (hasClass(target, 'el-rate__item')) {
-            target = target.querySelector('.el-rate__icon');
+          if (hasClass(target, `${this.$clsPrefix}-rate__item`)) {
+            target = target.querySelector(`.${this.$clsPrefix}-rate__icon`);
           }
-          if (hasClass(target, 'el-rate__decimal')) {
+          if (hasClass(target, `${this.$clsPrefix}-rate__decimal`)) {
             target = target.parentNode;
           }
           this.pointerAtLeftHalf = event.offsetX * 2 <= target.clientWidth;

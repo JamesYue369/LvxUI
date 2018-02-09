@@ -101,13 +101,13 @@
 
 <style>
   .demo-box.demo-popover {
-    .el-popover + .el-popover {
+    .lvx-popover + .lvx-popover {
       margin-left: 10px;
     }
-    .el-input {
+    .lvx-input {
       width: 360px;
     }
-    .el-button {
+    .lvx-button {
       margin-left: 10px;
     }
   }
@@ -120,34 +120,34 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
 
 :::demo 设置索引`ref`，在按钮中，我们注册了自定义指令`v-popover`，指向索引ID。`trigger`属性用于设置何时触发 Popover ，提供三种触发方式：`hover`, `click` 和 `focus`。第二种用法通过 `slot` 指定 reference。
 ```html
-<el-popover
+<lvx-popover
   ref="popover1"
   placement="top-start"
   title="标题"
   width="200"
   trigger="hover"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-</el-popover>
+</lvx-popover>
 
-<el-popover
+<lvx-popover
   ref="popover2"
   placement="bottom"
   title="标题"
   width="200"
   trigger="click"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-</el-popover>
+</lvx-popover>
 
-<el-button v-popover:popover1>hover 激活</el-button>
-<el-button v-popover:popover2>click 激活</el-button>
-<el-popover
+<lvx-button v-popover:popover1>hover 激活</lvx-button>
+<lvx-button v-popover:popover2>click 激活</lvx-button>
+<lvx-popover
   placement="right"
   title="标题"
   width="200"
   trigger="focus"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-  <el-button slot="reference">focus 激活</el-button>
-</el-popover>
+  <lvx-button slot="reference">focus 激活</lvx-button>
+</lvx-popover>
 ```
 :::
 
@@ -157,19 +157,19 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
 
 :::demo 利用分发取代`content`属性
 ```html
-<el-popover
+<lvx-popover
   ref="popover4"
   placement="right"
   width="400"
   trigger="click">
-  <el-table :data="gridData">
-    <el-table-column width="150" property="date" label="日期"></el-table-column>
-    <el-table-column width="100" property="name" label="姓名"></el-table-column>
-    <el-table-column width="300" property="address" label="地址"></el-table-column>
-  </el-table>
-</el-popover>
+  <lvx-table :data="gridData">
+    <lvx-table-column width="150" property="date" label="日期"></lvx-table-column>
+    <lvx-table-column width="100" property="name" label="姓名"></lvx-table-column>
+    <lvx-table-column width="300" property="address" label="地址"></lvx-table-column>
+  </lvx-table>
+</lvx-popover>
 
-<el-button v-popover:popover4>click 激活</el-button>
+<lvx-button v-popover:popover4>click 激活</lvx-button>
 
 <script>
   export default {
@@ -205,19 +205,19 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
 
 :::demo
 ```html
-<el-popover
+<lvx-popover
   ref="popover5"
   placement="top"
   width="160"
   v-model="visible2">
   <p>这是一段内容这是一段内容确定删除吗？</p>
   <div style="text-align: right; margin: 0">
-    <el-button size="mini" type="text" @click="visible2 = false">取消</el-button>
-    <el-button type="primary" size="mini" @click="visible2 = false">确定</el-button>
+    <lvx-button size="mini" type="text" @click="visible2 = false">取消</lvx-button>
+    <lvx-button type="primary" size="mini" @click="visible2 = false">确定</lvx-button>
   </div>
-</el-popover>
+</lvx-popover>
 
-<el-button v-popover:popover5>删除</el-button>
+<lvx-button v-popover:popover5>删除</lvx-button>
 
 <script>
   export default {

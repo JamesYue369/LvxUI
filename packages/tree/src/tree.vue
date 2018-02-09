@@ -1,36 +1,35 @@
 <template>
   <div
-    class="el-tree"
-    :class="{ 'el-tree--highlight-current': highlightCurrent }"
+    :class="[`${$clsPrefix}-tree`, { [`${$clsPrefix}-tree--highlight-current`]: highlightCurrent }]"
     role="tree"
   >
-    <el-tree-node
+    <lvx-tree-node
       v-for="child in root.childNodes"
       :node="child"
       :props="props"
       :key="getNodeKey(child)"
       :render-content="renderContent"
       @node-expand="handleNodeExpand">
-    </el-tree-node>
-    <div class="el-tree__empty-block" v-if="!root.childNodes || root.childNodes.length === 0">
-      <span class="el-tree__empty-text">{{ emptyText }}</span>
+    </lvx-tree-node>
+    <div :class="[`${$clsPrefix}-tree__empty-block`]" v-if="!root.childNodes || root.childNodes.length === 0">
+      <span :class="[`${$clsPrefix}-tree__empty-text`]">{{ emptyText }}</span>
     </div>
   </div>
 </template>
 
 <script>
   import TreeStore from './model/tree-store';
-  import ElTreeNode from './tree-node.vue';
-  import {t} from 'element-ui/src/locale';
-  import emitter from 'element-ui/src/mixins/emitter';
+  import TreeNode from './tree-node.vue';
+  import {t} from '~/src/locale';
+  import emitter from '~/src/mixins/emitter';
 
   export default {
-    name: 'ElTree',
+    name: 'Tree',
 
     mixins: [emitter],
 
     components: {
-      ElTreeNode
+      'LvxTreeNode': TreeNode
     },
 
     data() {
@@ -50,7 +49,7 @@
       emptyText: {
         type: String,
         default() {
-          return t('el.tree.emptyText');
+          return t('lang.tree.emptyText');
         }
       },
       nodeKey: String,
@@ -179,7 +178,7 @@
         this.store.setCurrentNodeKey(key);
       },
       handleNodeExpand(nodeData, node, instance) {
-        this.broadcast('ElTreeNode', 'tree-node-expand', node);
+        this.broadcast('TreeNode', 'tree-node-expand', node);
         this.$emit('node-expand', nodeData, node, instance);
       },
       updateKeyChildren(key, data) {
@@ -198,7 +197,7 @@
       },
       handelKeydown(ev) {
         const currentItem = ev.target;
-        if (currentItem.className.indexOf('el-tree-node') === -1) return;
+        if (currentItem.className.indexOf(`${this.$clsPrefix}-tree-node`) === -1) return;
         ev.preventDefault();
         const keyCode = ev.keyCode;
         this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');

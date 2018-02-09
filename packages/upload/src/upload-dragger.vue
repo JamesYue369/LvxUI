@@ -1,9 +1,10 @@
 <template>
   <div
-    class="el-upload-dragger"
-    :class="{
+    :class="[
+    `${$clsPrefix}-upload-dragger`,
+    {
       'is-dragover': dragover
-    }"
+    }]"
     @drop.prevent="onDrop"
     @dragover.prevent="onDragover"
     @dragleave.prevent="dragover = false"
@@ -13,7 +14,7 @@
 </template>
 <script>
   export default {
-    name: 'ElUploadDrag',
+    name: 'UploadDrag',
     props: {
       disabled: Boolean
     },
