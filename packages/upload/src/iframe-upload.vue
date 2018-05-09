@@ -1,6 +1,6 @@
 <script>
 import UploadDragger from './upload-dragger.vue';
-
+import _ from 'lodash';
 export default {
   components: {
     UploadDragger
@@ -22,6 +22,7 @@ export default {
     onProgress: Function,
     onSuccess: Function,
     onError: Function,
+    onDisallow: Function,
     beforeUpload: Function,
     onPreview: {
       type: Function,
@@ -63,6 +64,16 @@ export default {
       }
     },
     uploadFiles(file) {
+      if (this.accept) {
+        let index = _.findIndex(this.accept.split(','), function(o) {
+          return o === file.type;
+        });
+        if (index < 0) {
+          this.onDisallow(file);
+          return;
+        }
+      }
+
       if (this.limit && this.$parent.uploadFiles.length + file.length > this.limit) {
         this.onExceed && this.onExceed(this.fileList);
         return;

@@ -45,6 +45,14 @@
   }
 
   & [class*="#{$--prefix-css}-icon-"] {
+    font-size: 14px;
+    & + span {
+      margin-left: 5px;
+    }
+  }
+
+  & [class*=icon-] {
+    font-size: 14px;
     & + span {
       margin-left: 5px;
     }

@@ -24,7 +24,10 @@
         state1: '',
         state2: '',
         state3: '',
-        state4: ''
+        state4: '',
+        inputStyle: {
+          borderRadius: '2px 0px 0px 2px'
+        }
       };
     },
     methods: {
@@ -188,13 +191,16 @@
 
 ::: demo
 ```html
-<lvx-input v-model="input" placeholder="请输入内容"></lvx-input>
+<lvx-input  v-model="input" placeholder="请输入内容" :input-style="inputStyle"></lvx-input>
 
 <script>
 export default {
   data() {
     return {
-      input: ''
+      input: '',
+      inputStyle: {
+        borderRadius: '2px 0px 0px 2px'
+      }
     }
   }
 }

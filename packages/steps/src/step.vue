@@ -177,7 +177,7 @@ export default {
 
   mounted() {
     const unwatch = this.$watch('index', val => {
-      this.$watch('$parent.active', this.updateStatus, { immediate: true });
+      this.$watch('steps.active', this.updateStatus, { immediate: true });
       unwatch();
     });
   }

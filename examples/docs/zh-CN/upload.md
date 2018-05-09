@@ -115,6 +115,9 @@
       },
       handleExceed(files, fileList) {
         this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      handleDisallow(files) {
+        this.$message.warning(`附件格式错误`);
       }
     }
   }
@@ -136,6 +139,8 @@
   multiple
   :limit="3"
   :on-exceed="handleExceed"
+  :on-disallow="handleDisallow"
+  accept="image/gif,image/jpeg,image/png"
   :file-list="fileList">
   <lvx-button size="small" type="primary">点击上传</lvx-button>
   <div slot="tip" class="lvx-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -156,6 +161,9 @@
       },
       handleExceed(files, fileList) {
         this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      handleDisallow(files) {
+        this.$message.warning(`附件格式错误`);
       }
     }
   }
@@ -416,6 +424,7 @@
 | on-remove | 文件列表移除文件时的钩子 | function(file, fileList) | — | — |
 | on-success | 文件上传成功时的钩子 | function(response, file, fileList) | — | — |
 | on-error | 文件上传失败时的钩子 | function(err, file, fileList) | — | — |
+| on-disallow | 文件类型不再接受范围时的钩子 | function(file) | — | — |
 | on-progress | 文件上传时的钩子 | function(event, file, fileList) | — | — |
 | on-change | 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用 | function(file, fileList) | — | — |
 | before-upload | 上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。 | function(file) | — | — |

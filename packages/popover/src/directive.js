@@ -1,5 +1,6 @@
 export default {
   bind(el, binding, vnode) {
-    vnode.context.$refs[binding.arg].$refs.reference = el;
+    let pv = binding.arg || binding.value || binding.expression;
+    vnode.context.$refs[pv].$refs.reference = el;
   }
 };

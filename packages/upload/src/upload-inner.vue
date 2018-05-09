@@ -1,7 +1,7 @@
 <script>
 import ajax from './ajax';
 import UploadDragger from './upload-dragger.vue';
-
+import _ from 'lodash';
 export default {
   inject: ['uploader'],
   components: {
@@ -26,6 +26,7 @@ export default {
     onProgress: Function,
     onSuccess: Function,
     onError: Function,
+    onDisallow: Function,
     beforeUpload: Function,
     drag: Boolean,
     onPreview: {
@@ -66,11 +67,39 @@ export default {
       this.uploadFiles(files);
     },
     uploadFiles(files) {
+      // debugger
+      if (!this.multiple) {
+        if (this.accept) {
+          let index = _.findIndex(this.accept.split(','), function(o) {
+            return o === files[0].type;
+          });
+          if (index < 0) {
+            this.onDisallow(files);
+            return;
+          }
+        }
+      } else {
+        if (this.accept) {
+          let disallowFlag = false;
+          _.forEach(files, (value)=> {
+            let index = _.findIndex(this.accept.split(','), function(o) {
+              return o === value.type;
+            });
+            if (index < 0) {
+              disallowFlag = true;
+              this.onDisallow(value);
+              return false;
+            }
+          });
+          if (disallowFlag) {
+            return;
+          }
+        }
+      }
       if (this.limit && this.fileList.length + files.length > this.limit) {
         this.onExceed && this.onExceed(files, this.fileList);
         return;
       }
-
       let postFiles = Array.prototype.slice.call(files);
       if (!this.multiple) { postFiles = postFiles.slice(0, 1); }
 

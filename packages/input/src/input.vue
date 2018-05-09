@@ -294,6 +294,7 @@
     },
 
     created() {
+
       this.$on('inputSelect', this.inputSelect);
     },
 

@@ -75,6 +75,10 @@ export default {
       type: Function,
       default: noop
     },
+    onDisallow: {
+      type: Function,
+      default: noop
+    },
     fileList: {
       type: Array,
       default() {
@@ -251,6 +255,7 @@ export default {
         'on-error': this.handleError,
         'on-preview': this.onPreview,
         'on-remove': this.handleRemove,
+        'on-disallow': this.onDisallow,
         'http-request': this.httpRequest
       },
       ref: 'upload-inner'

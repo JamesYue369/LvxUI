@@ -77,7 +77,8 @@
         }],
         singleSelection: {},
         multipleSelection: [],
-        model: ''
+        model: '',
+        popover2: 'popover2'
       };
     },
 
@@ -138,8 +139,8 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
 </lvx-popover>
 
-<lvx-button v-popover:popover1>hover 激活</lvx-button>
-<lvx-button v-popover:popover2>click 激活</lvx-button>
+<lvx-button v-popover="`popover1`">hover 激活</lvx-button>
+<lvx-button v-popover="popover2">click 激活</lvx-button>
 <lvx-popover
   placement="right"
   title="标题"
