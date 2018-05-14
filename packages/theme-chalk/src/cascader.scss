@@ -131,7 +131,7 @@
     outline: none;
     @include m(extensible) {
       &:after {
-        font-family: 'element-icons';
+        font-family: 'lvxui-icons';
         content: "\e604";
         font-size: 14px;
         color: rgb(191, 203, 217);
