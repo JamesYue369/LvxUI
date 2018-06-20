@@ -358,6 +358,11 @@
             
           </template>
         </lvx-table-column>
+
+        <div class="empty-wraper" slot="empty">
+          <img src="assets/imgages/noData.png" alt="">
+          <p class="text-bottom" style="margin-right: 45px;">没有找到匹配的记录</p>
+        </div>
       </lvx-table>
     </div>
     <div>
@@ -402,6 +407,10 @@
         action="https://jsonplaceholder.typicode.com/posts/"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
+        :size="1024*30"
+        :on-spill="handleAvatarSpill"
+        accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        :on-disallow="handleAvatarDisallow"
         >
         <i class="lvx-icon-setting"></i>修改头像
       </lvx-upload>
@@ -412,6 +421,36 @@
           <h3>{{ item }}</h3>
         </lvx-carousel-item>
       </lvx-carousel>
+    </div>
+    <div>
+      <lvx-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内容"
+        :maxlength="200"
+        >
+      </lvx-input>
+    </div>
+    <div>
+       <lvx-table
+        :data="tableData1"
+        border
+        style="width: 100%">
+        <lvx-table-column
+          prop="date"
+          label="日期"
+          width="180">
+        </lvx-table-column>
+        <lvx-table-column
+          prop="name"
+          label="姓名"
+          width="180">
+        </lvx-table-column>
+        <lvx-table-column
+          prop="address"
+          label="地址">
+        </lvx-table-column>
+      </lvx-table>
     </div>
   </div>
 </template>
@@ -444,7 +483,8 @@
         active: 0,
         active1: 1,
         lineType: 'dashed',
-        tableData: [{
+        tableData: [],
+        tableData1: [{
           date: '2016-05-02',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
@@ -519,6 +559,30 @@
     watch: {
     },
     methods: {
+      handleAvatarDisallow() {
+        this.$message({
+          dangerouslyUseHTMLString: true,
+          message: '<span style="color:#333">文件类型不符<span>',
+          type: 'error',
+          customStyle: {
+            backgroundColor: '#ffedec',
+            minWidth: '316px',
+            padding: '8px 15px 8px 20px'
+          }
+        });
+      },
+      handleAvatarSpill() {
+        this.$message({
+          dangerouslyUseHTMLString: true,
+          message: '<span style="color:#333">文件大小超过限制<span>',
+          type: 'error',
+          customStyle: {
+            backgroundColor: '#ffedec',
+            minWidth: '316px',
+            padding: '8px 15px 8px 20px'
+          }
+        });
+      },
       next() {
         if (this.active++ > 2) this.active = 0;
       },

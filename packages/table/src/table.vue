@@ -39,7 +39,10 @@
         :style="{ width: bodyWidth }">
       </table-body>
       <div :style="{ width: bodyWidth }" :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0">
-        <span :class="[`${$clsPrefix}-table__empty-text`]"><slot name="empty">{{ emptyText || t('lang.table.emptyText') }}</slot></span>
+        <div v-if="$slots.empty" :class="[`${$clsPrefix}-table__empty-slot`]">
+          <slot name="empty"></slot>
+        </div>
+        <span :class="[`${$clsPrefix}-table__empty-text`]" v-else><slot name="empty">{{ emptyText || t('lang.table.emptyText') }}</slot></span>
       </div>
       <div :class="[`${$clsPrefix}-table__append-wrapper`]" ref="appendWrapper" v-if="$slots.append">
         <slot name="append"></slot>

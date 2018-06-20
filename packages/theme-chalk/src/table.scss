@@ -30,6 +30,9 @@
     transform: translate(-50%, -50%);
     color: color($--color-primary s(16%) l(44%));
   }
+  @include e(empty-slot) {
+    height: 100%;
+  }
 
   // 展开行
   @include e(expand-column) {
@@ -268,7 +271,9 @@
     border-bottom: none;
 
     th, td {
-      border-right: $--table-border;
+      &:not(:last-child){
+        border-right: $--table-border;
+      }
 
       &:first-child .cell {
         padding-left: 10px;
@@ -521,6 +526,7 @@
   @include m(enable-row-transition) {
     .#{$--prefix-css}-table__body td {
       transition: background-color .25s ease;
+      text-align: initial;
     }
   }
 

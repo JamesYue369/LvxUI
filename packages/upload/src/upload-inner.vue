@@ -27,6 +27,7 @@ export default {
     onSuccess: Function,
     onError: Function,
     onDisallow: Function,
+    onSpill: Function,
     beforeUpload: Function,
     drag: Boolean,
     onPreview: {
@@ -46,7 +47,8 @@ export default {
     },
     disabled: Boolean,
     limit: Number,
-    onExceed: Function
+    onExceed: Function,
+    size: Number
   },
 
   data() {
@@ -68,27 +70,51 @@ export default {
     },
     uploadFiles(files) {
       // debugger
+      // 校验文件类型
       if (!this.multiple) {
         if (this.accept) {
-          let index = _.findIndex(this.accept.split(','), function(o) {
-            return o === files[0].type;
-          });
-          if (index < 0) {
-            this.onDisallow(files);
-            return;
+          // 存在文件类型字符
+          if (files[0].type) {
+            let index = _.findIndex(this.accept.split(','), function(o) {
+              return o === files[0].type;
+            });
+            if (index < 0) {
+              this.onDisallow(files);
+              return;
+            }
+          } else {
+            // 目前发现docx格式的文件type为空,为解决此问题以下代码
+            if (this.accept.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+              if (files[0].name.search('.docx') < 0) {
+                this.onDisallow(files);
+                return;
+              }
+            }
           }
         }
       } else {
         if (this.accept) {
           let disallowFlag = false;
           _.forEach(files, (value)=> {
-            let index = _.findIndex(this.accept.split(','), function(o) {
-              return o === value.type;
-            });
-            if (index < 0) {
-              disallowFlag = true;
-              this.onDisallow(value);
-              return false;
+            // 存在文件类型字符
+            if (value.type) {
+              let index = _.findIndex(this.accept.split(','), function(o) {
+                return o === value.type;
+              });
+              if (index < 0) {
+                disallowFlag = true;
+                this.onDisallow(value);
+                return false;
+              }
+            } else {
+              // 目前发现docx格式的文件type为空,为解决此问题以下代码
+              if (this.accept.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+                if (value.name.search('.docx') < 0) {
+                  disallowFlag = true;
+                  this.onDisallow(value);
+                  return false;
+                }
+              }
             }
           });
           if (disallowFlag) {
@@ -96,6 +122,30 @@ export default {
           }
         }
       }
+      // 校验文件大小
+      if (!this.multiple) {
+        if (this.size) {
+          if (files[0].size > this.size) {
+            this.onSpill(files);
+            return;
+          }
+        }
+      } else {
+        if (this.size) {
+          let spillFlag = false;
+          _.forEach(files, (value)=> {
+            if (value.size > this.size) {
+              spillFlag = true;
+              this.onSpill(value);
+              return false;
+            }
+          });
+          if (spillFlag) {
+            return;
+          }
+        }
+      }
+      // 校验文件个数
       if (this.limit && this.fileList.length + files.length > this.limit) {
         this.onExceed && this.onExceed(files, this.fileList);
         return;

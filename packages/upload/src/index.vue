@@ -23,6 +23,10 @@ export default {
   },
 
   props: {
+    size: {
+      type: Number,
+      default: 0
+    },
     action: {
       type: String,
       required: true
@@ -76,6 +80,10 @@ export default {
       default: noop
     },
     onDisallow: {
+      type: Function,
+      default: noop
+    },
+    onSpill: {
       type: Function,
       default: noop
     },
@@ -233,6 +241,7 @@ export default {
 
     const uploadData = {
       props: {
+        size: this.size,
         type: this.type,
         drag: this.drag,
         action: this.action,
@@ -256,6 +265,7 @@ export default {
         'on-preview': this.onPreview,
         'on-remove': this.handleRemove,
         'on-disallow': this.onDisallow,
+        'on-spill': this.onSpill,
         'http-request': this.httpRequest
       },
       ref: 'upload-inner'

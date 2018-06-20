@@ -82,7 +82,9 @@
       @change="handleChange"
       :aria-label="label"
     >
+
     </textarea>
+    <span v-if="maxlength" :class="`${$clsPrefix}-textarea__tip`">{{currentValue?currentValue.length:0}}/{{maxlength}}字</span>
   </div>
 </template>
 <script>

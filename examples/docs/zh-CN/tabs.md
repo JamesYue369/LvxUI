@@ -390,3 +390,9 @@
 | disabled | 是否禁用 | boolean | — | false |
 | name      | 与选项卡 activeName 对应的标识符，表示选项卡别名 | string | — | 该选项卡在选项卡列表中的顺序值，如第一个选项卡则为'1' |
 | closable  | 标签是否可关闭   | boolean   | — |  false  |
+
+### Tab-pane Slot
+| name | 说明 |
+|------|--------|
+| — | Panel 的内容 |
+| label | 自定义标签内容 |

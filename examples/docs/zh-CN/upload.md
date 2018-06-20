@@ -380,6 +380,8 @@
   :on-preview="handlePreview"
   :on-remove="handleRemove"
   :file-list="fileList"
+  accept="image/gif,image/jpeg,image/png"
+  :on-disallow="handleDisallow"
   :auto-upload="false">
   <lvx-button slot="trigger" size="small" type="primary">选取文件</lvx-button>
   <lvx-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</lvx-button>
@@ -435,9 +437,16 @@
 | disabled | 是否禁用 | boolean | — | false |
 | limit | 最大允许上传个数 |  number | — | — |
 | on-exceed | 文件超出个数限制时的钩子 | function(files, fileList) | — | - |
+| size | 设置上传的文件大小 | number | — | 0 无限制 |
+| on-spill | 文件大小超出限制时的钩子 | function(files) | — | - |
 
 ### Methods
 | 方法名      | 说明          | 参数 |
 |---------- |-------------- | -- |
 | clearFiles | 清空已上传的文件列表（该方法不支持在 before-upload 中调用） | — |
 | abort | 取消上传请求 | （ file: fileList 中的 file 对象 ） |
+
+### Slot
+| name | 说明 |
+|------|--------|
+| trigger | 触发打开文件上传内容部分 |
