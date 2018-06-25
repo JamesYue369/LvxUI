@@ -439,6 +439,8 @@
 | on-exceed | 文件超出个数限制时的钩子 | function(files, fileList) | — | - |
 | size | 设置上传的文件大小 | number | — | 0 无限制 |
 | on-spill | 文件大小超出限制时的钩子 | function(files) | — | - |
+| totalSize | 设置上传文件列表的总文件大小 | number | — | 0 无限制 |
+| on-total-spill | 上传文件列表总文件大小超出限制时的钩子 | function(files) | — | - |
 
 ### Methods
 | 方法名      | 说明          | 参数 |
@@ -450,3 +452,5 @@
 | name | 说明 |
 |------|--------|
 | trigger | 触发打开文件上传内容部分 |
+| ready | 显示上传文件列表时文件准备上传状态时的显示内容 |
+| success | 显示上传文件列表时文件上传成功状态时的显示内容 |

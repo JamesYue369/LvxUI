@@ -27,6 +27,10 @@ export default {
       type: Number,
       default: 0
     },
+    totalSize: {
+      type: Number,
+      default: 0
+    },
     action: {
       type: String,
       required: true
@@ -84,6 +88,10 @@ export default {
       default: noop
     },
     onSpill: {
+      type: Function,
+      default: noop
+    },
+    onTotalSpill: {
       type: Function,
       default: noop
     },
@@ -235,6 +243,12 @@ export default {
           files={this.uploadFiles}
           on-remove={this.handleRemove}
           handlePreview={this.onPreview}>
+          <template slot="ready">
+            {this.$slots.ready ? this.$slots.ready : ''}
+          </template>
+          <template slot="success">
+            {this.$slots.success ? this.$slots.success : ''}
+          </template>
         </UploadList>
       );
     }
@@ -242,6 +256,7 @@ export default {
     const uploadData = {
       props: {
         size: this.size,
+        totalSize: this.totalSize,
         type: this.type,
         drag: this.drag,
         action: this.action,
@@ -266,6 +281,7 @@ export default {
         'on-remove': this.handleRemove,
         'on-disallow': this.onDisallow,
         'on-spill': this.onSpill,
+        'on-total-spill': this.onTotalSpill,
         'http-request': this.httpRequest
       },
       ref: 'upload-inner'

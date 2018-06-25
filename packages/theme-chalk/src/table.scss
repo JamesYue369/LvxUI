@@ -395,7 +395,7 @@
   @include e(body-wrapper) {
     overflow: auto;
     position: relative;
-
+    text-align: initial;
     @include when(scroll-none) {
       ~ .#{$--prefix-css}-table__fixed,
       ~ .#{$--prefix-css}-table__fixed-right {
@@ -526,7 +526,6 @@
   @include m(enable-row-transition) {
     .#{$--prefix-css}-table__body td {
       transition: background-color .25s ease;
-      text-align: initial;
     }
   }
 

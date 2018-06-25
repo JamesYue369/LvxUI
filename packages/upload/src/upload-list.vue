@@ -25,6 +25,10 @@
       >
       <a :class="[`${$clsPrefix}-upload-list__item-name`]" @click="handleClick(file)">
         <i :class="[`${$clsPrefix}-icon-document`]"></i>{{file.name}}
+        <span :class="[`${$clsPrefix}-upload-list__item-label`]">
+          <span class="label-is-ready"><slot name="ready" ></slot></span>
+          <span class="label-is-success"><slot name="success" ></slot></span>
+        </span>
       </a>
       <label :class="[`${$clsPrefix}-upload-list__item-status-label`]">
         <i :class="{

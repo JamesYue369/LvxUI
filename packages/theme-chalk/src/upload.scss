@@ -191,6 +191,14 @@
       .#{$--prefix-css}-upload-list__item-status-label {
         display: block;
       }
+      .#{$--prefix-css}-upload-list__item-label {
+        .label-is-ready{
+          display: none;
+        }
+        .label-is-success{
+          display: inline-block;
+        }
+      }
 
       .#{$--prefix-css}-upload-list__item-name:hover, .#{$--prefix-css}-upload-list__item-name:focus {
         color: $--link-hover-color;
@@ -233,7 +241,7 @@
     text-overflow: ellipsis;
     transition: color .3s;
     white-space: nowrap;
-
+    position: relative;
     [class^="#{$--prefix-css}-icon"] {
       height: 100%;
       margin-right: 7px;
@@ -241,7 +249,13 @@
       line-height: inherit;
     }
   }
-
+  @include e(item-label) {
+    position: absolute;
+    right: 0;
+    .label-is-success{
+      display: none;
+    }
+  }
   @include e(item-status-label) {
     position: absolute;
     right: 5px;

@@ -435,22 +435,53 @@
        <lvx-table
         :data="tableData1"
         border
+
         style="width: 100%">
         <lvx-table-column
           prop="date"
           label="日期"
+          align="center"
+          header-align="center"
           width="180">
         </lvx-table-column>
         <lvx-table-column
           prop="name"
           label="姓名"
+          align="center"
           width="180">
         </lvx-table-column>
         <lvx-table-column
           prop="address"
+          align="center"
           label="地址">
         </lvx-table-column>
       </lvx-table>
+
+      <lvx-upload
+        action="https://jsonplaceholder.typicode.com/posts/"
+        class="upload-demo"
+        ref="upload"
+        accept="image/gif,image/jpeg,image/png"
+        :total-size="1024*1024*10"
+        :multiple="true"
+        :on-total-spill="onTotalSpill"
+        :auto-upload="false">
+        <span slot="ready">等待上传</span>
+        <span slot="success">上传成功</span>
+        <lvx-button slot="trigger" size="small" type="primary">选取文件</lvx-button>
+        <lvx-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</lvx-button>
+        <div slot="tip" class="lvx-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </lvx-upload>
+
+      <lvx-select v-model="selectValue" placeholder="请选择" >
+        <lvx-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </lvx-option>
+        <i class="lvx-input__icon lvx-icon-date" slot="prefix"></i>
+      </lvx-select>
     </div>
   </div>
 </template>
@@ -462,6 +493,23 @@
   export default {
     data() {
       return {
+        selectValue: '选项1',
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
         radio2: 3,
         checkList: ['选中且禁用', '复选框 A'],
         checkList1: ['选中且禁用', '复选框 A'],
@@ -559,6 +607,18 @@
     watch: {
     },
     methods: {
+      onTotalSpill(files) {
+        this.$message({
+          dangerouslyUseHTMLString: true,
+          message: '<span style="color:#333">总文件大小超过限制<span>',
+          type: 'error',
+          customStyle: {
+            backgroundColor: '#ffedec',
+            minWidth: '316px',
+            padding: '8px 15px 8px 20px'
+          }
+        });
+      },
       handleAvatarDisallow() {
         this.$message({
           dangerouslyUseHTMLString: true,
@@ -656,6 +716,9 @@
       },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
+      },
+      submitUpload() {
+        this.$refs.upload.submit();
       }
     },
     created() {

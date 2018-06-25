@@ -60,6 +60,7 @@
       :readonly="!filterable || multiple"
       :validate-event="false"
       :class="{ 'is-focus': visible }"
+      :prefix-icon="prefixIcon"
       @focus="handleFocus"
       @blur="handleBlur"
       @mousedown.native="handleMouseDown"
@@ -72,6 +73,8 @@
       @paste.native="debouncedOnInputChange"
       @mouseenter.native="inputHovering = true"
       @mouseleave.native="inputHovering = false">
+      <template slot="prefix"><slot name="prefix"></slot></template>
+      
       <i slot="suffix"
        :class="[`${$clsPrefix}-select__caret`, `${$clsPrefix}-input__icon`, `${$clsPrefix}-icon-` + iconClass]"
        @click="handleIconClick"
@@ -246,7 +249,8 @@
         type: String,
         default: 'value'
       },
-      collapseTags: Boolean
+      collapseTags: Boolean,
+      prefixIcon: String
     },
 
     data() {

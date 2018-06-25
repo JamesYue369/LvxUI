@@ -28,6 +28,7 @@ export default {
     onError: Function,
     onDisallow: Function,
     onSpill: Function,
+    onTotalSpill: Function,
     beforeUpload: Function,
     drag: Boolean,
     onPreview: {
@@ -48,7 +49,8 @@ export default {
     disabled: Boolean,
     limit: Number,
     onExceed: Function,
-    size: Number
+    size: Number,
+    totalSize: Number
   },
 
   data() {
@@ -150,7 +152,21 @@ export default {
         this.onExceed && this.onExceed(files, this.fileList);
         return;
       }
+
       let postFiles = Array.prototype.slice.call(files);
+      // 校验文件列表总大小
+      if (this.totalSize) {
+        let calcTotalSize = 0;
+        let totalFileList = _.concat(postFiles, this.fileList);
+
+        _.forEach(totalFileList, (value, key)=> {
+          calcTotalSize += value.size;
+        });
+        if (calcTotalSize > this.totalSize) {
+          this.onTotalSpill(files);
+          return;
+        }
+      }
       if (!this.multiple) { postFiles = postFiles.slice(0, 1); }
 
       if (postFiles.length === 0) { return; }
