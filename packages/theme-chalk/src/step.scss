@@ -329,6 +329,6 @@
     flex: 1;
   }
   @include when(flex-auto) {
-    flex: none;
+    flex: auto;
   }
 }
