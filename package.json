@@ -1,6 +1,6 @@
 {
   "name": "lvx-ui",
-  "version": "2.0.20",
+  "version": "2.0.21",
   "description": "A Component Library for Vue.js.",
   "main": "lib/lvx-ui.common.js",
   "files": [
