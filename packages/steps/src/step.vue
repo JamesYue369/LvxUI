@@ -6,7 +6,8 @@
       !isSimple && `is-${steps.direction}`,
       isSimple && 'is-simple',
       isLast && !space && !isCenter && 'is-flex',
-      isCenter && !isVertical && !isSimple && 'is-center'
+      isCenter && !isVertical && !isSimple && 'is-center',
+      spaceClass
      ]">
     <!-- icon & line -->
     <div
@@ -67,7 +68,9 @@ export default {
       index: -1,
       lineStyle: {},
       borderStyle: {borderStyle: `${this.steps.lineType}`, borderColor: '#b4bccc'},
-      internalStatus: ''
+      internalStatus: '',
+      spaceClass: '',
+      spaceLastClass: ''
     };
   },
 
@@ -128,16 +131,19 @@ export default {
       } else if (this.space) {
         style.width = this.space;
       } else {
-        style.flex = '1';
+        this.spaceClass = 'is-flex-1';
+        // style.flex = '1';
       }
 
       if (this.isLast) {
-        style.flex = 'none';
+        // style.flex = 'none';
+        this.spaceClass = '';
       }
       if (this.isVertical) return style;
       if (this.isLast) {
-        // style.maxWidth = 100 / this.stepsCount + '%';
-        style.flex = 'none';
+        style.maxWidth = 100 / this.stepsCount + '%';
+        // style.flex = 'none';
+        this.spaceClass = '';
         // ie11下最后的节点会有超出部分
       } else {
         style.marginRight = -this.steps.stepOffset + 'px';
