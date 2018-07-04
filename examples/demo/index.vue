@@ -601,7 +601,8 @@
           padding: '0',
           marginLeft: '5px'
         },
-        imageUrl: require('../assets/images/user.jpg')
+        imageUrl: ''
+        // imageUrl: require('../assets/images/user.jpg')
       };
     },
     watch: {
@@ -644,10 +645,14 @@
         });
       },
       next() {
-        if (this.active++ > 2) this.active = 0;
+        if (this.active++ > 2) {
+          this.active = 0;
+        }
       },
       next1() {
-        if (this.active1++ > 2) this.active1 = 0;
+        if (this.active1++ > 2) {
+          this.active1 = 0;
+        } 
       },
       open() {
         this.$message({
@@ -730,5 +735,6 @@
     beforeDestroy() {
     }
   };
+   
 </script>
 

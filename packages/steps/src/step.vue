@@ -113,18 +113,32 @@ export default {
     },
     style: function() {
       const style = {};
-      const parent = this.steps;
-      const len = parent.steps.length;
+      // const parent = this.steps;
+      // const len = parent.steps.length;
 
-      const space = (typeof this.space === 'number'
-        ? this.space + 'px'
-        : this.space
-          ? this.space
-          : 100 / (len - 1) + '%');
-      style.flexBasis = space;
+      // const space = (typeof this.space === 'number'
+      //   ? this.space + 'px'
+      //   : this.space
+      //     ? this.space
+      //     : 100 / (len - 1) + '%');
+      // style.flexBasis = space;
+
+      if (typeof this.space === 'number') {
+        style.width = `${this.space}px`;
+      } else if (this.space) {
+        style.width = this.space;
+      } else {
+        style.flex = '1';
+      }
+
+      if (this.isLast) {
+        style.flex = 'none';
+      }
       if (this.isVertical) return style;
       if (this.isLast) {
-        style.maxWidth = 100 / this.stepsCount + '%';
+        // style.maxWidth = 100 / this.stepsCount + '%';
+        style.flex = 'none';
+        // ie11下最后的节点会有超出部分
       } else {
         style.marginRight = -this.steps.stepOffset + 'px';
       }
