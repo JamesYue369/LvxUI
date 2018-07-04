@@ -328,4 +328,7 @@
   @include when(flex-1) {
     flex: 1;
   }
+  @include when(flex-auto) {
+    flex: none;
+  }
 }

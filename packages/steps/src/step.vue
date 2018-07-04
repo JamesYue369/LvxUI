@@ -7,7 +7,8 @@
       isSimple && 'is-simple',
       isLast && !space && !isCenter && 'is-flex',
       isCenter && !isVertical && !isSimple && 'is-center',
-      spaceClass
+      !isLast &&spaceClass,
+      isLast && spaceLastClass
      ]">
     <!-- icon & line -->
     <div
@@ -137,13 +138,13 @@ export default {
 
       if (this.isLast) {
         // style.flex = 'none';
-        this.spaceClass = '';
+        this.spaceLastClass = 'is-flex-auto';
       }
       if (this.isVertical) return style;
       if (this.isLast) {
         style.maxWidth = 100 / this.stepsCount + '%';
         // style.flex = 'none';
-        this.spaceClass = '';
+        this.spaceLastClass = 'is-flex-auto';
         // ie11下最后的节点会有超出部分
       } else {
         style.marginRight = -this.steps.stepOffset + 'px';
