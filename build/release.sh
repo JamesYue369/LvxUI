@@ -23,7 +23,7 @@ then
   then
     npm publish --tag beta
   else
-    npm publish
+    npm publish --allow-same-version
   fi
   cd ../..
 
@@ -43,6 +43,6 @@ then
   then
     npm publish --tag beta
   else
-    npm publish
+    npm publish --allow-same-version
   fi
 fi
