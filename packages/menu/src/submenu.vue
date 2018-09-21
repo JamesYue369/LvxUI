@@ -120,7 +120,8 @@
             : 'transparent',
           color: this.active
             ? this.activeTextColor
-            : this.textColor
+            : this.textColor,
+          borderBottomWidth: this.rootMenu.showBottomLine ? '2px' : '0'
         };
       }
     },

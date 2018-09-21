@@ -14,20 +14,20 @@
     }, tableSize ? `${$clsPrefix}-table--${ tableSize }` : '']"
     @mouseleave="handleMouseLeave($event)">
     <div class="hidden-columns" ref="hiddenColumns"><slot></slot></div>
-    <div :class="[`${$clsPrefix}-table__header-wrapper`]" ref="headerWrapper" v-if="showHeader">
+    <div :class="[`${$clsPrefix}-table__header-wrapper`]" ref="headerWrapper" v-if="showHeader" :style="[headerStyle]">
       <table-header
         ref="tableHeader"
         :store="store"
         :layout="layout"
         :border="border"
         :default-sort="defaultSort"
-        :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }">
+        :style="[{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }]">
       </table-header>
     </div>
     <div
       ref="bodyWrapper"
       :class="[`${$clsPrefix}-table__body-wrapper`, `is-scroll-${scrollPosition}`]"
-      :style="[bodyHeight]">
+      :style="[bodyHeight, bodyStyle]">
       <table-body
         :context="context"
         :store="store"
@@ -38,7 +38,8 @@
         :highlight="highlightCurrentRow"
         :style="{ width: bodyWidth }">
       </table-body>
-      <div :style="{ width: bodyWidth }" :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0">
+      <!-- <div :style="{ width: bodyWidth }" :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0"> -->
+      <div  :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0">
         <div v-if="$slots.empty" :class="[`${$clsPrefix}-table__empty-slot`]">
           <slot name="empty"></slot>
         </div>
@@ -459,6 +460,16 @@
         }
 
         return style;
+      },
+      bodyStyle() {
+        return {
+          overflow: this.data.length ? 'auto' : 'hidden'
+        };
+      },
+      headerStyle() {
+        return {
+          overflow: this.data.length ? 'hidden' : 'auto'
+        };
       }
     },
 

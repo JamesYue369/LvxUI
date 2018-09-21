@@ -117,7 +117,11 @@
       collapse: Boolean,
       backgroundColor: String,
       textColor: String,
-      activeTextColor: String
+      activeTextColor: String,
+      showBottomLine: {
+        type: Boolean,
+        default: true
+      }
     },
     data() {
       return {
@@ -130,6 +134,22 @@
     computed: {
       hoverBackground() {
         return this.backgroundColor ? this.mixColor(this.backgroundColor, 0.2) : '';
+      },
+      menuStyle() {
+        if (this.mode !== 'horizontal') {
+          return {
+            color: this.textColor
+          };
+        }
+        return {
+          borderBottomColor: this.active
+            ? (this.rootMenu.activeTextColor ? this.activeTextColor : '')
+            : 'transparent',
+          color: this.active
+            ? this.activeTextColor
+            : this.textColor,
+          borderBottomWidth: this.rootMenu.showBottomLine ? '2px' : '0'
+        };
       }
     },
     watch: {

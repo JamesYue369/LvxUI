@@ -904,7 +904,7 @@
 ```html
 <template>
   <lvx-table
-    :data="tableData4"
+    :data="[]"
     style="width: 100%"
     max-height="250">
     <lvx-table-column

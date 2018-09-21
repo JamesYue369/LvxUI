@@ -78,6 +78,7 @@ export default {
 
       const options = this.popperOptions;
       const popper = this.popperElm = this.popperElm || this.popper || this.$refs.popper;
+      // const popper = this.popperElm = this.popperElm || this.$refs.popper;
       let reference = this.referenceElm = this.referenceElm || this.reference || this.$refs.reference;
 
       if (!reference &&

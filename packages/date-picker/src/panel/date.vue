@@ -51,14 +51,14 @@
             <button
               type="button"
               @click="prevYear"
-              :aria-label="t(`el.datepicker.prevYear`)"
+              :aria-label="t(`lang.datepicker.prevYear`)"
               :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__prev-btn`, `${$clsPrefix}-icon-d-arrow-left`]">
             </button>
             <button
               type="button"
               @click="prevMonth"
               v-show="currentView === 'date'"
-              :aria-label="t(`el.datepicker.prevMonth`)"
+              :aria-label="t(`lang.datepicker.prevMonth`)"
               :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__prev-btn`, `${$clsPrefix}-icon-arrow-left`]">
             </button>
             <span
@@ -69,18 +69,18 @@
               @click="showMonthPicker"
               v-show="currentView === 'date'"
               role="button"
-              :class="[`${$clsPrefix}-date-picker__header-label`, { active: currentView === 'month' }]">{{t(`el.datepicker.month${ month + 1 }`)}}</span>
+              :class="[`${$clsPrefix}-date-picker__header-label`, { active: currentView === 'month' }]">{{t(`lang.datepicker.month${ month + 1 }`)}}</span>
             <button
               type="button"
               @click="nextYear"
-              :aria-label="t(`el.datepicker.nextYear`)"
+              :aria-label="t(`lang.datepicker.nextYear`)"
               :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__next-btn`, `${$clsPrefix}-icon-d-arrow-right`]">
             </button>
             <button
               type="button"
               @click="nextMonth"
               v-show="currentView === 'date'"
-              :aria-label="t(`el.datepicker.nextMonth`)"
+              :aria-label="t(`lang.datepicker.nextMonth`)"
               :class="[`${$clsPrefix}-picker-panel__icon-btn`, `${$clsPrefix}-date-picker__next-btn`, `${$clsPrefix}-icon-arrow-right`]">
             </button>
           </div>

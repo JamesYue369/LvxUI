@@ -365,124 +365,150 @@
         </div>
       </lvx-table>
     </div>
-    <div>
-      <lvx-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</lvx-button>
-      <lvx-button
-        type="primary"
-        @click="openFullScreen2">
-        loading...
-      </lvx-button>
-      <lvx-dialog
-        :visible.sync="centerDialogVisible"
-        width="30%"
-        titleClass="dialog-title"
-        >
-        <span slot="title">本地上传</span>
-        <i slot="close" class="lvx-icon-circle-close"></i>
-        <div class="dialog-content">
-          <span>文件上传</span>
-          <span>pdf上传</span>
-          <span>图片上传</span>
-        </div>
-      </lvx-dialog>
-    </div>
-    <div>
-      <lvx-pagination
-        layout="prev, pager, next"
-        :more-pages="morePages"
-        :more-style="moreStyle"
-        :pre-style="preStyle"
-        :next-style="nextStyle"
-        pager-class="pager-style"
-        :pager-style="pagerStyle"
-        active-class="page-active-style"
-        :active-style="pagerActiveStyle"
-        :total="1000">
-      </lvx-pagination>
-    </div>
-    <div class="user-img">
-      <img v-if="imageUrl" :src="imageUrl" class="avatar">
-      <lvx-upload
-        class="avatar-uploader"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        :show-file-list="false"
-        :on-success="handleAvatarSuccess"
-        :size="1024*30"
-        :on-spill="handleAvatarSpill"
-        accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        :on-disallow="handleAvatarDisallow"
-        >
-        <i class="lvx-icon-setting"></i>修改头像
-      </lvx-upload>
-    </div>
-    <div>
-      <lvx-carousel :interval="4000" type="card" height="200px">
-        <lvx-carousel-item v-for="item in 6" :key="item">
-          <h3>{{ item }}</h3>
-        </lvx-carousel-item>
-      </lvx-carousel>
-    </div>
-    <div>
-      <lvx-input
-        type="textarea"
-        :rows="2"
-        placeholder="请输入内容"
-        :maxlength="200"
-        >
-      </lvx-input>
-    </div>
-    <div>
-       <lvx-table
-        :data="tableData1"
-        border
+    <div style="height: 400px;overflow: auto" id="popper-wraper" >
+      <div>
+        <lvx-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</lvx-button>
+        <lvx-button
+          type="primary"
+          @click="openFullScreen2">
+          loading...
+        </lvx-button>
+        <lvx-dialog
+          :visible.sync="centerDialogVisible"
+          width="30%"
+          titleClass="dialog-title"
+          >
+          <span slot="title">本地上传</span>
+          <i slot="close" class="lvx-icon-circle-close"></i>
+          <div class="dialog-content">
+            <span>文件上传</span>
+            <span>pdf上传</span>
+            <span>图片上传</span>
+          </div>
+        </lvx-dialog>
+      </div>
+      <div>
+        <lvx-pagination
+          layout="prev, pager, next"
+          :more-pages="morePages"
+          :more-style="moreStyle"
+          :pre-style="preStyle"
+          :next-style="nextStyle"
+          pager-class="pager-style"
+          :pager-style="pagerStyle"
+          active-class="page-active-style"
+          :active-style="pagerActiveStyle"
+          :total="1000">
+        </lvx-pagination>
+      </div>
+      <div class="user-img">
+        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        <lvx-upload
+          class="avatar-uploader"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :size="1024*30"
+          :on-spill="handleAvatarSpill"
+          accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          :on-disallow="handleAvatarDisallow"
+          >
+          <i class="lvx-icon-setting"></i>修改头像
+        </lvx-upload>
+      </div>
+      <div>
+        <lvx-carousel :interval="4000" type="card" height="200px">
+          <lvx-carousel-item v-for="item in 6" :key="item">
+            <h3>{{ item }}</h3>
+          </lvx-carousel-item>
+        </lvx-carousel>
+      </div>
+      <div>
+        <lvx-input
+          type="textarea"
+          :rows="2"
+          placeholder="请输入内容"
+          :maxlength="200"
+          >
+        </lvx-input>
+      </div>
+      <div>
+         <lvx-table
+          :data="tableData1"
+          border
 
-        style="width: 100%">
-        <lvx-table-column
-          prop="date"
-          label="日期"
-          align="center"
-          header-align="center"
-          width="180">
-        </lvx-table-column>
-        <lvx-table-column
-          prop="name"
-          label="姓名"
-          align="center"
-          width="180">
-        </lvx-table-column>
-        <lvx-table-column
-          prop="address"
-          align="center"
-          label="地址">
-        </lvx-table-column>
-      </lvx-table>
+          style="width: 100%">
+          <lvx-table-column
+            prop="date"
+            label="日期"
+            align="center"
+            header-align="center"
+            width="180">
+          </lvx-table-column>
+          <lvx-table-column
+            prop="name"
+            label="姓名"
+            align="center"
+            width="180">
+          </lvx-table-column>
+          <lvx-table-column
+            prop="address"
+            align="center"
+            label="地址">
+          </lvx-table-column>
+          <lvx-table-column
+              fixed="right"
+              label="操作"
+              align="center"
+              width="200">
+              <template slot-scope="scope">
+                <lvx-popover
+                  ref="popover"
+                  placement="top"
+                  width="160"
+                  trigger="click"
+                 
+                 >
+                  
+                  <div style="text-align: right; margin: 0">
+                    <lvx-button size="mini" type="text" >取消</lvx-button>
+                    <lvx-button type="primary" size="mini" >确定</lvx-button>
+                  </div>
+                </lvx-popover>
+                <lvx-button type="text" size="small" v-popover="`popover`">删除</lvx-button>
+              </template>
 
-      <lvx-upload
-        action="https://jsonplaceholder.typicode.com/posts/"
-        class="upload-demo"
-        ref="upload"
-        accept="image/gif,image/jpeg,image/png"
-        :total-size="1024*1024*10"
-        :multiple="true"
-        :on-total-spill="onTotalSpill"
-        :auto-upload="false">
-        <span slot="ready">等待上传</span>
-        <span slot="success">上传成功</span>
-        <lvx-button slot="trigger" size="small" type="primary">选取文件</lvx-button>
-        <lvx-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</lvx-button>
-        <div slot="tip" class="lvx-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-      </lvx-upload>
+            </lvx-table-column>
+        </lvx-table>
 
-      <lvx-select v-model="selectValue" placeholder="请选择" >
-        <lvx-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </lvx-option>
-        <i class="lvx-input__icon lvx-icon-date" slot="prefix"></i>
-      </lvx-select>
+        <lvx-upload
+          action="https://jsonplaceholder.typicode.com/posts/"
+          class="upload-demo"
+          ref="upload"
+          accept="image/gif,image/jpeg,image/png"
+          :total-size="1024*1024*10"
+          :multiple="true"
+          :on-total-spill="onTotalSpill"
+          :auto-upload="false">
+          <span slot="ready">等待上传</span>
+          <span slot="success">上传成功</span>
+          <lvx-button slot="trigger" size="small" type="primary">选取文件</lvx-button>
+          <lvx-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</lvx-button>
+          <div slot="tip" class="lvx-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </lvx-upload>
+
+        <lvx-select v-model="selectValue" placeholder="请选择" >
+          <lvx-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </lvx-option>
+          <i class="lvx-input__icon lvx-icon-date" slot="prefix"></i>
+        </lvx-select>
+      </div>
     </div>
+    
   </div>
 </template>
 <script>
@@ -652,7 +678,7 @@
       next1() {
         if (this.active1++ > 2) {
           this.active1 = 0;
-        } 
+        }
       },
       open() {
         this.$message({
@@ -735,6 +761,5 @@
     beforeDestroy() {
     }
   };
-   
 </script>
 

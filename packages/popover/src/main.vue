@@ -163,6 +163,7 @@ export default {
     handleDocumentClick(e) {
       let reference = this.reference || this.$refs.reference;
       const popper = this.popper || this.$refs.popper;
+      // const popper = this.$refs.popper;
 
       if (!reference && this.$slots.reference && this.$slots.reference[0]) {
         reference = this.referenceElm = this.$slots.reference[0].elm;

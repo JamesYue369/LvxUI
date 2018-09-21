@@ -87,6 +87,7 @@
           style.borderBottomColor = this.active
             ? (this.rootMenu.activeTextColor ? this.activeTextColor : '')
             : 'transparent';
+          style.borderBottomWidth = this.rootMenu.showBottomLine ? '2px' : '0';
         }
         return style;
       },
