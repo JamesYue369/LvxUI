@@ -149,16 +149,26 @@ export default class TreeStore {
     delete this.nodesMap[node.key];
   }
 
-  getCheckedNodes(leafOnly = false) {
+  getCheckedNodes(leafOnly = true) {
     const checkedNodes = [];
     const traverse = function(node) {
       const childNodes = node.root ? node.root.childNodes : node.childNodes;
 
       childNodes.forEach((child) => {
-        if ((!leafOnly && child.checked) || (leafOnly && child.isLeaf && child.checked)) {
-          checkedNodes.push(child.data);
-        }
 
+        // if ((!leafOnly && child.checked) || (leafOnly && child.isLeaf && child.checked)) {
+        //   checkedNodes.push(child.data);
+        // }
+
+        if (leafOnly) {
+          if (child.checked && child.isLeaf) {
+            checkedNodes.push(child.data);
+          } else {
+            if (child.checked) {
+              checkedNodes.push(child.data);
+            }
+          }
+        }
         traverse(child);
       });
     };
@@ -168,12 +178,21 @@ export default class TreeStore {
     return checkedNodes;
   }
 
-  getCheckedKeys(leafOnly = false) {
+  getCheckedKeys(leafOnly = true) {
     const key = this.key;
     const allNodes = this._getAllNodes();
     const keys = [];
     allNodes.forEach((node) => {
-      if (!leafOnly || (leafOnly && node.isLeaf)) {
+      // if (!leafOnly || (leafOnly && node.isLeaf)) {
+      //   if (node.checked) {
+      //     keys.push((node.data || {})[key]);
+      //   }
+      // }
+      if (leafOnly) {
+        if (node.checked && node.isLeaf) {
+          keys.push((node.data || {})[key]);
+        }
+      } else {
         if (node.checked) {
           keys.push((node.data || {})[key]);
         }

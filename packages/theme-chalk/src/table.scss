@@ -102,7 +102,7 @@
     box-sizing: border-box;
     text-overflow: ellipsis;
     vertical-align: middle;
-    position: relative;
+    // position: relative;
 
     @include when(center) {
       text-align: center;
