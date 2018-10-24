@@ -91,9 +91,10 @@ const Loading = (options = {}) => {
     addClass(parent, `${config.clsPrefix}-loading-parent--hidden`);
   }
   parent.appendChild(instance.$el);
-  Vue.nextTick(() => {
-    instance.visible = true;
-  });
+  // Vue.nextTick(() => {
+  //   instance.visible = true;
+  // });
+  instance.visible = true;
   if (options.fullscreen) {
     fullscreenLoading = instance;
   }
