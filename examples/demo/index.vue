@@ -226,6 +226,23 @@
     font-size: 12px;
     color: #959595;
   }
+  .table-header-wrapper1{
+    margin: 0px 20px;
+    text-align: center;
+    overflow-x: auto;
+    z-index: 5;
+    background: #fff;
+    height: 48px;
+    line-height: 48px;
+  }
+  .fl{
+    float: left;
+  }
+  .table-header-wrapper1 .table-column-fixed {
+    position: fixed;
+    right: 57px;
+    background: #fff;
+  }
 </style>
 <template>
   <div>
@@ -436,7 +453,6 @@
          <lvx-table
           :data="tableData1"
           border
-
           style="width: 100%">
           <lvx-table-column
             prop="date"
@@ -518,6 +534,180 @@
      >
     </lvx-tree>
     <lvx-button @click="getTreesNode">获取树选择的节点值</lvx-button>
+
+    <div class="table-header-wrapper1" >
+      <div class="table-header-fixed clearfix" style="width: 2678px">
+        <div class="table-column fl" style="width:48px;">序号</div>
+        <div class="table-column fl" style="width:180px;">车辆编号</div>
+        <div class="table-column fl" style="width:240px;">VIN</div>
+        <div class="table-column fl" style="width:120px;">区域</div>
+        <div class="table-column fl" style="width:120px;">商户</div>
+        <div class="table-column fl" style="width:120px;">新车/二手车</div>
+        <div class="table-column fl" style="width:120px;">车辆状态</div>
+        <div class="table-column fl" style="width:150px;">库存天数</div>
+        <div class="table-column fl" style="width:180px;">入库时间</div>
+        <div class="table-column fl" style="width:200px;">品牌车系</div>
+        <div class="table-column fl" style="width:220px;">车型</div>
+        <div class="table-column fl" style="width:180px;">首次上牌时间</div>
+        <div class="table-column fl" style="width:120px;">表显里程(公里)</div>
+        <div class="table-column fl" style="width:120px;">售价(万元)</div>
+        <div class="table-column fl" style="width:120px;">估价(万元)</div>
+        <div class="table-column fl" style="width:120px;">库存状态</div>
+        <div class="table-column fl" style="width:120px;">备注</div>
+        <div class="table-column-fixed fl" style="width:200px;">操作</div>
+      </div>  
+    </div> 
+    <lvx-table
+      :data="tableData"
+      style="width: 100%"
+      ref="carTable"
+      row-key="id"
+      class="repertory-table"
+      @body-x-scroll="tableScroll"
+      >
+      <!-- <lvx-table-column
+        fixed
+        type="selection"
+        width="55">
+      </lvx-table-column> -->
+      <lvx-table-column
+        type="index"
+        label="序号"
+        align="center"
+        min-width="100">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="carNo"
+        label="车辆编号"
+        align="center"
+        width="180">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="vin"
+        label="VIN"
+        align="center"
+        width="240">
+        <template slot-scope="scope">
+          <lvx-button type="text">{{scope.row.vin}}</lvx-button>
+          <!-- <router-link :to="{path: '/repertory/repertory/detail', query: {id: scope.row.id}}" >{{scope.row.vin}}</router-link> -->
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="areaId"
+        label="区域"
+        align="center"
+        width="120">
+        <template slot-scope="scope">
+          <span>{{scope.row.areaId}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="tenantName"
+        label="商户"
+        align="center"
+        width="120">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="isNewCar"
+        label="新车/二手车"
+        align="center"
+        width="120">
+        <template slot-scope="scope">
+          <span>{{scope.row.isNewCar}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="carStatus"
+        label="车辆状态"
+        align="center"
+        width="120">
+        <template slot-scope="scope">
+          <span>{{scope.row.carStatus}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="stockDays"
+        label="库存天数"
+        align="center"
+        width="150">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="registerTime"
+        label="入库时间"
+        align="center"
+        width="180">
+        <template slot-scope="scope">
+          <span>{{scope.row.registerTime}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="seriesName"
+        label="品牌车系"
+        align="center"
+        width="200">
+        <template slot-scope="scope">
+          <span>{{scope.row.brandName}}-{{scope.row.seriesName}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="modelName"
+        label="车型"
+        align="center"
+        width="220">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="initialLicenceTime"
+        label="首次上牌时间"
+        align="center"
+        width="180">
+        <template slot-scope="scope">
+          <span>{{scope.row.initialLicenceTime}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="mileage"
+        label="表显里程(公里)"
+        align="center"
+        width="120">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="marketPrice"
+        label="售价(万元)"
+        align="center"
+        width="120">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="evaluatePrice"
+        label="估价(万元)"
+        align="center"
+        width="120">
+      </lvx-table-column>
+      <lvx-table-column
+        prop="stockStatus"
+        label="库存状态"
+        align="center"
+        width="120">
+        <template slot-scope="scope">
+          <span>{{scope.row.stockStatus}}</span>
+        </template>
+      </lvx-table-column>
+      <lvx-table-column
+        prop="remark"
+        label="备注"
+        align="center"
+        width="120">
+      </lvx-table-column>
+      <lvx-table-column
+        fixed="right"
+        label="操作"
+        align="center"
+        width="200">
+        <template slot-scope="scope">
+       
+        
+        </template>
+      </lvx-table-column>
+    </lvx-table>
   </div>
 </template>
 <script>
@@ -566,7 +756,87 @@
         active: 0,
         active1: 1,
         lineType: 'dashed',
-        tableData: [],
+        tableData: [
+          {
+            'currentPage': 1,
+            'pageSize': 20,
+            'recordCount': 0,
+            'recordList': null,
+            'pageCount': 0,
+            'beginPageIndex': 0,
+            'endPageIndex': 20,
+            'id': '18102717223750648639',
+            'carNo': '01018102717223750648639',
+            'staffId': null,
+            'vin': 'LBVNU79049SB81001',
+            'rfid': '010000000000002458911001',
+            'tenant': '18102716161114852268',
+            'tenantName': '蓝氏小仓库餐饮',
+            'areaId': '18102716124770240062',
+            'isNewCar': 1,
+            'carType': 1,
+            'stockStatus': 1,
+            'carStatus': 2,
+            'registerTime': '2018-10-27 17:22:38',
+            'isvalid': 1,
+            'marketId': '010',
+            'brandName': '宝马',
+            'brandCode': 'brand-20',
+            'seriesName': '宝马5系',
+            'seriesCode': 'series-425',
+            'modelYear': null,
+            'modelName': '2009款 宝马5系 525Li 领先型',
+            'modelCode': '38228',
+            'mileage': 600,
+            'evaluatePrice': 10.17,
+            'newPrice': 55.56,
+            'color': '铜色',
+            'engineVolumeUnitl': 2.5,
+            'environmentalStandards': '欧IV',
+            'gearBox': '6挡手自一体',
+            'ownerName': '',
+            'seatNumber': 5,
+            'fuelForm': '汽油',
+            'fuelNumber': null,
+            'checkCompanyId': null,
+            'updateOperator': null,
+            'insterOperator': null,
+            'insertTime': '2018-10-27 17:22:37',
+            'updateTime': '2018-10-27 17:22:37',
+            'level': '中大型车',
+            'carAge': null,
+            'stockDays': 2,
+            'registerTimeStart': null,
+            'registerTimeEnd': null,
+            'initialLicenceTime': '2010-01-01 00:00:00.0',
+            'remark': '',
+            'taobaoId': null,
+            'taobaoUrl': null,
+            'seats': null,
+            'accidentType': 1,
+            'listCarPic': null,
+            'shelfStatus': null,
+            'channelId': null,
+            'shelfNum': null,
+            'carChannelId': null,
+            'initialLicenceTimeStart': null,
+            'initialLicenceTimeEnd': null,
+            'yearStart': null,
+            'yearEnd': null,
+            'mileageStart': null,
+            'mileageEnd': null,
+            'src': null,
+            'marketPrice': 10,
+            'orderType': null,
+            'priceType': null,
+            'disType': null,
+            'airConditionerControlType': null,
+            'displacement1': null,
+            'displacement2': null,
+            'carChannelVos': null,
+            'daSouChe': null
+          }
+        ],
         tableData1: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -671,7 +941,8 @@
             id: 8,
             label: '二级 3-2'
           }]
-        }]
+        }],
+        scrollLeft: 0
         // imageUrl: require('../assets/images/user.jpg')
       };
     },
@@ -797,11 +1068,18 @@
       },
       getTreesNode() {
         console.log(this.$refs['treeDemo'].getCheckedKeys());
+      },
+      tableScroll(e, eventSource) {
+        document.querySelector('.table-header-wrapper1').scrollLeft = e.target.scrollLeft;
+      },
+      tableHeaderScroll(e) {
+        this.$refs['carTable'].setScrollLeft(e.target.scrollLeft);
       }
     },
     created() {
     },
     mounted() {
+      document.querySelector('.table-header-wrapper1').addEventListener('scroll', this.tableHeaderScroll);
     },
     destroyed() {
     },

@@ -2043,6 +2043,7 @@
 | current-change | 当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性 | currentRow, oldCurrentRow |
 | header-dragend | 当拖动表头改变了列的宽度的时候会触发该事件 | newWidth, oldWidth, column, event |
 | expand-change | 当用户对某一行展开或者关闭的时候会触发该事件 | row, expandedRows |
+| body-x-scroll | 当用户对表格横向滚动的时候会触发该事件 | event |
 
 ### Table Methods
 | 方法名 | 说明 | 参数 |
@@ -2054,6 +2055,8 @@
 | clearSort | 用于清空排序条件，数据会恢复成未排序的状态 | — |
 | clearFilter | 用于清空过滤条件，数据会恢复成未过滤的状态 | — |
 | doLayout | 对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 | — |
+| setScrollLeft | 对 Table 内容的 scrollLeft的值进行设置 | left 值 |
+
 
 ### Table Slot
 | name | 说明 |

@@ -303,7 +303,7 @@
         const { headerWrapper, footerWrapper } = this.$refs;
         const refs = this.$refs;
         let self = this;
-        this.bodyWrapper.addEventListener('scroll', function() {
+        this.bodyWrapper.addEventListener('scroll', function(e) {
           if (headerWrapper) headerWrapper.scrollLeft = this.scrollLeft;
           if (footerWrapper) footerWrapper.scrollLeft = this.scrollLeft;
           if (refs.fixedBodyWrapper) refs.fixedBodyWrapper.scrollTop = this.scrollTop;
@@ -317,6 +317,7 @@
           } else {
             self.scrollPosition = 'middle';
           }
+          self.$emit('body-x-scroll', e, 'self');
         });
 
         const scrollBodyWrapper = event => {
@@ -358,6 +359,9 @@
             this.layout.updateHeight();
           }
         });
+      },
+      setScrollLeft(left) {
+        this.bodyWrapper.scrollLeft = left;
       }
     },
 
