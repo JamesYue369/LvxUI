@@ -36,7 +36,7 @@
         :row-class-name="rowClassName"
         :row-style="rowStyle"
         :highlight="highlightCurrentRow"
-        :style="{ width: bodyWidth }">
+        :style="{ width: bodyWidth, display: data.length ? 'table' : 'none' }">
       </table-body>
       <!-- <div :style="{ width: bodyWidth }" :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0"> -->
       <div  :class="[`${$clsPrefix}-table__empty-block`]" v-if="!data || data.length === 0">

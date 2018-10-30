@@ -708,6 +708,7 @@
         </template>
       </lvx-table-column>
     </lvx-table>
+    <lvx-button type="primary" size="mini" @click="clearTableData">清空表格数据</lvx-button>
   </div>
 </template>
 <script>
@@ -1074,6 +1075,9 @@
       },
       tableHeaderScroll(e) {
         this.$refs['carTable'].setScrollLeft(e.target.scrollLeft);
+      },
+      clearTableData() {
+        this.tableData = [];
       }
     },
     created() {
